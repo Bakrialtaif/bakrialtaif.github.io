@@ -1306,3 +1306,19 @@ a > img.fh5co-align-center {
 .progress-bar.progress-bar-grey {
 	background: #333;
 }
+
+.button {
+  -webkit-appearance: button;
+  -moz-appearance: button;
+  appearance: button;
+  color: initial;
+  background-color: #d2ddd9;
+  padding: 10px 15px;
+  margin: 3px 3px;
+}
+
+@media screen and (max-width: 768px) {
+  .button {
+    margin: 3px 3px;
+  }
+}
