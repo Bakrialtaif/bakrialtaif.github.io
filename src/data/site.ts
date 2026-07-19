@@ -6,7 +6,7 @@ export const site = {
   description:
     "أساعد الحكومات والمؤسسات على تحويل العمليات المعقدة إلى منتجات ومنصات رقمية قابلة للتوسع.",
   heroStatement:
-    "Enterprise Architect, Technical Leader and Digital Transformation Specialist with extensive experience in designing national digital platforms, enterprise systems and AI-powered business solutions.",
+    "معماري أنظمة مؤسسية، قائد تقني، ومتخصص تحول رقمي بخبرة واسعة في تصميم المنصات الرقمية الوطنية، الأنظمة المؤسسية، وحلول الأعمال المدعومة بالذكاء الاصطناعي.",
   location: "السودان",
   email: "contact@bakrialtaif.github.io",
   phone: "",
@@ -29,9 +29,9 @@ export const navigation = [
 ];
 
 export const impactMetrics = [
-  { value: "20+", label: "Years Experience" },
-  { value: "1.5M+", label: "Financial Notifications Processed" },
-  { value: "130K+", label: "Registered Organizations" },
+  { value: "20+", label: "عامًا من الخبرة" },
+  { value: "1.5M+", label: "إشعار مالي تمت معالجته" },
+  { value: "130K+", label: "منشأة مسجلة" },
   { value: "19", label: "مؤسسة حكومية مرتبطة ضمن منصة بلدنا" },
   { value: "3M+", label: "عملية استعلام عن حالة طباعة الجواز" },
   { value: "500K+", label: "مواطن استفاد من نظام الحجز الإلكتروني" },
@@ -39,21 +39,21 @@ export const impactMetrics = [
 ];
 
 export const executiveScale = [
-  "National Government Platforms",
-  "Enterprise ERP Systems",
-  "AI-powered OCR Solutions",
-  "Government Integration",
-  "Business Process Automation",
-  "Decision Support Systems"
+  "منصات حكومية وطنية",
+  "أنظمة ERP مؤسسية",
+  "حلول OCR مدعومة بالذكاء الاصطناعي",
+  "تكامل حكومي",
+  "أتمتة عمليات الأعمال",
+  "أنظمة دعم القرار"
 ];
 
 export const availableFor = [
-  "CTO Opportunities",
-  "Enterprise Architecture",
-  "Digital Transformation Consulting",
-  "Government Platforms",
-  "Technical Advisory",
-  "Solution Architecture"
+  "فرص CTO",
+  "معمارية الأنظمة المؤسسية",
+  "استشارات التحول الرقمي",
+  "المنصات الحكومية",
+  "الاستشارات التقنية التنفيذية",
+  "معمارية الحلول"
 ];
 
 export const principles = [

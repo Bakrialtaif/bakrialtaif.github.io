@@ -42,7 +42,7 @@ export const recommendations = [
     organization: "كلية البيان للعلوم والتكنولوجيا",
     author: "الكلية",
     date: "15 سبتمبر 2009",
-    evidence: "توثق العمل بوظيفة Programmer وتطوير الأنظمة الإدارية والأكاديمية."
+    evidence: "توثق العمل بوظيفة مبرمج وتطوير الأنظمة الإدارية والأكاديمية."
   },
   {
     title: "شهادة خدمة",
@@ -56,7 +56,7 @@ export const recommendations = [
     organization: "شركة سكر النيل الأبيض",
     author: "إدارة تقنية المعلومات",
     date: "29 أغسطس 2018",
-    evidence: "توثق العمل بوظيفة Programmer في إدارة تقنية المعلومات."
+    evidence: "توثق العمل بوظيفة مبرمج في إدارة تقنية المعلومات."
   }
 ];
 
@@ -64,17 +64,17 @@ export const education = [
   {
     title: "بكالوريوس الشرف في الإحصاء وعلوم الحاسوب",
     institution: "جامعة الخرطوم - كلية العلوم الرياضية",
-    meta: "Bachelor of Science (Honours), Statistics & Computer Science",
+    meta: "بكالوريوس العلوم مع مرتبة الشرف، الإحصاء وعلوم الحاسوب",
     date: "21 يوليو 2008"
   },
   {
-    title: "Risk Management for Information Technology System",
+    title: "إدارة مخاطر نظم تقنية المعلومات",
     institution: "جامعة الخرطوم - كلية العلوم الرياضية - وحدة التدريب",
     meta: "إدارة مخاطر نظم المعلومات",
     date: "06 - 11 فبراير 2012"
   },
   {
-    title: "Designing Computer Database in Accounting",
+    title: "تصميم قواعد بيانات الحاسوب في المحاسبة",
     institution: "جامعة الخرطوم - كلية العلوم الرياضية - وحدة التدريب",
     meta: "تصميم قواعد البيانات في المحاسبة",
     date: "19 - 27 يناير 2014"

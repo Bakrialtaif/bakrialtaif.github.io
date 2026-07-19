@@ -6,17 +6,17 @@ import { experience } from "@/data/experience";
 import { projects } from "@/data/projects";
 ---
 
-<BaseLayout title="ATS Resume" description="نسخة نصية منظمة من السيرة الذاتية لأبوبكر الطائف مهيأة لأنظمة تتبع المتقدمين.">
-  <PageHero eyebrow="ATS Resume" title={site.name} description={`${site.role} - ${site.description}`} />
+<BaseLayout title="نسخة ATS" description="نسخة نصية منظمة من السيرة الذاتية لأبوبكر الطائف مهيأة لأنظمة تتبع المتقدمين.">
+  <PageHero eyebrow="نسخة ATS" title={site.name} description={`${site.role} - ${site.description}`} />
   <section class="container-pad grid gap-10 py-14">
     <section>
-      <h2 class="text-2xl font-bold">Impact</h2>
+      <h2 class="text-2xl font-bold">الأثر</h2>
       <ul class="mt-4 grid gap-2 leading-8">
         {impactMetrics.map((metric) => <li>{metric.value}: {metric.label}</li>)}
       </ul>
     </section>
     <section>
-      <h2 class="text-2xl font-bold">Experience</h2>
+      <h2 class="text-2xl font-bold">الخبرة</h2>
       <div class="mt-4 grid gap-5">
         {experience.map((item) => (
           <article>
@@ -30,7 +30,7 @@ import { projects } from "@/data/projects";
       </div>
     </section>
     <section>
-      <h2 class="text-2xl font-bold">Selected Projects</h2>
+      <h2 class="text-2xl font-bold">مشاريع مختارة</h2>
       <div class="mt-4 grid gap-5">
         {projects.map((project) => (
           <article>

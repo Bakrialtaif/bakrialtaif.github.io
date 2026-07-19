@@ -3,25 +3,25 @@ export const expertise = [
     title: "هندسة المنتجات الرقمية",
     summary: "تحويل احتياجات مؤسسية وحكومية معقدة إلى منتجات رقمية ذات خارطة طريق وبنية تشغيلية واضحة.",
     proof: "منصة بلدنا، خدمات الجوازات الإلكترونية، ومنظومة SNSO ERP.",
-    items: ["Product Vision", "Product Roadmap", "MVP Planning", "Feature Prioritization", "Product Architecture"]
+    items: ["رؤية المنتج", "خارطة طريق المنتج", "تخطيط MVP", "ترتيب أولويات الخصائص", "معمارية المنتج"]
   },
   {
     title: "التحول الرقمي والحكومة الرقمية",
     summary: "رقمنة إجراءات حكومية وخدمات مواطنين وأتمتة معاملات تتطلب استقرارًا وصلاحيات وأثرًا قابلًا للقياس.",
     proof: "ربط 19 مؤسسة حكومية، خدمة 500,000 مواطن، وتنفيذ 3,000,000 عملية استعلام.",
-    items: ["Government Platforms", "Citizen Services", "Workflow Automation", "System Integration", "Public Sector"]
+    items: ["المنصات الحكومية", "خدمات المواطنين", "أتمتة سير العمل", "تكامل الأنظمة", "القطاع العام"]
   },
   {
     title: "هندسة الأنظمة المؤسسية",
     summary: "تصميم أنظمة مؤسسية قابلة للتوسع تربط قواعد البيانات، واجهات التكامل، الصلاحيات، وسير العمل.",
     proof: "أنظمة وزارة الداخلية، SNSO ERP، وأنظمة المجلس القومي للتدريب.",
-    items: ["System Architecture", "Database Design", "Integration Design", "API Design", "Workflow Design", "Security Design"]
+    items: ["معمارية الأنظمة", "تصميم قواعد البيانات", "تصميم التكامل", "تصميم API", "تصميم سير العمل", "تصميم الأمن"]
   },
   {
     title: "البيانات وذكاء الأعمال",
     summary: "بناء نظم معلومات وقواعد بيانات ولوحات مؤشرات تساعد الإدارات على التخطيط والمتابعة واتخاذ القرار.",
     proof: "قاعدة بيانات التدريب، نظام مرضى الكلى، وتقارير الأنظمة الحكومية والمؤسسية.",
-    items: ["Data Analysis", "KPI Design", "Reporting", "Executive Dashboards", "Decision Support"]
+    items: ["تحليل البيانات", "تصميم مؤشرات الأداء", "التقارير", "لوحات تنفيذية", "دعم القرار"]
   },
   {
     title: "تطوير البرمجيات",
@@ -33,7 +33,7 @@ export const expertise = [
     title: "الذكاء الاصطناعي التطبيقي",
     summary: "استخدام OCR ونماذج اللغة الكبيرة داخل المنتجات عندما يكون لها أثر عملي في الأتمتة وتحسين معالجة البيانات.",
     proof: "استخراج البيانات من الصور، تحليل البيانات، وتصنيفها ضمن احتياجات منتجات رقمية.",
-    items: ["OCR", "Computer Vision", "OpenAI APIs", "LLMs", "Data Classification"]
+    items: ["OCR", "Computer Vision", "OpenAI APIs", "LLMs", "تصنيف البيانات"]
   }
 ];
 
@@ -41,32 +41,32 @@ export const relatedExperience = [
   {
     title: "DevOps وتشغيل الأنظمة",
     summary: "صممت وشغلت بنى إنتاجية لأنظمة حكومية ومؤسسية تعتمد على الاستقرار، إدارة الصلاحيات، النسخ الاحتياطي، والمتابعة التشغيلية.",
-    tags: ["Docker", "CI/CD", "Ubuntu Server", "Nginx", "Gunicorn", "PostgreSQL", "Monitoring", "Security Hardening"]
+    tags: ["Docker", "CI/CD", "Ubuntu Server", "Nginx", "Gunicorn", "PostgreSQL", "المراقبة التشغيلية", "تعزيز الأمان"]
   },
   {
     title: "ERP والعمليات المؤسسية",
     summary: "شاركت في تصميم وتنفيذ وحدات ERP تغطي الموارد البشرية، المالية، التخطيط، المشتريات، وسير العمل، مع تخصيص الإجراءات وتدريب المستخدمين.",
-    tags: ["ERP", "HR", "Finance", "Planning", "Payroll", "Procurement", "Workflow"]
+    tags: ["ERP", "HR", "المالية", "التخطيط", "الرواتب", "المشتريات", "سير العمل"]
   },
   {
-    title: "HR & Accounting",
+    title: "HR والمحاسبة",
     summary: "حوّلت احتياجات الموارد البشرية والمحاسبة إلى وحدات تشغيلية قابلة للتتبع، تشمل إدارة الملفات، المستندات، الصلاحيات، والتقارير.",
-    tags: ["HR Systems", "Accounting", "Business Documents", "Permissions", "Reporting"]
+    tags: ["أنظمة HR", "المحاسبة", "مستندات الأعمال", "الصلاحيات", "التقارير"]
   },
   {
     title: "التخطيط وإدارة المؤشرات",
     summary: "قُدت مبادرات تخطيط وتشغيل وربطت بيانات المؤسسات بمؤشرات أداء ولوحات متابعة تساعد في إدارة المشاريع والعمليات.",
-    tags: ["Strategic Planning", "KPI Management", "Operational Planning", "Project Portfolio"]
+    tags: ["التخطيط الاستراتيجي", "إدارة مؤشرات الأداء", "التخطيط التشغيلي", "محفظة المشاريع"]
   },
   {
     title: "التوثيق والمحتوى المهني",
     summary: "أنتجت وثائق تقنية وتشغيلية تدعم فهم الأنظمة واستخدامها، من وثائق المتطلبات وواجهات التكامل إلى أدلة المستخدم والمقترحات.",
-    tags: ["Technical Documentation", "API Documentation", "Business Documentation", "User Guides", "Proposal Writing"]
+    tags: ["التوثيق التقني", "توثيق API", "توثيق الأعمال", "أدلة المستخدم", "كتابة المقترحات"]
   }
 ];
 
 export const technologyTags = [
-  "Government",
+  "الحكومة",
   "Python",
   "Django",
   "Django REST Framework",
@@ -80,62 +80,62 @@ export const technologyTags = [
   "Docker",
   "CI/CD",
   "DevOps",
-  "Integration",
+  "التكامل",
   "ERP",
   "Kanban",
   "NumPy",
   "JavaScript",
   "Flutter",
   "ASP.NET",
-  "Digital Transformation"
+  "التحول الرقمي"
 ];
 
 export const skillGroups = [
   {
-    title: "Core Technologies",
+    title: "التقنيات الأساسية",
     items: ["Python", "Django", "PostgreSQL", "Linux", "Redis", "Docker"]
   },
   {
-    title: "Enterprise Systems",
-    items: ["ERP", "HR", "Accounting", "Planning", "Workflow", "Business Process Automation"]
+    title: "الأنظمة المؤسسية",
+    items: ["ERP", "HR", "المحاسبة", "التخطيط", "سير العمل", "أتمتة عمليات الأعمال"]
   },
   {
-    title: "Government Platforms",
-    items: ["Digital Transformation", "National Platforms", "Government Integration", "eGovernment"]
+    title: "المنصات الحكومية",
+    items: ["التحول الرقمي", "المنصات الوطنية", "التكامل الحكومي", "الحكومة الإلكترونية"]
   },
   {
-    title: "Artificial Intelligence",
-    items: ["OCR", "Computer Vision", "Machine Learning", "NLP"]
+    title: "الذكاء الاصطناعي",
+    items: ["OCR", "Computer Vision", "تعلم الآلة", "NLP"]
   },
   {
-    title: "Leadership",
-    items: ["Solution Architecture", "Technical Leadership", "Team Leadership", "Project Management", "System Design"]
+    title: "القيادة التقنية",
+    items: ["معمارية الحلول", "القيادة التقنية", "قيادة الفرق", "إدارة المشاريع", "تصميم الأنظمة"]
   }
 ];
 
 export const keywordGroups = [
   {
-    title: "Government Technology",
-    items: ["National Platforms", "eGovernment", "Citizen Services", "Government Integration"]
+    title: "تقنيات الحكومة",
+    items: ["المنصات الوطنية", "الحكومة الإلكترونية", "خدمات المواطنين", "التكامل الحكومي"]
   },
   {
-    title: "Enterprise Systems",
-    items: ["ERP", "HR", "Finance", "Workflow", "Business Documents"]
+    title: "الأنظمة المؤسسية",
+    items: ["ERP", "HR", "المالية", "سير العمل", "مستندات الأعمال"]
   },
   {
-    title: "Cloud & DevOps",
-    items: ["Linux", "Nginx", "Gunicorn", "Docker", "CI/CD", "Monitoring"]
+    title: "السحابة وDevOps",
+    items: ["Linux", "Nginx", "Gunicorn", "Docker", "CI/CD", "المراقبة التشغيلية"]
   },
   {
-    title: "Artificial Intelligence",
-    items: ["OCR", "Computer Vision", "Machine Learning", "NLP", "OpenAI APIs"]
+    title: "الذكاء الاصطناعي",
+    items: ["OCR", "Computer Vision", "تعلم الآلة", "NLP", "OpenAI APIs"]
   },
   {
-    title: "Leadership",
-    items: ["CTO", "Solution Architecture", "Technical Advisory", "Team Leadership"]
+    title: "القيادة",
+    items: ["CTO", "معمارية الحلول", "الاستشارات التقنية", "قيادة الفرق"]
   },
   {
-    title: "Business Transformation",
-    items: ["Digital Transformation", "Process Automation", "Decision Support", "KPI Management"]
+    title: "تحول الأعمال",
+    items: ["التحول الرقمي", "أتمتة العمليات", "دعم القرار", "إدارة مؤشرات الأداء"]
   }
 ];

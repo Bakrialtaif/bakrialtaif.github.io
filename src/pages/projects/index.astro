@@ -6,7 +6,7 @@ import { projects } from "@/data/projects";
 ---
 
 <BaseLayout title="المشاريع ودراسات الحالة" description="دراسات حالة لمشاريع حكومية ومؤسسية موثقة بالأدوار والنتائج والأرقام.">
-  <PageHero eyebrow="Major Projects" title="مشاريع وطنية ومؤسسية موثقة بالأثر" description="كل مشروع يعرض Project Overview وMy Role وTechnologies وKey Features وBusiness Impact حتى يظهر حجم النظام وقيمته للجهة المستفيدة." />
+  <PageHero eyebrow="المشاريع الرئيسية" title="مشاريع وطنية ومؤسسية موثقة بالأثر" description="كل مشروع يعرض نظرة عامة، دوري في المشروع، التقنيات، الخصائص الرئيسية، والأثر المؤسسي حتى يظهر حجم النظام وقيمته للجهة المستفيدة." />
   <section class="container-pad py-14">
     <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
       {projects.map((project) => <ProjectCard project={project} />)}

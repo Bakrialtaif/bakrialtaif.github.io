@@ -15,48 +15,48 @@ const { project } = Astro.props;
   <section class="container-pad grid gap-8 py-14 lg:grid-cols-[0.72fr_1.28fr]">
     <aside class="surface h-fit rounded-lg p-5">
       <dl class="grid gap-4 text-sm">
-        <div><dt class="font-bold">Organization</dt><dd class="mt-1 text-slate-600 dark:text-slate-300">{project.organization}</dd></div>
-        <div><dt class="font-bold">My Role</dt><dd class="mt-1 text-slate-600 dark:text-slate-300">{project.role}</dd></div>
-        <div><dt class="font-bold">Period</dt><dd class="mt-1 text-slate-600 dark:text-slate-300">{project.period}</dd></div>
-        {project.link && <div><dt class="font-bold">Project Link</dt><dd class="mt-1"><a class="text-river dark:text-blue-300" href={project.link}>{project.link}</a></dd></div>}
+        <div><dt class="font-bold">الجهة</dt><dd class="mt-1 text-slate-600 dark:text-slate-300">{project.organization}</dd></div>
+        <div><dt class="font-bold">دوري في المشروع</dt><dd class="mt-1 text-slate-600 dark:text-slate-300">{project.role}</dd></div>
+        <div><dt class="font-bold">الفترة</dt><dd class="mt-1 text-slate-600 dark:text-slate-300">{project.period}</dd></div>
+        {project.link && <div><dt class="font-bold">رابط المشروع</dt><dd class="mt-1"><a class="text-river dark:text-blue-300" href={project.link}>{project.link}</a></dd></div>}
       </dl>
     </aside>
     <div class="grid gap-6">
       <section class="surface rounded-lg p-6">
-        <h2 class="text-2xl font-bold">Project Overview</h2>
+        <h2 class="text-2xl font-bold">نظرة عامة على المشروع</h2>
         <p class="mt-4 leading-8 text-slate-700 dark:text-slate-200">{project.overview}</p>
       </section>
       <section class="surface rounded-lg p-6">
-        <h2 class="text-2xl font-bold">My Role</h2>
+        <h2 class="text-2xl font-bold">دوري في المشروع</h2>
         <ul class="mt-4 grid gap-2 leading-8 text-slate-700 dark:text-slate-200">
           {project.responsibilities.map((item) => <li>{item}</li>)}
         </ul>
       </section>
       <section class="surface rounded-lg p-6">
-        <h2 class="text-2xl font-bold">Technologies</h2>
+        <h2 class="text-2xl font-bold">التقنيات المستخدمة</h2>
         <div class="mt-4 flex flex-wrap gap-2">
           {project.technologies.map((tech) => <span class="rounded-md bg-slate-100 px-3 py-1.5 text-sm font-semibold dark:bg-slate-800">{tech}</span>)}
         </div>
       </section>
       <section class="surface rounded-lg p-6">
-        <h2 class="text-2xl font-bold">Key Features</h2>
+        <h2 class="text-2xl font-bold">الخصائص الرئيسية</h2>
         <div class="mt-4 grid gap-3 sm:grid-cols-2">
           {project.keyFeatures.map((feature) => <div class="rounded-lg bg-slate-50 p-4 text-sm font-semibold text-slate-700 dark:bg-slate-800 dark:text-slate-200">{feature}</div>)}
         </div>
       </section>
       <section class="surface rounded-lg p-6">
-        <h2 class="text-2xl font-bold">Business Impact</h2>
+        <h2 class="text-2xl font-bold">الأثر المؤسسي</h2>
         <div class="mt-5 grid gap-4 md:grid-cols-3">
           <div class="rounded-lg bg-slate-50 p-4 dark:bg-slate-800">
-            <p class="text-sm font-bold text-copper dark:text-amber-300">Problem</p>
+            <p class="text-sm font-bold text-copper dark:text-amber-300">المشكلة</p>
             <p class="mt-2 text-sm leading-7 text-slate-700 dark:text-slate-200">{project.businessImpact.problem}</p>
           </div>
           <div class="rounded-lg bg-slate-50 p-4 dark:bg-slate-800">
-            <p class="text-sm font-bold text-teal dark:text-teal-300">Solution</p>
+            <p class="text-sm font-bold text-teal dark:text-teal-300">الحل</p>
             <p class="mt-2 text-sm leading-7 text-slate-700 dark:text-slate-200">{project.businessImpact.solution}</p>
           </div>
           <div class="rounded-lg bg-slate-50 p-4 dark:bg-slate-800">
-            <p class="text-sm font-bold text-river dark:text-blue-300">Impact</p>
+            <p class="text-sm font-bold text-river dark:text-blue-300">الأثر</p>
             <p class="mt-2 text-sm leading-7 text-slate-700 dark:text-slate-200">{project.businessImpact.impact}</p>
           </div>
         </div>
