@@ -1,0 +1,19 @@
+---
+import { experience } from "@/data/experience";
+---
+
+<ol class="relative grid gap-5 border-r border-slate-200 pr-5 dark:border-slate-800">
+  {experience.map((item) => (
+    <li class="relative">
+      <span class="absolute -right-[29px] top-1 h-4 w-4 rounded-full border-4 border-paper bg-teal dark:border-slate-950"></span>
+      <div class="surface rounded-lg p-5">
+        <p class="text-sm font-semibold text-copper dark:text-amber-300">{item.period}</p>
+        <h3 class="mt-2 text-xl font-bold">{item.title}</h3>
+        <p class="mt-1 text-sm text-slate-600 dark:text-slate-300">{item.organization} - {item.country}</p>
+        <ul class="mt-4 grid gap-2 text-sm leading-7 text-slate-700 dark:text-slate-200">
+          {item.responsibilities.slice(0, 4).map((responsibility) => <li>{responsibility}</li>)}
+        </ul>
+      </div>
+    </li>
+  ))}
+</ol>

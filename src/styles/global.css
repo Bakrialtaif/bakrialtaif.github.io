@@ -1,0 +1,42 @@
+@import url("https://fonts.googleapis.com/css2?family=IBM+Plex+Sans+Arabic:wght@400;500;600;700&family=Inter:wght@500;600;700&display=swap");
+
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    color-scheme: light;
+  }
+
+  :root.dark {
+    color-scheme: dark;
+  }
+
+  html {
+    scroll-behavior: smooth;
+  }
+
+  body {
+    @apply bg-paper text-slate-900 antialiased dark:bg-slate-950 dark:text-slate-100;
+  }
+
+  a,
+  button {
+    @apply outline-none focus-visible:ring-2 focus-visible:ring-river focus-visible:ring-offset-2 focus-visible:ring-offset-paper dark:focus-visible:ring-offset-slate-950;
+  }
+}
+
+@layer components {
+  .container-pad {
+    @apply mx-auto w-full max-w-7xl px-4 sm:px-6 lg:px-8;
+  }
+
+  .surface {
+    @apply border border-slate-200 bg-white shadow-soft dark:border-slate-800 dark:bg-slate-900;
+  }
+
+  .eyebrow {
+    @apply text-sm font-semibold text-teal dark:text-teal-300;
+  }
+}

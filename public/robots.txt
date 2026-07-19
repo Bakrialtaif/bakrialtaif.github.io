@@ -1,0 +1,3 @@
+User-agent: *
+Allow: /
+Sitemap: https://bakrialtaif.github.io/sitemap.xml

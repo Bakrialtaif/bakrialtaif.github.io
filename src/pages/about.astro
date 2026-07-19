@@ -1,0 +1,33 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import SectionTitle from "@/components/SectionTitle.astro";
+import { site } from "@/data/site";
+---
+
+<BaseLayout title="من أنا" description="القصة المهنية لأبوبكر الطائف ومنهج تطور خبرته في هندسة المنتجات الرقمية والتحول الرقمي.">
+  <PageHero eyebrow="من أنا" title="قصة مهنية مبنية على البيانات والبساطة الهندسية" description="مسار يجمع بين الإحصاء وعلوم الحاسوب، تطوير الأنظمة، بناء الفرق، وإدارة منصات حكومية ومؤسسية ذات أثر قابل للقياس." />
+  <section class="container-pad py-14">
+    <div class="max-w-4xl text-lg leading-10 text-slate-700 dark:text-slate-200">
+      <p>أعمل في مجال تصميم المنتجات والمنصات الرقمية منذ أكثر من 15 عاما. لم تكن المسيرة مجرد كتابة كود برمجي، بل بدأت برؤية تحليلية وإحصائية منذ التخرج من جامعة الخرطوم في الإحصاء وعلوم الحاسوب.</p>
+      <p class="mt-6">تطورت الرحلة من العمل التقني والأكاديمي في جامعة الخرطوم وكلية البيان، إلى القيادة وإدارة المشاريع الوطنية في المجلس القومي للتدريب، ثم رقمنة وإعادة هندسة أنظمة حساسة بالتعاون مع وزارة الداخلية، وصولا إلى قيادة الجانب التقني في منصة بلدنا القومية الموحدة لتبادل البيانات والمعاملات الحكومية.</p>
+    </div>
+  </section>
+  <section class="bg-white py-14 dark:bg-slate-900">
+    <div class="container-pad">
+      <SectionTitle eyebrow="القدرات المحورية" title="ما الذي تثبته الرحلة؟" />
+      <div class="mt-8 grid gap-5 md:grid-cols-3">
+        {[
+          ["تحويل التعقيد إلى بساطة", "إعادة هندسة الإجراءات التشغيلية والأنظمة القديمة غير القابلة للتوسع."],
+          ["هندسة الحلول المؤسسية", "ربط متطلبات الأعمال بنماذج تقنية مستقرة وممتدة العمر."],
+          ["القيادة وبناء الفرق", "تأسيس إدارات تقنية المعلومات وصياغة إستراتيجيات تقنية للقطاعين العام والخاص."]
+        ].map(([title, text]) => (
+          <article class="surface rounded-lg p-5">
+            <h2 class="text-xl font-bold">{title}</h2>
+            <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{text}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

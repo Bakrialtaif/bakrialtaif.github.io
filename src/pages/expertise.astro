@@ -1,0 +1,30 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { framework } from "@/data/site";
+import { expertise } from "@/data/expertise";
+---
+
+<BaseLayout title="مجالات الخبرة والمنهجية" description="إطار عمل هندسة القيمة الرقمية ومجالات الخبرة الفنية والإدارية.">
+  <PageHero eyebrow="المنهجية" title="إطار عمل يبدأ بالأعمال وينتهي بالتحسين" description="منهجية هندسة القيمة الرقمية تربط الفهم والتحليل والتصميم بالبناء والقياس والتحسين المستمر." />
+  <section class="container-pad py-14">
+    <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      {framework.map((step, index) => (
+        <div class="surface rounded-lg p-5">
+          <p class="font-latin text-sm font-bold text-teal dark:text-teal-300" dir="ltr">{String(index + 1).padStart(2, "0")}</p>
+          <h2 class="mt-2 text-xl font-bold">{step}</h2>
+        </div>
+      ))}
+    </div>
+    <div class="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+      {expertise.map((group) => (
+        <article class="surface rounded-lg p-5">
+          <h2 class="text-xl font-bold">{group.title}</h2>
+          <div class="mt-4 flex flex-wrap gap-2">
+            {group.items.map((item) => <span class="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-semibold dark:bg-slate-800">{item}</span>)}
+          </div>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

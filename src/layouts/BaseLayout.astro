@@ -1,0 +1,66 @@
+---
+import "../styles/global.css";
+import Navigation from "@/components/Navigation.astro";
+import Footer from "@/components/Footer.astro";
+import { site } from "@/data/site";
+
+type Props = {
+  title: string;
+  description: string;
+  canonical?: string;
+};
+
+const { title, description, canonical = Astro.url.pathname } = Astro.props;
+const pageTitle = title === site.name ? title : `${title} | ${site.name}`;
+const canonicalUrl = new URL(canonical, Astro.site).toString();
+---
+
+<!doctype html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>{pageTitle}</title>
+    <meta name="description" content={description} />
+    <link rel="canonical" href={canonicalUrl} />
+    <meta property="og:type" content="website" />
+    <meta property="og:locale" content="ar_SD" />
+    <meta property="og:title" content={pageTitle} />
+    <meta property="og:description" content={description} />
+    <meta property="og:url" content={canonicalUrl} />
+    <meta property="og:site_name" content={site.name} />
+    <meta name="twitter:card" content="summary_large_image" />
+    <meta name="twitter:title" content={pageTitle} />
+    <meta name="twitter:description" content={description} />
+    <script is:inline>
+      const savedTheme = localStorage.getItem("theme");
+      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      if (savedTheme === "dark" || (!savedTheme && prefersDark)) {
+        document.documentElement.classList.add("dark");
+      }
+    </script>
+    <script type="application/ld+json" set:html={JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "Person",
+      name: site.name,
+      alternateName: site.nameEn,
+      jobTitle: site.role,
+      url: site.website,
+      nationality: "Sudanese",
+      knowsAbout: [
+        "Digital Product Engineering",
+        "Digital Transformation",
+        "Government Platforms",
+        "Enterprise Architecture",
+        "Business Intelligence"
+      ]
+    })} />
+  </head>
+  <body>
+    <Navigation />
+    <main id="main-content">
+      <slot />
+    </main>
+    <Footer />
+  </body>
+</html>

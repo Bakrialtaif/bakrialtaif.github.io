@@ -1,0 +1,44 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { projects } from "@/data/projects";
+
+export function getStaticPaths() {
+  return projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
+}
+
+const { project } = Astro.props;
+---
+
+<BaseLayout title={project.name} description={project.summary}>
+  <PageHero eyebrow={project.type} title={project.name} description={project.summary} />
+  <section class="container-pad grid gap-8 py-14 lg:grid-cols-[0.72fr_1.28fr]">
+    <aside class="surface h-fit rounded-lg p-5">
+      <dl class="grid gap-4 text-sm">
+        <div><dt class="font-bold">الجهة</dt><dd class="mt-1 text-slate-600 dark:text-slate-300">{project.organization}</dd></div>
+        <div><dt class="font-bold">الدور</dt><dd class="mt-1 text-slate-600 dark:text-slate-300">{project.role}</dd></div>
+        <div><dt class="font-bold">الفترة</dt><dd class="mt-1 text-slate-600 dark:text-slate-300">{project.period}</dd></div>
+      </dl>
+    </aside>
+    <div class="grid gap-6">
+      <section class="surface rounded-lg p-6">
+        <h2 class="text-2xl font-bold">المسؤوليات</h2>
+        <ul class="mt-4 grid gap-2 leading-8 text-slate-700 dark:text-slate-200">
+          {project.responsibilities.map((item) => <li>{item}</li>)}
+        </ul>
+      </section>
+      <section class="surface rounded-lg p-6">
+        <h2 class="text-2xl font-bold">النتائج والأثر</h2>
+        <ul class="mt-4 grid gap-2 leading-8 text-slate-700 dark:text-slate-200">
+          {project.results.map((item) => <li>{item}</li>)}
+        </ul>
+      </section>
+      <section class="surface rounded-lg p-6">
+        <h2 class="text-2xl font-bold">التقنيات والمجالات</h2>
+        <div class="mt-4 flex flex-wrap gap-2">
+          {project.technologies.map((tech) => <span class="rounded-md bg-slate-100 px-3 py-1.5 text-sm font-semibold dark:bg-slate-800">{tech}</span>)}
+        </div>
+      </section>
+    </div>
+  </section>
+</BaseLayout>

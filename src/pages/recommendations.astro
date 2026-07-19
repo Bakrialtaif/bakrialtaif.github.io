@@ -1,0 +1,21 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { recommendations } from "@/data/evidence";
+---
+
+<BaseLayout title="التوصيات المهنية" description="شهادات وتوصيات مهنية موثقة من جهات تعليمية وحكومية وصناعية.">
+  <PageHero eyebrow="التوصيات" title="شهادات خدمة وثقة مهنية" description="كل توصية مرتبطة بجهة وتاريخ وطبيعة عمل موثقة." />
+  <section class="container-pad py-14">
+    <div class="grid gap-4 md:grid-cols-2">
+      {recommendations.map((rec) => (
+        <article class="surface rounded-lg p-5">
+          <p class="text-sm font-semibold text-teal dark:text-teal-300">{rec.date}</p>
+          <h2 class="mt-2 text-xl font-bold">{rec.title}</h2>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">{rec.organization}</p>
+          <p class="mt-3 text-sm leading-7 text-slate-700 dark:text-slate-200">{rec.evidence}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>
