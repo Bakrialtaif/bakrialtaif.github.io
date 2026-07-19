@@ -1,34 +1,47 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import PageHero from "@/components/PageHero.astro";
+import { Award, FileText } from "lucide-astro";
 import { awards, recommendations } from "@/data/evidence";
 ---
 
-<BaseLayout title="الجوائز والتوصيات" description="الأدلة المهنية الرسمية: جوائز، شهادات خدمة، وتوصيات مرتبطة بمشاريع وجهات.">
-  <PageHero eyebrow="الأدلة" title="الثقة المهنية تعرض عبر وثائق وأثر" description="الجوائز والتوصيات ليست زخرفة، بل أدلة مرتبطة بمشاريع وجهات وسنوات." />
-  <section class="container-pad grid gap-10 py-14 lg:grid-cols-2">
+<BaseLayout title="الجوائز والثناءات" description="جوائز وثناءات رسمية وتوصيات مهنية مرتبطة بمشاريع وجهات موثقة.">
+  <PageHero eyebrow="الجوائز والثناءات" title="الجوائز والثناءات" description="جوائز، خطابات شكر، شهادات تقدير، وثناءات رسمية مرتبطة بمشاريع وجهات وسنوات." />
+  <section class="container-pad py-14">
     <div>
-      <h2 class="text-2xl font-bold">الجوائز</h2>
-      <div class="mt-5 grid gap-4">
+      <h2 class="text-2xl font-bold">الجوائز والثناءات</h2>
+      <div class="mt-5 grid gap-5 md:grid-cols-2">
         {awards.map((award) => (
-          <article class="surface rounded-lg p-5">
-            <p class="text-sm font-semibold text-copper dark:text-amber-300">{award.year}</p>
-            <h3 class="mt-2 text-xl font-bold">{award.title}</h3>
-            <p class="mt-2 text-sm leading-7 text-slate-600 dark:text-slate-300">{award.organization}</p>
-            <p class="mt-2 text-sm leading-7 text-slate-600 dark:text-slate-300">المشروع: {award.project}</p>
-            <p class="mt-3 text-sm leading-7 text-slate-700 dark:text-slate-200">{award.description}</p>
+          <article class="surface overflow-hidden rounded-lg">
+            {award.image ? (
+              <a href={award.image} target="_blank" rel="noreferrer" aria-label={`تكبير صورة ${award.title}`}>
+                <img src={award.image} alt={award.title} class="aspect-[4/3] w-full bg-slate-100 object-cover object-top dark:bg-slate-800" loading="lazy" />
+              </a>
+            ) : (
+              <div class="grid aspect-[4/3] place-items-center bg-slate-100 text-teal dark:bg-slate-800 dark:text-teal-300">
+                <Award class="h-12 w-12" aria-hidden="true" />
+              </div>
+            )}
+            <div class="p-5">
+              <h3 class="text-xl font-bold">{award.title}</h3>
+              <p class="mt-2 text-sm leading-7 text-slate-600 dark:text-slate-300">{award.organization}</p>
+              <p class="mt-1 text-sm font-semibold text-copper dark:text-amber-300">{award.year}</p>
+              <p class="mt-3 text-sm leading-7 text-slate-700 dark:text-slate-200">{award.description}</p>
+              <p class="mt-3 text-xs font-bold text-slate-500 dark:text-slate-400">المشروع: {award.project}</p>
+            </div>
           </article>
         ))}
       </div>
     </div>
-    <div>
-      <h2 class="text-2xl font-bold">التوصيات والشهادات</h2>
-      <div class="mt-5 grid gap-4">
+    <div class="mt-14">
+      <h2 class="text-2xl font-bold">التوصيات المهنية</h2>
+      <div class="mt-5 grid gap-4 md:grid-cols-2">
         {recommendations.map((rec) => (
           <article class="surface rounded-lg p-5">
-            <p class="text-sm font-semibold text-teal dark:text-teal-300">{rec.date}</p>
-            <h3 class="mt-2 text-xl font-bold">{rec.title}</h3>
+            <FileText class="h-6 w-6 text-teal dark:text-teal-300" aria-hidden="true" />
+            <h3 class="mt-3 text-xl font-bold">{rec.title}</h3>
             <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">{rec.organization} - {rec.author}</p>
+            <p class="mt-1 text-sm font-semibold text-teal dark:text-teal-300">{rec.date}</p>
             <p class="mt-3 text-sm leading-7 text-slate-700 dark:text-slate-200">{rec.evidence}</p>
           </article>
         ))}

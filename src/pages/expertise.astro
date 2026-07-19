@@ -5,8 +5,8 @@ import { framework } from "@/data/site";
 import { expertise, keywordGroups, relatedExperience, skillGroups } from "@/data/expertise";
 ---
 
-<BaseLayout title="مجالات الخبرة والمنهجية" description="إطار عمل هندسة القيمة الرقمية ومجالات الخبرة الفنية والإدارية.">
-  <PageHero eyebrow="المنهجية" title="إطار عمل يبدأ بالأعمال وينتهي بالتحسين" description="منهجية هندسة القيمة الرقمية تربط الفهم والتحليل والتصميم بالبناء والقياس والتحسين المستمر." />
+<BaseLayout title="مجالات الخبرة" description="إطار عمل هندسة القيمة الرقمية ومجالات الخبرة الفنية والإدارية.">
+  <PageHero eyebrow="مجالات الخبرة" title="منهجية مهنية تبدأ بالأعمال وتنتهي بالتحسين" description="منهجية هندسة القيمة الرقمية تربط الفهم والتحليل والتصميم بالبناء والقياس والتحسين المستمر." />
   <section class="container-pad py-14">
     <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
       {framework.map((step, index) => (
@@ -29,7 +29,7 @@ import { expertise, keywordGroups, relatedExperience, skillGroups } from "@/data
       ))}
     </div>
     <div class="mt-14">
-      <h2 class="text-2xl font-bold">خبرات مرتبطة بالتنفيذ</h2>
+      <h2 class="text-2xl font-bold">مجالات الخبرة</h2>
       <p class="mt-3 max-w-3xl text-sm leading-7 text-slate-600 dark:text-slate-300">هذا القسم لا يعرّف المجالات، بل يوضح أين ظهرت الخبرة داخل مشاريع وأنظمة فعلية.</p>
       <div class="mt-6 grid gap-5 md:grid-cols-2">
         {relatedExperience.map((item) => (
@@ -57,7 +57,7 @@ import { expertise, keywordGroups, relatedExperience, skillGroups } from "@/data
       </div>
     </div>
     <div class="mt-14">
-      <h2 class="text-2xl font-bold">مجموعات الكلمات المفتاحية</h2>
+      <h2 class="text-2xl font-bold">الكلمات المفتاحية حسب المجال</h2>
       <div class="mt-5 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {keywordGroups.map((group) => (
           <article class="rounded-lg border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">

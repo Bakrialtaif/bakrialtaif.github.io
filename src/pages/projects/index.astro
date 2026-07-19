@@ -5,8 +5,8 @@ import ProjectCard from "@/components/ProjectCard.astro";
 import { projects } from "@/data/projects";
 ---
 
-<BaseLayout title="المشاريع ودراسات الحالة" description="دراسات حالة لمشاريع حكومية ومؤسسية موثقة بالأدوار والنتائج والأرقام.">
-  <PageHero eyebrow="المشاريع الرئيسية" title="مشاريع وطنية ومؤسسية موثقة بالأثر" description="كل مشروع يعرض نظرة عامة، دوري في المشروع، التقنيات، الخصائص الرئيسية، والأثر المؤسسي حتى يظهر حجم النظام وقيمته للجهة المستفيدة." />
+<BaseLayout title="أبرز المشاريع" description="دراسات حالة لمشاريع حكومية ومؤسسية موثقة بالأدوار والنتائج والأرقام.">
+  <PageHero eyebrow="أبرز المشاريع" title="مشاريع وطنية ومؤسسية موثقة بالأثر" description="كل بطاقة تعرض اسم المشروع، الجهة، الفترة، النبذة، الدور، أبرز التقنيات، والأثر بصيغة موحدة." />
   <section class="container-pad py-14">
     <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
       {projects.map((project) => <ProjectCard project={project} />)}

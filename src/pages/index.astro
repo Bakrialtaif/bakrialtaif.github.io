@@ -29,7 +29,7 @@ import { awards, recommendations } from "@/data/evidence";
             <Download class="h-4 w-4" aria-hidden="true" />
           </a>
           <a href="/contact" class="inline-flex items-center gap-2 rounded-md border border-slate-300 px-5 py-3 text-sm font-bold text-slate-800 dark:border-slate-700 dark:text-slate-100">
-            تواصل معي
+            التواصل
             <Mail class="h-4 w-4" aria-hidden="true" />
           </a>
         </div>
@@ -48,7 +48,7 @@ import { awards, recommendations } from "@/data/evidence";
 
   <section class="py-14">
     <div class="container-pad">
-      <SectionTitle eyebrow="الأثر والحجم" title="أرقام تعكس حجم الأنظمة لا مجرد سنوات خبرة" description="هذه المؤشرات مرتبطة بمشاريع ومنصات فعلية، وتساعد الزائر على فهم حجم التشغيل والانتشار والأثر." />
+      <SectionTitle eyebrow="أبرز الإنجازات" title="أرقام تعكس حجم الأنظمة لا مجرد سنوات خبرة" description="مؤشرات مرتبطة بمشاريع ومنصات فعلية، وتوضح حجم التشغيل والانتشار والأثر." />
       <div class="mt-8"><MetricGrid /></div>
       <div class="mt-6 flex flex-wrap gap-2">
         {executiveScale.map((item) => <span class="rounded-md border border-slate-200 bg-white px-3 py-1.5 text-sm font-bold text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200">{item}</span>)}
@@ -58,7 +58,7 @@ import { awards, recommendations } from "@/data/evidence";
 
   <section class="bg-white py-14 dark:bg-slate-900">
     <div class="container-pad">
-      <SectionTitle eyebrow="المشاريع الرئيسية" title="المشاريع الرئيسية" description="بطاقات مستقلة للمشاريع الوطنية والمؤسسية الكبيرة، تعرض الدور والتقنيات والخصائص والأثر المؤسسي بصورة ثابتة." />
+      <SectionTitle eyebrow="أبرز المشاريع" title="المشاريع المختارة" description="بطاقات مستقلة للمشاريع الوطنية والمؤسسية الكبيرة، تعرض الجهة والدور والتقنيات والأثر المؤسسي بصيغة موحدة." />
       <div class="mt-8 grid gap-5 lg:grid-cols-2">
         {projects.filter((project) => project.featured).map((project) => <ProjectCard project={project} />)}
       </div>
@@ -68,7 +68,7 @@ import { awards, recommendations } from "@/data/evidence";
   <section class="py-14">
     <div class="container-pad grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
       <div>
-        <SectionTitle eyebrow="الرحلة المهنية" title="من العمل التقني والأكاديمي إلى المنصات الحكومية" description="تراكمت الخبرة عبر التعليم، التدريب، الصناعة، القطاع الخاص، ووزارة الداخلية ووزارة الاتصالات والتحول الرقمي." />
+        <SectionTitle eyebrow="المسيرة المهنية" title="من العمل التقني والأكاديمي إلى المنصات الحكومية" description="تراكمت الخبرة عبر التعليم، التدريب، الصناعة، القطاع الخاص، وزارة الداخلية، ووزارة التحول الرقمي والاتصالات." />
       </div>
       <Timeline />
     </div>
@@ -77,7 +77,7 @@ import { awards, recommendations } from "@/data/evidence";
   <section class="bg-white py-14 dark:bg-slate-900">
     <div class="container-pad grid gap-8 lg:grid-cols-2">
       <div>
-        <SectionTitle eyebrow="جوائز" title="اعتراف مهني مرتبط بمشاريع" />
+        <SectionTitle eyebrow="الجوائز والثناءات" title="الجوائز والثناءات" />
         <div class="mt-6 grid gap-3">
           {awards.slice(0, 2).map((award) => (
             <div class="surface rounded-lg p-5">
@@ -89,7 +89,7 @@ import { awards, recommendations } from "@/data/evidence";
         </div>
       </div>
       <div>
-        <SectionTitle eyebrow="توصيات" title="ثقة مهنية موثقة" />
+        <SectionTitle eyebrow="التوصيات" title="التوصيات المهنية" />
         <div class="mt-6 grid gap-3">
           {recommendations.slice(0, 2).map((rec) => (
             <div class="surface rounded-lg p-5">
