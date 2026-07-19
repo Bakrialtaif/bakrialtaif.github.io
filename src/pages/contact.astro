@@ -6,7 +6,7 @@ import { site } from "@/data/site";
 
 const contacts = [
   { label: "البريد الإلكتروني", value: site.email, href: `mailto:${site.email}`, icon: Mail },
-  { label: "الهاتف", value: site.phone || "يضاف عند الاعتماد النهائي", href: site.phone ? `tel:${site.phone}` : undefined, icon: Phone },
+  ...(site.phone ? [{ label: "الهاتف", value: site.phone, href: `tel:${site.phone}`, icon: Phone }] : []),
   { label: "LinkedIn", value: "الملف المهني", href: site.linkedin, icon: Linkedin },
   { label: "GitHub", value: "bakrialtaif", href: site.github, icon: Github },
   { label: "الموقع", value: site.website, href: site.website, icon: Globe },
@@ -15,7 +15,7 @@ const contacts = [
 ---
 
 <BaseLayout title="التواصل" description="قنوات التواصل المباشرة مع أبوبكر الطائف وملفات السيرة الذاتية.">
-  <PageHero eyebrow="التواصل" title="ابدأ الحوار عندما تكون المشكلة مرتبطة بمنتج أو تحول رقمي حقيقي" description="قنوات مباشرة فقط، مع روابط السيرة وملف ATS بدون عوائق." />
+  <PageHero eyebrow="التواصل" title="للمشاريع التي تحتاج قيادة تقنية أو معمارية مؤسسية أو تحولًا رقميًا قابلًا للقياس" description="إذا كنت تبحث عن قائد تقني، مهندس أنظمة مؤسسية، أو مستشار تحول رقمي، يسعدني مناقشة كيف يمكن أن أساهم في تحويل التحدي الحالي إلى منتج أو منصة قابلة للتنفيذ." />
   <section class="container-pad py-14">
     <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
       {contacts.map(({ label, value, href, icon: Icon }) => (
