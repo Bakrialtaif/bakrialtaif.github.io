@@ -5,6 +5,8 @@ export const site = {
   tagline: "هندسة قيمة رقمية مستدامة",
   description:
     "أساعد الحكومات والمؤسسات على تحويل العمليات المعقدة إلى منتجات ومنصات رقمية قابلة للتوسع.",
+  heroStatement:
+    "Enterprise Architect, Technical Leader and Digital Transformation Specialist with extensive experience in designing national digital platforms, enterprise systems and AI-powered business solutions.",
   location: "السودان",
   email: "contact@bakrialtaif.github.io",
   phone: "",
@@ -27,12 +29,31 @@ export const navigation = [
 ];
 
 export const impactMetrics = [
-  { value: "15+", label: "عامًا في هندسة المنتجات والمنصات الرقمية" },
+  { value: "20+", label: "Years Experience" },
+  { value: "1.5M+", label: "Financial Notifications Processed" },
+  { value: "130K+", label: "Registered Organizations" },
   { value: "19", label: "مؤسسة حكومية مرتبطة ضمن منصة بلدنا" },
   { value: "3M+", label: "عملية استعلام عن حالة طباعة الجواز" },
   { value: "500K+", label: "مواطن استفاد من نظام الحجز الإلكتروني" },
-  { value: "10K+", label: "ملف أجنبي تمت إدارته رقميا" },
-  { value: "2", label: "جائزتان لأفضل مشروع حكومة إلكترونية لعام 2012" }
+  { value: "10K+", label: "ملف أجنبي تمت إدارته رقميا" }
+];
+
+export const executiveScale = [
+  "National Government Platforms",
+  "Enterprise ERP Systems",
+  "AI-powered OCR Solutions",
+  "Government Integration",
+  "Business Process Automation",
+  "Decision Support Systems"
+];
+
+export const availableFor = [
+  "CTO Opportunities",
+  "Enterprise Architecture",
+  "Digital Transformation Consulting",
+  "Government Platforms",
+  "Technical Advisory",
+  "Solution Architecture"
 ];
 
 export const principles = [

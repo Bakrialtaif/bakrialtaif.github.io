@@ -89,3 +89,53 @@ export const technologyTags = [
   "ASP.NET",
   "Digital Transformation"
 ];
+
+export const skillGroups = [
+  {
+    title: "Core Technologies",
+    items: ["Python", "Django", "PostgreSQL", "Linux", "Redis", "Docker"]
+  },
+  {
+    title: "Enterprise Systems",
+    items: ["ERP", "HR", "Accounting", "Planning", "Workflow", "Business Process Automation"]
+  },
+  {
+    title: "Government Platforms",
+    items: ["Digital Transformation", "National Platforms", "Government Integration", "eGovernment"]
+  },
+  {
+    title: "Artificial Intelligence",
+    items: ["OCR", "Computer Vision", "Machine Learning", "NLP"]
+  },
+  {
+    title: "Leadership",
+    items: ["Solution Architecture", "Technical Leadership", "Team Leadership", "Project Management", "System Design"]
+  }
+];
+
+export const keywordGroups = [
+  {
+    title: "Government Technology",
+    items: ["National Platforms", "eGovernment", "Citizen Services", "Government Integration"]
+  },
+  {
+    title: "Enterprise Systems",
+    items: ["ERP", "HR", "Finance", "Workflow", "Business Documents"]
+  },
+  {
+    title: "Cloud & DevOps",
+    items: ["Linux", "Nginx", "Gunicorn", "Docker", "CI/CD", "Monitoring"]
+  },
+  {
+    title: "Artificial Intelligence",
+    items: ["OCR", "Computer Vision", "Machine Learning", "NLP", "OpenAI APIs"]
+  },
+  {
+    title: "Leadership",
+    items: ["CTO", "Solution Architecture", "Technical Advisory", "Team Leadership"]
+  },
+  {
+    title: "Business Transformation",
+    items: ["Digital Transformation", "Process Automation", "Decision Support", "KPI Management"]
+  }
+];
