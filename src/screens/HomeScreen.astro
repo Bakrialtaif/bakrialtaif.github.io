@@ -1,8 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import SectionTitle from "@/components/SectionTitle.astro";
 import MetricGrid from "@/components/MetricGrid.astro";
-import ProjectCard from "@/components/ProjectCard.astro";
+import SectionTitle from "@/components/SectionTitle.astro";
 import Timeline from "@/components/Timeline.astro";
 import { ArrowLeft, Download, Mail } from "lucide-astro";
 import { getContent, localizePath, type Locale } from "@/i18n";
@@ -11,6 +10,10 @@ type Props = { locale: Locale };
 const { locale } = Astro.props;
 const content = getContent(locale);
 const { site, pages, ui } = content;
+const getPrincipleParts = (principle: string) => {
+  const [title, ...descriptionParts] = principle.split(" — ");
+  return { title, description: descriptionParts.join(" — ") };
+};
 ---
 
 <BaseLayout locale={locale} title={site.name} description={site.description}>
@@ -36,12 +39,18 @@ const { site, pages, ui } = content;
         </div>
       </div>
       <aside class="surface rounded-lg p-5">
-        <img src="/images/bakrialtaif.jpg" alt={site.name} class="aspect-[4/3] w-full rounded-lg object-cover object-top" loading="eager" />
-        <p class="mt-5 text-sm font-semibold text-slate-500 dark:text-slate-400">{pages.home.trustLabel}</p>
+        <img src="/images/profile.jpeg" alt={site.name} class="aspect-[4/3] w-full rounded-lg object-cover object-top" loading="eager" />
         <div class="mt-4 grid gap-3">
-          {content.principles.map((principle) => (
-            <div class="rounded-lg bg-slate-50 p-4 text-sm leading-7 text-slate-700 dark:bg-slate-800 dark:text-slate-200">{principle}</div>
-          ))}
+          {content.principles.map((principle) => {
+            const { title, description } = getPrincipleParts(principle);
+
+            return (
+              <div class="rounded-lg bg-slate-50 p-4 text-sm leading-7 text-slate-700 dark:bg-slate-800 dark:text-slate-200">
+                <strong class="font-extrabold text-teal dark:text-teal-300">{title}</strong>
+                {description && <span> — {description}</span>}
+              </div>
+            );
+          })}
         </div>
       </aside>
     </div>
@@ -49,20 +58,14 @@ const { site, pages, ui } = content;
 
   <section class="py-14">
     <div class="container-pad">
-      <SectionTitle eyebrow={pages.home.impactEyebrow} title={pages.home.impactTitle} description={pages.home.impactDescription} />
-      <div class="mt-8"><MetricGrid metrics={content.impactMetrics} /></div>
-      <div class="mt-6 flex flex-wrap gap-2">
-        {content.executiveScale.map((item) => <span class="rounded-md border border-slate-200 bg-white px-3 py-1.5 text-sm font-bold text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200">{item}</span>)}
+      <div class="max-w-3xl">
+        <p class="eyebrow">{pages.home.impactEyebrow}</p>
+        <h2 class="mt-2 text-3xl font-bold leading-tight text-slate-950 sm:text-4xl dark:text-white">
+          {pages.home.impactTitleBefore}<span class="text-teal dark:text-teal-300">{pages.home.impactTitleHighlight}</span>{pages.home.impactTitleAfter}
+        </h2>
+        <p class="mt-4 text-base leading-8 text-slate-600 dark:text-slate-300">{pages.home.impactDescription}</p>
       </div>
-    </div>
-  </section>
-
-  <section class="bg-white py-14 dark:bg-slate-900">
-    <div class="container-pad">
-      <SectionTitle eyebrow={pages.home.projectsEyebrow} title={pages.home.projectsTitle} description={pages.home.projectsDescription} />
-      <div class="mt-8 grid gap-5 lg:grid-cols-2">
-        {content.projects.filter((project) => project.featured).map((project) => <ProjectCard project={project} locale={locale} labels={ui} />)}
-      </div>
+      <div class="mt-10"><MetricGrid metrics={content.impactMetrics} locale={locale} labels={ui} /></div>
     </div>
   </section>
 

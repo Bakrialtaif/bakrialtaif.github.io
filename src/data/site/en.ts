@@ -14,13 +14,42 @@ export const enSite: SiteInfo = {
 };
 
 export const enImpactMetrics: MetricItem[] = [
-  { value: "20+", label: "Years of experience" },
-  { value: "1.5M+", label: "Financial notifications processed" },
-  { value: "130K+", label: "Registered organizations" },
-  { value: "19", label: "Government entities connected through Baldna Platform" },
-  { value: "3M+", label: "Passport printing status inquiries" },
-  { value: "500K+", label: "Citizens served through the online booking system" },
-  { value: "10K+", label: "Foreign resident files managed digitally" }
+  {
+    title: "ESH3ARK",
+    organization: "ESH3ARK Technology Ltd.",
+    role: "Founder / System Architect / Lead Developer",
+    slug: "esh3ark",
+    visual: "notifications",
+    description: "A platform for processing and reading banking notifications, used by more than {0} and processing more than {1}.",
+    metrics: ["95K customers", "1.6M notifications"]
+  },
+  {
+    title: "National Government Data and Transaction Exchange Platform - Baldna",
+    organization: "Ministry of Digital Transformation and Telecommunications",
+    role: "Technical Director",
+    slug: "baldna-platform",
+    visual: "platform",
+    description: "A unified government platform that connected more than {0}, includes more than {1}, and received over {2}.",
+    metrics: ["40+ government institutions", "78+ digital services", "155K requests"]
+  },
+  {
+    title: "Online Booking System",
+    organization: "General Directorate of Passports and Immigration",
+    role: "System Designer / Lead Developer",
+    slug: "passport-booking",
+    visual: "calendar",
+    description: "A system for managing passport service appointments, operating through more than {0}, completing more than {1}, and supporting more than {2}.",
+    metrics: ["40+ offices worldwide", "674K bookings", "3.3M inquiries"]
+  },
+  {
+    title: "Foreigners Transactions System - SEYADA",
+    organization: "General Directorate of Passports and Immigration",
+    role: "System Designer / Lead Developer",
+    slug: "foreigners-management",
+    visual: "security",
+    description: "A system for managing foreigners transactions and connecting external offices, operating through more than {0} and processing more than {1}.",
+    metrics: ["85+ offices worldwide", "10K+ transactions"]
+  }
 ];
 
 export const enExecutiveScale: string[] = [
@@ -42,10 +71,11 @@ export const enAvailableFor: string[] = [
 ];
 
 export const enPrinciples: string[] = [
-  "Business leads technology: start with the operating model and user journey before the database.",
-  "Solve root causes, not symptoms: simplify the process before writing the software solution.",
-  "Simplicity is an engineering advantage: good products remain maintainable years later.",
-  "Every dashboard should lead to a clear operational decision."
+  "Business First — technology is a way to create real value.",
+  "Simplicity Always — simplicity is the foundation of systems that can evolve.",
+  "Data Leads Decisions — indicators matter more than impressions.",
+  "The User Is the Beginning — every decision starts from their needs.",
+  "Continuous Development — every release is a chance to improve the product, not finish it."
 ];
 
 export const enFramework: string[] = ["Understand", "Analyze", "Simplify", "Design", "Validate", "Build", "Measure", "Improve"];

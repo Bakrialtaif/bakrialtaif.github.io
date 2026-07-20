@@ -16,6 +16,11 @@ export type SiteInfo = {
 };
 
 export type MetricItem = {
-  value: string;
-  label: string;
+  title: string;
+  organization: string;
+  role: string;
+  slug: string;
+  visual: "notifications" | "platform" | "security" | "calendar" | "data" | "erp";
+  description: string;
+  metrics: string[];
 };

@@ -3,6 +3,7 @@ export type ExperienceItem = {
   organization: string;
   country: string;
   period: string;
+  endDate: string;
   focus: string;
   highlight: string;
   summary: string;

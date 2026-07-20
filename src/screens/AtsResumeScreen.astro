@@ -8,6 +8,7 @@ const { locale } = Astro.props;
 const content = getContent(locale);
 const { site, pages } = content;
 const page = pages.ats;
+const metricSeparator = locale === "ar" ? "، " : ", ";
 ---
 
 <BaseLayout locale={locale} title={page.title} description={page.description}>
@@ -16,7 +17,7 @@ const page = pages.ats;
     <section>
       <h2 class="text-2xl font-bold">{page.impact}</h2>
       <ul class="mt-4 grid gap-2 leading-8">
-        {content.impactMetrics.map((metric) => <li>{metric.value}: {metric.label}</li>)}
+        {content.impactMetrics.map((metric) => <li>{metric.title} - {metric.organization}: {metric.metrics.join(metricSeparator)}</li>)}
       </ul>
     </section>
     <section>
