@@ -10,7 +10,10 @@ const { pages } = getContent(locale);
 const page = pages.about;
 const workMethods = page.workMethods ?? page.capabilities;
 const fields = page.fields ?? [];
-const successMeasures = page.successMeasures ?? [];
+const journey = page.journey ?? [];
+const sectors = page.sectors ?? [];
+const projectTypes = page.projectTypes ?? [];
+const technologyGroups = page.technologyGroups ?? [];
 ---
 
 <BaseLayout locale={locale} title={page.title} description={page.description}>
@@ -23,7 +26,7 @@ const successMeasures = page.successMeasures ?? [];
   <section class="bg-white py-14 dark:bg-slate-900">
     <div class="container-pad">
       <SectionTitle eyebrow={page.workEyebrow ?? page.capabilitiesEyebrow} title={page.workTitle ?? page.capabilitiesTitle} />
-      <div class="mt-8 grid gap-5 md:grid-cols-3">
+      <div class="mt-8 grid gap-5 md:grid-cols-5">
         {workMethods.map(([title, text]) => (
           <article class="surface rounded-lg p-5">
             <h2 class="text-xl font-bold">{title}</h2>
@@ -32,6 +35,23 @@ const successMeasures = page.successMeasures ?? [];
         ))}
       </div>
     </div>
+  </section>
+  <section class="container-pad py-14">
+    <SectionTitle eyebrow={page.journeyEyebrow} title={page.journeyTitle} />
+    <ol class:list={["mt-8 grid gap-5 border-slate-200 dark:border-slate-800", locale === "ar" ? "border-r pr-5" : "border-l pl-5"]}>
+      {journey.map((item) => (
+        <li class="relative">
+          <span class:list={["absolute top-2 h-3.5 w-3.5 rounded-full border-4 border-paper bg-teal dark:border-slate-950", locale === "ar" ? "-right-[27px]" : "-left-[27px]"]}></span>
+          <article class="surface rounded-lg p-5">
+            <div class="flex flex-wrap items-start justify-between gap-3">
+              <h2 class="text-xl font-bold">{item.title}</h2>
+              <p class="rounded-md bg-slate-100 px-3 py-1.5 text-sm font-bold text-copper dark:bg-slate-800 dark:text-amber-300">{item.period}</p>
+            </div>
+            <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{item.text}</p>
+          </article>
+        </li>
+      ))}
+    </ol>
   </section>
   <section class="container-pad py-14">
     <div class="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
@@ -44,29 +64,48 @@ const successMeasures = page.successMeasures ?? [];
     </div>
   </section>
   <section class="bg-white py-14 dark:bg-slate-900">
-    <div class="container-pad grid gap-8 lg:grid-cols-2">
-      <article>
-        <SectionTitle eyebrow={page.enjoyEyebrow} title={page.enjoyTitle} description={page.enjoyText} />
-      </article>
-      <article>
-        <SectionTitle eyebrow={page.outsideEyebrow} title={page.outsideTitle} description={page.outsideText} />
-      </article>
+    <div class="container-pad">
+      <SectionTitle eyebrow={page.sectorsEyebrow} title={page.sectorsTitle} />
+      <div class="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
+        {sectors.map(([title, text]) => (
+          <article class="surface rounded-lg p-5">
+            <h2 class="text-xl font-bold">{title}</h2>
+            <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{text}</p>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
   <section class="container-pad py-14">
-    <SectionTitle eyebrow={page.successEyebrow} title={page.successTitle} />
-    <div class="mt-8 grid gap-5 md:grid-cols-4">
-      {successMeasures.map(([title, text]) => (
-        <article class="surface rounded-lg p-5">
-          <h2 class="text-lg font-bold text-teal dark:text-teal-300">{title}</h2>
-          <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{text}</p>
-        </article>
-      ))}
+    <div class="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
+      <SectionTitle eyebrow={page.projectTypesEyebrow} title={page.projectTypesTitle} />
+      <div class="grid gap-3 sm:grid-cols-2">
+        {projectTypes.map((type) => (
+          <div class="rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100">{type}</div>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="bg-white py-14 dark:bg-slate-900">
+    <div class="container-pad">
+      <SectionTitle eyebrow={page.technologyEyebrow} title={page.technologyTitle} />
+      <div class="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
+        {technologyGroups.map((group) => (
+          <article class="surface rounded-lg p-5">
+            <h2 class="text-lg font-bold">{group.title}</h2>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {group.items.map((item) => <span class="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-bold text-slate-700 dark:bg-slate-800 dark:text-slate-100">{item}</span>)}
+            </div>
+          </article>
+        ))}
+      </div>
     </div>
   </section>
   <section class="bg-slate-950 py-14 text-white dark:bg-black">
     <div class="container-pad">
-      <p class="max-w-4xl text-xl font-semibold leading-10 text-slate-100">{page.closingText}</p>
+      <p class="eyebrow text-teal-300">{page.enjoyEyebrow}</p>
+      <h2 class="mt-2 max-w-3xl text-3xl font-bold leading-tight sm:text-4xl">{page.enjoyTitle}</h2>
+      <p class="mt-5 max-w-4xl text-lg leading-9 text-slate-100">{page.enjoyText}</p>
     </div>
   </section>
 </BaseLayout>
