@@ -1,10 +1,10 @@
 ---
-import { ArrowLeft, Mail } from "lucide-astro";
+import { Copy, ExternalLink, Facebook, Globe2, Linkedin, Mail, MessageCircle, Phone } from "lucide-astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import SectionTitle from "@/components/SectionTitle.astro";
 import { aboutLessons } from "@/i18n/aboutLessons";
 import { aboutProfile } from "@/i18n/aboutProfile";
-import { getContent, localizePath, type Locale } from "@/i18n";
+import { getContent, type Locale } from "@/i18n";
 
 type Props = { locale: Locale };
 const { locale } = Astro.props;
@@ -13,6 +13,22 @@ const { pages } = content;
 const page = pages.about;
 const profile = aboutProfile[locale];
 const lessons = aboutLessons[locale];
+
+const contactIcons = {
+  email: Mail,
+  whatsapp: MessageCircle,
+  phone: Phone,
+  linkedin: Linkedin,
+  website: Globe2,
+};
+
+const socialIcons = {
+  LinkedIn: Linkedin,
+  Facebook: Facebook,
+};
+
+const directContactCards = profile.contactCards.filter((card) => ["email", "whatsapp", "phone"].includes(card.id));
+const presenceContactCards = profile.contactCards.filter((card) => ["linkedin", "website"].includes(card.id));
 ---
 
 <BaseLayout locale={locale} title={profile.introTitle} description={page.description}>
@@ -127,11 +143,128 @@ const lessons = aboutLessons[locale];
       <p class="eyebrow text-teal-300">{profile.contactEyebrow}</p>
       <h2 class="mt-2 max-w-3xl text-3xl font-bold leading-tight sm:text-4xl">{profile.contactTitle}</h2>
       <p class="mt-5 max-w-4xl text-lg leading-9 text-slate-100">{profile.contactText}</p>
-      <a href={localizePath("/contact", locale)} class="mt-7 inline-flex items-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-bold text-slate-950">
-        <Mail class="h-4 w-4" aria-hidden="true" />
-        {profile.contactAction}
-        <ArrowLeft class="h-4 w-4" aria-hidden="true" />
-      </a>
+      <p class="mt-3 max-w-3xl text-sm leading-7 text-slate-400">{profile.contactSubtext}</p>
+
+      <div class="mt-8 max-w-5xl">
+        <p class="text-sm font-bold text-slate-300">{profile.contactTopicsTitle}</p>
+        <div class="mt-3 flex flex-wrap items-center gap-x-3 gap-y-2 text-sm font-semibold leading-7 text-slate-200">
+          {profile.contactTopics.map((topic, index) => (
+            <>
+              <span>{topic}</span>
+              {index < profile.contactTopics.length - 1 && <span class="text-slate-600" aria-hidden="true">|</span>}
+            </>
+          ))}
+        </div>
+      </div>
+
+      <div class="mt-10 border-t border-white/10 pt-8">
+        <div class="grid gap-10 lg:grid-cols-2">
+          <div>
+            <h3 class="text-xl font-bold">{profile.directContactTitle}</h3>
+            <div class="mt-5 divide-y divide-white/10">
+              {directContactCards.map((card) => {
+                const Icon = contactIcons[card.id];
+                const isCopyOnly = card.id === "email";
+
+                return (
+                  <div class="flex flex-wrap items-center justify-between gap-4 py-4">
+                    <div class="flex min-w-0 items-start gap-3">
+                      <Icon class="mt-1 h-4 w-4 shrink-0 text-teal-300" aria-hidden="true" />
+                      <div class="min-w-0">
+                        <p class="text-xs font-bold text-slate-400">{card.label}</p>
+                        <a href={card.href} class="mt-1 block break-words font-latin text-base font-bold text-white hover:text-teal-200" dir="ltr">
+                          {card.value}
+                        </a>
+                      </div>
+                    </div>
+                    {isCopyOnly && card.copyValue ? (
+                      <button
+                        type="button"
+                        class="copy-contact inline-flex items-center gap-2 rounded-md px-2 py-1 text-sm font-bold text-teal-200 transition hover:bg-white/10"
+                        data-copy={card.copyValue}
+                        data-copied={card.copied}
+                        aria-label={`${card.action} ${card.label}`}
+                        title={card.action}
+                      >
+                        <Copy class="h-4 w-4" aria-hidden="true" />
+                        <span>{card.action}</span>
+                      </button>
+                    ) : (
+                      <a href={card.href} target={card.external ? "_blank" : undefined} rel={card.external ? "noreferrer" : undefined} class="text-sm font-bold text-teal-200 hover:text-white">
+                        {card.action}
+                      </a>
+                    )}
+                  </div>
+                );
+              })}
+            </div>
+          </div>
+
+          <div>
+            <h3 class="text-xl font-bold">{profile.professionalPresenceTitle}</h3>
+            <div class="mt-5 divide-y divide-white/10">
+              {presenceContactCards.map((card) => {
+                const Icon = contactIcons[card.id];
+
+                return (
+                  <div class="flex flex-wrap items-center justify-between gap-4 py-4">
+                    <div class="flex min-w-0 items-start gap-3">
+                      <Icon class="mt-1 h-4 w-4 shrink-0 text-teal-300" aria-hidden="true" />
+                      <div class="min-w-0">
+                        <p class="text-xs font-bold text-slate-400">{card.label}</p>
+                        <a href={card.href} target="_blank" rel="noreferrer" class="mt-1 block break-words font-latin text-base font-bold text-white hover:text-teal-200" dir="ltr">
+                          {card.value}
+                        </a>
+                      </div>
+                    </div>
+                    <a href={card.href} target="_blank" rel="noreferrer" class="inline-flex items-center gap-1 text-sm font-bold text-teal-200 hover:text-white">
+                      {card.action}
+                      <ExternalLink class="h-3.5 w-3.5" aria-hidden="true" />
+                    </a>
+                  </div>
+                );
+              })}
+            </div>
+            <div class="mt-5 flex items-center gap-3">
+              <p class="text-xs font-bold text-slate-500">{profile.socialTitle}</p>
+              {profile.socialLinks.map((link) => {
+                const Icon = socialIcons[link.label] ?? ExternalLink;
+
+                return (
+                  <a href={link.href} target="_blank" rel="noreferrer" class="grid h-8 w-8 place-items-center rounded-md text-slate-400 transition hover:bg-white/10 hover:text-slate-100" aria-label={link.label} title={link.label}>
+                    <Icon class="h-4 w-4" aria-hidden="true" />
+                  </a>
+                );
+              })}
+            </div>
+          </div>
+        </div>
+      </div>
+
+      <p class="mt-8 border-t border-white/10 pt-5 text-sm leading-7 text-slate-400">{profile.contactNote}</p>
     </div>
   </section>
+
+  <script>
+    document.querySelectorAll<HTMLButtonElement>(".copy-contact").forEach((button) => {
+      const defaultText = button.querySelector("span")?.textContent ?? "";
+      const copiedText = button.dataset.copied ?? defaultText;
+      const value = button.dataset.copy ?? "";
+
+      button.addEventListener("click", async () => {
+        try {
+          await navigator.clipboard.writeText(value);
+          const label = button.querySelector("span");
+          if (label) label.textContent = copiedText;
+          button.title = copiedText;
+          window.setTimeout(() => {
+            if (label) label.textContent = defaultText;
+            button.title = defaultText;
+          }, 1800);
+        } catch {
+          button.title = value;
+        }
+      });
+    });
+  </script>
 </BaseLayout>

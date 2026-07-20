@@ -9,6 +9,18 @@ type JourneyItem = {
 
 type NamedText = [string, string];
 
+type ContactCard = {
+  id: "email" | "whatsapp" | "phone" | "linkedin" | "website";
+  label: string;
+  description: string;
+  value: string;
+  href: string;
+  action: string;
+  copied: string;
+  copyValue?: string;
+  external?: boolean;
+};
+
 export const aboutProfile: Record<
   Locale,
   {
@@ -34,11 +46,19 @@ export const aboutProfile: Record<
     contactEyebrow: string;
     contactTitle: string;
     contactText: string;
-    contactAction: string;
+    contactSubtext: string;
+    contactTopicsTitle: string;
+    contactTopics: string[];
+    directContactTitle: string;
+    professionalPresenceTitle: string;
+    contactNote: string;
+    contactCards: ContactCard[];
+    socialTitle: string;
+    socialLinks: { label: string; href: string }[];
   }
 > = {
   ar: {
-    introTitle: "لمحة مهنية",
+    introTitle: "نبذة",
     introText:
       "امتدت الخبرة عبر بيئات عمل متعددة شملت التعليم والتدريب، والقطاع الخاص، والجهات الحكومية، والصناعة، والخدمات الرقمية. تنوعت الأعمال بين تطوير الأنظمة المؤسسية، والمنصات الحكومية، وأنظمة الجوازات، ومنتجات رقمية مثل إشعارك، وحلول ERP ولوحات معلومات وتكامل بين الأنظمة. تشكلت هذه الخبرة من ممارسة مباشرة لمشاريع تشغيلية تحتاج إلى فهم الإجراءات، وتحويلها إلى أنظمة قابلة للاستخدام والتطوير.",
     stationsTitle: "محطات",
@@ -53,8 +73,8 @@ export const aboutProfile: Record<
       "معتمدية اللاجئين",
       "وزارة التحول الرقمي والإتصالات",
     ],
-    journeyEyebrow: "المسيرة المهنية",
-    journeyTitle: "محطات في درب التجربة",
+    journeyEyebrow: "التجربة المهنية",
+    journeyTitle: "أبرز التجارب",
     journey: [
       {
         title: "التعليم والتدريب",
@@ -93,8 +113,8 @@ export const aboutProfile: Record<
         note: "ربط القرار التقني باحتياجات الأعمال والقدرة على التنفيذ.",
       },
     ],
-    sectorsEyebrow: "تنوع بيئات العمل",
-    sectorsTitle: "القطاعات التي شملتها الخبرة",
+    sectorsEyebrow: "قطاعات العمل",
+    sectorsTitle: "بيئات متعددة",
     sectors: [
       ["القطاع الحكومي", "تطوير أنظمة ومنصات لخدمة الجهات الحكومية وربط إجراءاتها التشغيلية."],
       ["القطاع الخاص", "بناء منتجات رقمية وحلول أعمال للمؤسسات والشركات."],
@@ -102,8 +122,8 @@ export const aboutProfile: Record<
       ["الصناعة", "تطوير أنظمة تشغيل وإدارة ومتابعة للمؤسسات ذات العمليات اليومية."],
       ["الخدمات الرقمية", "العمل على منتجات تعتمد على البيانات والاستخدام المتكرر من المستخدمين."],
     ],
-    projectTypesEyebrow: "طبيعة المشاريع",
-    projectTypesTitle: "أنواع الأعمال التي تشكلت من خلالها الخبرة",
+    projectTypesEyebrow: "مجالات العمل",
+    projectTypesTitle: "أنواع المشاريع",
     projectTypesDescription:
       "لا يعرض هذا القسم أسماء المشاريع، بل يوضح المجالات التي تكررت فيها الممارسة العملية عبر مراحل مختلفة.",
     projectTypes: [
@@ -117,20 +137,90 @@ export const aboutProfile: Record<
       "تكامل الأنظمة",
       "الذكاء الاصطناعي التطبيقي",
     ],
-    expertiseEyebrow: "مجالات الخبرة",
-    expertiseTitle: "خبرات تشكلت عبر مشاريع متنوعة",
+    expertiseEyebrow: "خلاصة التجربة",
+    expertiseTitle: "محاور مهنية",
     expertiseDescription:
       "تكررت هذه المجالات في أكثر من بيئة عمل، من تحليل الاحتياج وتصميم النظام إلى البناء والتشغيل والتحسين.",
     toolsEyebrow: "الأدوات والتقنيات",
-    toolsTitle: "تقنيات ظهرت ضمن مسارات العمل",
-    contactEyebrow: "التواصل",
-    contactTitle: "نقطة انطلاق مناسبة للنقاش",
+    toolsTitle: "تقنيات مستخدمة",
+    contactEyebrow: "للتواصل المهني",
+    contactTitle: "حين تتقاطع الخبرة مع الاحتياج",
     contactText:
-      "تكون فرص التعاون أوضح عندما تبدأ من وصف المشكلة وسياق العمل، ثم تحديد ما يحتاجه النظام أو المنتج ليصبح قابلاً للتشغيل.",
-    contactAction: "التواصل",
+      "يكون الحوار أكثر فائدة عندما ينطلق من احتياج مؤسسي واضح، أو تحدٍ تشغيلي يحتاج إلى تحليل، أو نظام قائم يتطلب تطويراً وإعادة تنظيم.",
+    contactSubtext:
+      "في هذه الحالات تساعد مناقشة السياق والأهداف والواقع التشغيلي على تحديد نقطة بداية عملية ومناسبة.",
+    contactTopicsTitle: "موضوعات يكون فيها الحوار أكثر فائدة",
+    contactTopics: [
+      "التحول الرقمي المؤسسي",
+      "تطوير الأنظمة القائمة",
+      "إعادة هندسة الإجراءات",
+      "المنصات والخدمات الرقمية",
+      "تحليل التحديات التشغيلية",
+    ],
+    directContactTitle: "التواصل المباشر",
+    professionalPresenceTitle: "الحضور المهني",
+    contactNote:
+      "يفضل أن تتضمن الرسالة نبذة عن المؤسسة، وطبيعة التحدي، والنظام أو الإجراء المعني، والنتيجة المطلوب الوصول إليها.",
+    contactCards: [
+      {
+        id: "email",
+        label: "البريد الإلكتروني",
+        description: "للمراسلات المهنية ومناقشة المشاريع.",
+        value: "altaif.bakri@gmail.com",
+        href: "mailto:altaif.bakri@gmail.com",
+        action: "نسخ",
+        copied: "تم النسخ",
+        copyValue: "altaif.bakri@gmail.com",
+      },
+      {
+        id: "whatsapp",
+        label: "واتساب",
+        description: "للاستفسارات السريعة وبداية النقاش.",
+        value: "+249963144047",
+        href: "https://wa.me/249963144047",
+        action: "فتح",
+        copied: "تم نسخ الرقم",
+        copyValue: "+249963144047",
+        external: true,
+      },
+      {
+        id: "phone",
+        label: "الهاتف",
+        description: "للمكالمات المباشرة عند الحاجة.",
+        value: "+249100007732",
+        href: "tel:+249100007732",
+        action: "اتصال",
+        copied: "تم نسخ الرقم",
+        copyValue: "+249100007732",
+      },
+      {
+        id: "linkedin",
+        label: "LinkedIn",
+        description: "للاطلاع على المسيرة المهنية والتواصل المهني.",
+        value: "linkedin.com/in/bakrialtaif",
+        href: "https://www.linkedin.com/in/bakrialtaif",
+        action: "زيارة",
+        copied: "تم النسخ",
+        external: true,
+      },
+      {
+        id: "website",
+        label: "الموقع الشخصي",
+        description: "المشاريع، السيرة المهنية، وأحدث الأعمال.",
+        value: "bakrialtaif.github.io",
+        href: "https://bakrialtaif.github.io",
+        action: "زيارة",
+        copied: "تم النسخ",
+        external: true,
+      },
+    ],
+    socialTitle: "رابط ثانوي",
+    socialLinks: [
+      { label: "Facebook", href: "https://www.facebook.com/" },
+    ],
   },
   en: {
-    introTitle: "Professional Snapshot",
+    introTitle: "About",
     introText:
       "The experience has extended across education and training, private-sector work, government entities, industry, and digital services. The work has covered enterprise systems, government platforms, passport systems, digital products such as ESH3ARK, ERP solutions, dashboards, and system integration. This background was shaped through operational projects that required understanding procedures and turning them into usable, maintainable systems.",
     stationsTitle: "Stations",
@@ -145,8 +235,8 @@ export const aboutProfile: Record<
       "Commission for Refugees",
       "Ministry of Digital Transformation and Telecommunications",
     ],
-    journeyEyebrow: "Professional Journey",
-    journeyTitle: "Stations Along the Path of Experience",
+    journeyEyebrow: "Professional Experience",
+    journeyTitle: "Key Stages",
     journey: [
       {
         title: "Education and Training",
@@ -185,8 +275,8 @@ export const aboutProfile: Record<
         note: "Connected technical decisions to business needs and execution capacity.",
       },
     ],
-    sectorsEyebrow: "Work Environments",
-    sectorsTitle: "Sectors Covered by the Experience",
+    sectorsEyebrow: "Work Sectors",
+    sectorsTitle: "Different Environments",
     sectors: [
       ["Government", "Systems and platforms serving public entities and connected procedures."],
       ["Private Sector", "Digital products and business solutions for companies and institutions."],
@@ -194,8 +284,8 @@ export const aboutProfile: Record<
       ["Industry", "Operational and management systems for institutions with daily workflows."],
       ["Digital Services", "Products that depend on data and repeated user interaction."],
     ],
-    projectTypesEyebrow: "Project Nature",
-    projectTypesTitle: "Types of Work That Shaped the Experience",
+    projectTypesEyebrow: "Work Areas",
+    projectTypesTitle: "Project Types",
     projectTypesDescription:
       "This section does not list project names; it shows the recurring areas of practical work across different stages.",
     projectTypes: [
@@ -209,16 +299,86 @@ export const aboutProfile: Record<
       "System integration",
       "Applied AI",
     ],
-    expertiseEyebrow: "Experience Areas",
-    expertiseTitle: "Experience Shaped Through Varied Projects",
+    expertiseEyebrow: "Experience Summary",
+    expertiseTitle: "Professional Themes",
     expertiseDescription:
       "These areas appeared repeatedly across work environments, from needs analysis and system design to building, operating, and improving.",
     toolsEyebrow: "Tools and Technologies",
-    toolsTitle: "Technologies Used Across Work Tracks",
-    contactEyebrow: "Contact",
-    contactTitle: "A Practical Starting Point for Discussion",
+    toolsTitle: "Technologies Used",
+    contactEyebrow: "Professional Contact",
+    contactTitle: "When Experience Meets Need",
     contactText:
-      "A useful conversation usually starts with the problem and operating context, then defines what the system or product needs in order to become usable.",
-    contactAction: "Contact",
+      "A discussion is most useful when it starts from a clear institutional need, an operational challenge that requires analysis, or an existing system that needs development and reorganization.",
+    contactSubtext:
+      "In these cases, discussing the context, goals, and operating reality helps identify a practical starting point.",
+    contactTopicsTitle: "Topics Where Discussion Is Most Useful",
+    contactTopics: [
+      "Enterprise digital transformation",
+      "Existing system development",
+      "Process re-engineering",
+      "Digital platforms and services",
+      "Operational challenge analysis",
+    ],
+    directContactTitle: "Direct Contact",
+    professionalPresenceTitle: "Professional Presence",
+    contactNote:
+      "It is useful for the message to include a short note about the organization, the nature of the challenge, the relevant system or process, and the intended outcome.",
+    contactCards: [
+      {
+        id: "email",
+        label: "Email",
+        description: "For professional messages and project discussions.",
+        value: "altaif.bakri@gmail.com",
+        href: "mailto:altaif.bakri@gmail.com",
+        action: "Copy",
+        copied: "Copied",
+        copyValue: "altaif.bakri@gmail.com",
+      },
+      {
+        id: "whatsapp",
+        label: "WhatsApp",
+        description: "For quick questions and starting a discussion.",
+        value: "+249963144047",
+        href: "https://wa.me/249963144047",
+        action: "Open",
+        copied: "Number copied",
+        copyValue: "+249963144047",
+        external: true,
+      },
+      {
+        id: "phone",
+        label: "Phone",
+        description: "For direct calls when needed.",
+        value: "+249100007732",
+        href: "tel:+249100007732",
+        action: "Call",
+        copied: "Number copied",
+        copyValue: "+249100007732",
+      },
+      {
+        id: "linkedin",
+        label: "LinkedIn",
+        description: "For professional background and networking.",
+        value: "linkedin.com/in/bakrialtaif",
+        href: "https://www.linkedin.com/in/bakrialtaif",
+        action: "Visit",
+        copied: "Copied",
+        external: true,
+      },
+      {
+        id: "website",
+        label: "Personal Website",
+        description: "Projects, professional biography, and recent work.",
+        value: "bakrialtaif.github.io",
+        href: "https://bakrialtaif.github.io",
+        action: "Visit",
+        copied: "Copied",
+        external: true,
+      },
+    ],
+    socialTitle: "Secondary Link",
+    socialLinks: [
+      { label: "Facebook", href: "https://www.facebook.com/" },
+    ],
   },
 };
