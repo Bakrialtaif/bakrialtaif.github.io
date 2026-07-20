@@ -3,4 +3,5 @@ export type EducationItem = {
   institution: string;
   meta: string;
   date: string;
+  category?: "academic" | "course";
 };
