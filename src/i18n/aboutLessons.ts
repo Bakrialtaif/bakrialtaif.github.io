@@ -1,4 +1,4 @@
-import type { Locale } from ".";
+import type { Locale } from "./config";
 
 export const aboutLessons: Record<
   Locale,
@@ -10,29 +10,29 @@ export const aboutLessons: Record<
   }
 > = {
   ar: {
-    eyebrow: "من واقع التجربة",
+    eyebrow: "من واقع المشاريع",
     title: "ما علمتني إياه المشاريع",
     description:
-      "لا توجد وصفة واحدة لنجاح المشاريع، لكن مع الوقت تتكرر بعض الدروس حتى تصبح جزءاً من طريقة التفكير والعمل. هذه بعض المبادئ التي تشكلت من التجربة أكثر مما تشكلت من الكتب.",
+      "مع تكرار العمل على أنظمة ومنصات مختلفة، تظهر دروس عملية لا تأتي من التخطيط وحده، بل من متابعة النظام بعد تشغيله ورؤية طريقة استخدامه في الواقع.",
     items: [
-      ["ابدأ من الواقع", "أفضل الأنظمة لا تبدأ من شاشة جديدة، بل من فهم ما يعيشه المستخدم كل يوم."],
-      ["لا تطارد كثرة المزايا", "إضافة ميزة جديدة أسهل من إزالة التعقيد الذي تتركه خلفها."],
-      ["الأرقام تتحدث بهدوء", "عندما تكون المؤشرات واضحة، تقل الحاجة إلى التخمين وتصبح القرارات أكثر ثقة."],
-      ["النجاح يُقاس بعد الاستخدام", "أكثر ما أتعلمه يأتي بعد إطلاق النظام، عندما يبدأ المستخدمون في الاعتماد عليه فعلاً."],
-      ["ابنِ ما يمكن أن يعيش", "المشاريع الجيدة ليست التي تعمل اليوم فقط، بل التي يمكن تطويرها بعد سنوات دون أن تفقد توازنها."],
+      ["ابدأ من الواقع", "تبدأ الصورة عادة من الإجراءات اليومية، لا من الشاشة الأولى أو قائمة المزايا."],
+      ["قلل التعقيد مبكراً", "كل إضافة لا تخدم سير العمل تصبح عبئاً على المستخدم والفريق لاحقاً."],
+      ["اترك للأرقام مساحة", "المؤشرات الواضحة تكشف نقاط التعطل بهدوء وتساعد على تحسين القرار."],
+      ["راقب ما يحدث بعد الإطلاق", "الاستخدام الفعلي يوضح ما لم يظهر أثناء التحليل أو الاختبار."],
+      ["ابنِ ما يمكن تطويره", "الأنظمة التي تستمر هي التي تسمح بالتعديل دون هدم ما سبق بناؤه."],
     ],
   },
   en: {
-    eyebrow: "From Experience",
+    eyebrow: "From Project Work",
     title: "What Projects Have Taught Me",
     description:
-      "There is no single recipe for successful projects, but over time some lessons repeat until they become part of how you think and work. These are principles shaped more by experience than by books.",
+      "After working on different systems and platforms, practical lessons emerge less from planning alone and more from observing how systems operate after release.",
     items: [
-      ["Start From Reality", "The best systems do not begin with a new screen, but with understanding what users live through every day."],
-      ["Do Not Chase Feature Count", "Adding a new feature is easier than removing the complexity it leaves behind."],
-      ["Numbers Speak Quietly", "When indicators are clear, there is less need for guessing and decisions become more confident."],
-      ["Success Is Measured After Use", "Most of what I learn comes after launch, when users begin depending on the system in practice."],
-      ["Build What Can Live", "Good projects are not only the ones that work today, but the ones that can evolve years later without losing balance."],
+      ["Start From Reality", "The picture usually starts with daily procedures, not the first screen or a feature list."],
+      ["Reduce Complexity Early", "Every addition that does not serve workflow later becomes a burden on users and teams."],
+      ["Let Numbers Speak", "Clear indicators reveal friction points quietly and support better decisions."],
+      ["Watch What Happens After Launch", "Real use exposes what analysis and testing cannot fully show."],
+      ["Build What Can Evolve", "Systems that last are the ones that can change without breaking what came before."],
     ],
   },
 };

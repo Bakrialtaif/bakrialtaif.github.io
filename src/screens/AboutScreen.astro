@@ -1,56 +1,41 @@
 ---
+import { ArrowLeft, Mail } from "lucide-astro";
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import SectionTitle from "@/components/SectionTitle.astro";
-import { getContent, type Locale } from "@/i18n";
 import { aboutLessons } from "@/i18n/aboutLessons";
+import { aboutProfile } from "@/i18n/aboutProfile";
+import { getContent, localizePath, type Locale } from "@/i18n";
 
 type Props = { locale: Locale };
 const { locale } = Astro.props;
 const content = getContent(locale);
 const { pages } = content;
 const page = pages.about;
-const expertisePage = pages.expertise;
-const workSection = aboutLessons[locale];
-const workMethods = workSection.items;
-const fields = page.fields ?? [];
-const journey = page.journey ?? [];
-const sectors = page.sectors ?? [];
-const projectTypes = page.projectTypes ?? [];
-const technologyGroups = page.technologyGroups ?? [];
-const stations = page.stations ?? [];
+const profile = aboutProfile[locale];
+const lessons = aboutLessons[locale];
 ---
 
-<BaseLayout locale={locale} title={page.title} description={page.description}>
+<BaseLayout locale={locale} title={profile.introTitle} description={page.description}>
   <section class="container-pad py-14">
     <div class="grid gap-8 lg:grid-cols-[1.35fr_0.65fr]">
-      <div class="text-lg leading-10 text-slate-700 dark:text-slate-200">
-        <p>{page.intro ?? page.body1}</p>
+      <div>
+        <p class="eyebrow">{page.title}</p>
+        <h1 class="mt-2 text-3xl font-bold leading-tight text-slate-950 sm:text-4xl dark:text-white">{profile.introTitle}</h1>
+        <p class="mt-5 text-lg leading-10 text-slate-700 dark:text-slate-200">{profile.introText}</p>
       </div>
       <aside class="surface rounded-lg p-5">
-        <h1 class="text-xl font-bold text-slate-950 dark:text-white">{page.stationsTitle}</h1>
+        <h2 class="text-xl font-bold text-slate-950 dark:text-white">{profile.stationsTitle}</h2>
         <div class="mt-4 grid gap-2 text-sm font-semibold leading-7 text-slate-600 dark:text-slate-300">
-          {stations.map((station) => <p>{station}</p>)}
+          {profile.stations.map((station) => <p>{station}</p>)}
         </div>
       </aside>
     </div>
   </section>
-  <section class="bg-white py-14 dark:bg-slate-900">
-    <div class="container-pad">
-      <SectionTitle eyebrow={workSection.eyebrow} title={workSection.title} description={workSection.description} />
-      <div class="mt-8 grid gap-5 md:grid-cols-5">
-        {workMethods.map(([title, text]) => (
-          <article class="surface rounded-lg p-5">
-            <h2 class="text-xl font-bold">{title}</h2>
-            <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{text}</p>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
+
   <section class="container-pad py-14">
-    <SectionTitle eyebrow={page.journeyEyebrow} title={page.journeyTitle} />
+    <SectionTitle eyebrow={profile.journeyEyebrow} title={profile.journeyTitle} />
     <ol class:list={["mt-8 grid gap-5 border-slate-200 dark:border-slate-800", locale === "ar" ? "border-r pr-5" : "border-l pl-5"]}>
-      {journey.map((item) => (
+      {profile.journey.map((item) => (
         <li class="relative">
           <span class:list={["absolute top-2 h-3.5 w-3.5 rounded-full border-4 border-paper bg-teal dark:border-slate-950", locale === "ar" ? "-right-[27px]" : "-left-[27px]"]}></span>
           <article class="surface rounded-lg p-5">
@@ -59,26 +44,18 @@ const stations = page.stations ?? [];
               <p class="rounded-md bg-slate-100 px-3 py-1.5 text-sm font-bold text-copper dark:bg-slate-800 dark:text-amber-300">{item.period}</p>
             </div>
             <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{item.text}</p>
+            <p class="mt-3 rounded-md bg-slate-50 px-3 py-2 text-sm font-semibold leading-7 text-teal dark:bg-slate-800 dark:text-teal-300">{item.note}</p>
           </article>
         </li>
       ))}
     </ol>
   </section>
-  <section class="container-pad py-14">
-    <div class="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-      <SectionTitle eyebrow={page.fieldsEyebrow} title={page.fieldsTitle} />
-      <div class="flex flex-wrap gap-3">
-        {fields.map((field) => (
-          <span class="rounded-md bg-slate-100 px-3 py-2 text-sm font-bold text-slate-700 ring-1 ring-slate-200 dark:bg-slate-800 dark:text-slate-100 dark:ring-slate-700">{field}</span>
-        ))}
-      </div>
-    </div>
-  </section>
+
   <section class="bg-white py-14 dark:bg-slate-900">
     <div class="container-pad">
-      <SectionTitle eyebrow={page.sectorsEyebrow} title={page.sectorsTitle} />
-      <div class="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-4">
-        {sectors.map(([title, text]) => (
+      <SectionTitle eyebrow={profile.sectorsEyebrow} title={profile.sectorsTitle} />
+      <div class="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-5">
+        {profile.sectors.map(([title, text]) => (
           <article class="surface rounded-lg p-5">
             <h2 class="text-xl font-bold">{title}</h2>
             <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{text}</p>
@@ -87,21 +64,53 @@ const stations = page.stations ?? [];
       </div>
     </div>
   </section>
+
   <section class="container-pad py-14">
     <div class="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-      <SectionTitle eyebrow={page.projectTypesEyebrow} title={page.projectTypesTitle} />
-      <div class="grid gap-3 sm:grid-cols-2">
-        {projectTypes.map((type) => (
-          <div class="rounded-lg border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100">{type}</div>
+      <SectionTitle eyebrow={profile.projectTypesEyebrow} title={profile.projectTypesTitle} description={profile.projectTypesDescription} />
+      <div class="flex flex-wrap gap-3">
+        {profile.projectTypes.map((type) => (
+          <span class="rounded-md border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100">{type}</span>
         ))}
       </div>
     </div>
   </section>
+
   <section class="bg-white py-14 dark:bg-slate-900">
     <div class="container-pad">
-      <SectionTitle eyebrow={page.technologyEyebrow} title={page.technologyTitle} />
+      <SectionTitle eyebrow={profile.expertiseEyebrow} title={profile.expertiseTitle} description={profile.expertiseDescription} />
+      <div class="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        {content.expertise.map((group) => (
+          <article class="surface rounded-lg p-5">
+            <h2 class="text-xl font-bold">{group.title}</h2>
+            <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{group.summary}</p>
+            <p class="mt-3 text-sm font-semibold leading-7 text-teal dark:text-teal-300">{group.proof}</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {group.items.map((item) => <span class="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-semibold dark:bg-slate-800">{item}</span>)}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="container-pad py-14">
+    <SectionTitle eyebrow={lessons.eyebrow} title={lessons.title} description={lessons.description} />
+    <div class="mt-8 grid gap-5 md:grid-cols-5">
+      {lessons.items.map(([title, text]) => (
+        <article class="surface rounded-lg p-5">
+          <h2 class="text-xl font-bold">{title}</h2>
+          <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  <section class="bg-white py-14 dark:bg-slate-900">
+    <div class="container-pad">
+      <SectionTitle eyebrow={profile.toolsEyebrow} title={profile.toolsTitle} />
       <div class="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
-        {technologyGroups.map((group) => (
+        {content.skillGroups.map((group) => (
           <article class="surface rounded-lg p-5">
             <h2 class="text-lg font-bold">{group.title}</h2>
             <div class="mt-4 flex flex-wrap gap-2">
@@ -112,74 +121,17 @@ const stations = page.stations ?? [];
       </div>
     </div>
   </section>
-  <section class="container-pad py-14">
-    <SectionTitle eyebrow={expertisePage.title} title={expertisePage.heroTitle} description={expertisePage.heroDescription} />
-    <div class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
-      {content.framework.map((step, index) => (
-        <div class="surface rounded-lg p-5">
-          <p class="font-latin text-sm font-bold text-teal dark:text-teal-300" dir="ltr">{String(index + 1).padStart(2, "0")}</p>
-          <h2 class="mt-2 text-xl font-bold">{step}</h2>
-        </div>
-      ))}
-    </div>
-    <div class="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-      {content.expertise.map((group) => (
-        <article class="surface rounded-lg p-5">
-          <h2 class="text-xl font-bold">{group.title}</h2>
-          <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{group.summary}</p>
-          <p class="mt-3 text-sm font-semibold leading-7 text-teal dark:text-teal-300">{group.proof}</p>
-          <div class="mt-4 flex flex-wrap gap-2">
-            {group.items.map((item) => <span class="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-semibold dark:bg-slate-800">{item}</span>)}
-          </div>
-        </article>
-      ))}
-    </div>
-    <div class="mt-14">
-      <h2 class="text-2xl font-bold">{expertisePage.relatedTitle}</h2>
-      <div class="mt-6 grid gap-5 md:grid-cols-2">
-        {content.relatedExperience.map((item) => (
-          <article class="surface rounded-lg p-5">
-            <h3 class="text-xl font-bold">{item.title}</h3>
-            <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{item.summary}</p>
-            <div class="mt-4 flex flex-wrap gap-2">
-              {item.tags.map((tag) => <span class="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-semibold dark:bg-slate-800">{tag}</span>)}
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-    <div class="mt-14">
-      <h2 class="text-2xl font-bold">{expertisePage.skillsTitle}</h2>
-      <div class="mt-5 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-        {content.skillGroups.map((group) => (
-          <article class="surface rounded-lg p-5">
-            <h3 class="text-xl font-bold">{group.title}</h3>
-            <div class="mt-4 flex flex-wrap gap-2">
-              {group.items.map((item) => <span class="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-semibold dark:bg-slate-800">{item}</span>)}
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-    <div class="mt-14">
-      <h2 class="text-2xl font-bold">{expertisePage.keywordsTitle}</h2>
-      <div class="mt-5 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
-        {content.keywordGroups.map((group) => (
-          <article class="rounded-lg border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
-            <h3 class="text-lg font-bold">{group.title}</h3>
-            <div class="mt-4 flex flex-wrap gap-2">
-              {group.items.map((item) => <span class="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-700 dark:bg-slate-800 dark:text-slate-200">{item}</span>)}
-            </div>
-          </article>
-        ))}
-      </div>
-    </div>
-  </section>
+
   <section class="bg-slate-950 py-14 text-white dark:bg-black">
     <div class="container-pad">
-      <p class="eyebrow text-teal-300">{page.enjoyEyebrow}</p>
-      <h2 class="mt-2 max-w-3xl text-3xl font-bold leading-tight sm:text-4xl">{page.enjoyTitle}</h2>
-      <p class="mt-5 max-w-4xl text-lg leading-9 text-slate-100">{page.enjoyText}</p>
+      <p class="eyebrow text-teal-300">{profile.contactEyebrow}</p>
+      <h2 class="mt-2 max-w-3xl text-3xl font-bold leading-tight sm:text-4xl">{profile.contactTitle}</h2>
+      <p class="mt-5 max-w-4xl text-lg leading-9 text-slate-100">{profile.contactText}</p>
+      <a href={localizePath("/contact", locale)} class="mt-7 inline-flex items-center gap-2 rounded-md bg-white px-5 py-3 text-sm font-bold text-slate-950">
+        <Mail class="h-4 w-4" aria-hidden="true" />
+        {profile.contactAction}
+        <ArrowLeft class="h-4 w-4" aria-hidden="true" />
+      </a>
     </div>
   </section>
 </BaseLayout>
