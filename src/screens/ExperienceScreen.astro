@@ -1,0 +1,18 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import Timeline from "@/components/Timeline.astro";
+import { getContent, type Locale } from "@/i18n";
+
+type Props = { locale: Locale };
+const { locale } = Astro.props;
+const content = getContent(locale);
+const page = content.pages.experience;
+---
+
+<BaseLayout locale={locale} title={page.title} description={page.description}>
+  <PageHero eyebrow={page.title} title={page.heroTitle} description={page.heroDescription} />
+  <section class="container-pad py-14">
+    <Timeline experience={content.experience} locale={locale} />
+  </section>
+</BaseLayout>

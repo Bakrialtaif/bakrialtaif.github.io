@@ -1,0 +1,56 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { Award, FileText } from "lucide-astro";
+import { getContent, type Locale } from "@/i18n";
+
+type Props = { locale: Locale };
+const { locale } = Astro.props;
+const content = getContent(locale);
+const page = content.pages.awards;
+---
+
+<BaseLayout locale={locale} title={page.title} description={page.description}>
+  <PageHero eyebrow={page.title} title={page.heroTitle} description={page.heroDescription} />
+  <section class="container-pad py-14">
+    <div>
+      <h2 class="text-2xl font-bold">{page.awardsTitle}</h2>
+      <div class="mt-5 grid gap-5 md:grid-cols-2">
+        {content.awards.map((award) => (
+          <article class="surface overflow-hidden rounded-lg">
+            {award.image ? (
+              <a href={award.image} target="_blank" rel="noreferrer" aria-label={`${content.ui.languageLabel === "English" ? "تكبير صورة" : "View image"} ${award.title}`}>
+                <img src={award.image} alt={award.title} class="aspect-[4/3] w-full bg-slate-100 object-cover object-top dark:bg-slate-800" loading="lazy" />
+              </a>
+            ) : (
+              <div class="grid aspect-[4/3] place-items-center bg-slate-100 text-teal dark:bg-slate-800 dark:text-teal-300">
+                <Award class="h-12 w-12" aria-hidden="true" />
+              </div>
+            )}
+            <div class="p-5">
+              <h3 class="text-xl font-bold">{award.title}</h3>
+              <p class="mt-2 text-sm leading-7 text-slate-600 dark:text-slate-300">{award.organization}</p>
+              <p class="mt-1 text-sm font-semibold text-copper dark:text-amber-300">{award.year}</p>
+              <p class="mt-3 text-sm leading-7 text-slate-700 dark:text-slate-200">{award.description}</p>
+              <p class="mt-3 text-xs font-bold text-slate-500 dark:text-slate-400">{content.ui.project}: {award.project}</p>
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+    <div class="mt-14">
+      <h2 class="text-2xl font-bold">{page.recommendationsTitle}</h2>
+      <div class="mt-5 grid gap-4 md:grid-cols-2">
+        {content.recommendations.map((rec) => (
+          <article class="surface rounded-lg p-5">
+            <FileText class="h-6 w-6 text-teal dark:text-teal-300" aria-hidden="true" />
+            <h3 class="mt-3 text-xl font-bold">{rec.title}</h3>
+            <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">{rec.organization} - {rec.author}</p>
+            <p class="mt-1 text-sm font-semibold text-teal dark:text-teal-300">{rec.date}</p>
+            <p class="mt-3 text-sm leading-7 text-slate-700 dark:text-slate-200">{rec.evidence}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

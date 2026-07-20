@@ -3,11 +3,11 @@ import ProjectDetailScreen from "@/screens/ProjectDetailScreen.astro";
 import { getContent } from "@/i18n";
 
 export function getStaticPaths() {
-  const content = getContent("ar");
+  const content = getContent("en");
   return content.projects.map((project) => ({ params: { slug: project.slug }, props: { project } }));
 }
 
 const { project } = Astro.props;
 ---
 
-<ProjectDetailScreen locale="ar" project={project} />
+<ProjectDetailScreen locale="en" project={project} />

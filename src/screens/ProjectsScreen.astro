@@ -1,0 +1,20 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
+import { getContent, type Locale } from "@/i18n";
+
+type Props = { locale: Locale };
+const { locale } = Astro.props;
+const content = getContent(locale);
+const page = content.pages.projects;
+---
+
+<BaseLayout locale={locale} title={page.title} description={page.description}>
+  <PageHero eyebrow={page.title} title={page.heroTitle} description={page.heroDescription} />
+  <section class="container-pad py-14">
+    <div class="grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+      {content.projects.map((project) => <ProjectCard project={project} locale={locale} labels={content.ui} />)}
+    </div>
+  </section>
+</BaseLayout>

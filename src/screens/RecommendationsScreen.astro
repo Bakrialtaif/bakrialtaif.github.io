@@ -1,0 +1,26 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { getContent, type Locale } from "@/i18n";
+
+type Props = { locale: Locale };
+const { locale } = Astro.props;
+const content = getContent(locale);
+const page = content.pages.recommendations;
+---
+
+<BaseLayout locale={locale} title={page.title} description={page.description}>
+  <PageHero eyebrow={page.title} title={page.heroTitle} description={page.heroDescription} />
+  <section class="container-pad py-14">
+    <div class="grid gap-4 md:grid-cols-2">
+      {content.recommendations.map((rec) => (
+        <article class="surface rounded-lg p-5">
+          <p class="text-sm font-semibold text-teal dark:text-teal-300">{rec.date}</p>
+          <h2 class="mt-2 text-xl font-bold">{rec.title}</h2>
+          <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">{rec.organization}</p>
+          <p class="mt-3 text-sm leading-7 text-slate-700 dark:text-slate-200">{rec.evidence}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

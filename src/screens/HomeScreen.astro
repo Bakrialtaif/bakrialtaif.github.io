@@ -1,0 +1,107 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import SectionTitle from "@/components/SectionTitle.astro";
+import MetricGrid from "@/components/MetricGrid.astro";
+import ProjectCard from "@/components/ProjectCard.astro";
+import Timeline from "@/components/Timeline.astro";
+import { ArrowLeft, Download, Mail } from "lucide-astro";
+import { getContent, localizePath, type Locale } from "@/i18n";
+
+type Props = { locale: Locale };
+const { locale } = Astro.props;
+const content = getContent(locale);
+const { site, pages, ui } = content;
+---
+
+<BaseLayout locale={locale} title={site.name} description={site.description}>
+  <section class="relative overflow-hidden bg-white py-16 dark:bg-slate-900 sm:py-20">
+    <div class="container-pad grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
+      <div>
+        <p class="eyebrow">{site.role}</p>
+        <h1 class="mt-4 text-4xl font-bold leading-tight text-slate-950 sm:text-6xl dark:text-white">{site.name}</h1>
+        <p class="mt-4 text-2xl font-semibold text-copper dark:text-amber-300">{site.tagline}</p>
+        <p class="mt-6 max-w-3xl text-lg leading-9 text-slate-700 dark:text-slate-200">{site.heroStatement}</p>
+        <p class="mt-5 max-w-3xl text-base leading-8 text-slate-600 dark:text-slate-300">{site.description}</p>
+        <div class="mt-8 flex flex-wrap gap-3">
+          <a href={localizePath("/projects", locale)} class="inline-flex items-center gap-2 rounded-md bg-slate-950 px-5 py-3 text-sm font-bold text-white dark:bg-white dark:text-slate-950">
+            {ui.actions.viewProjects}
+            <ArrowLeft class="h-4 w-4" aria-hidden="true" />
+          </a>
+          <a href={site.resumePdf} class="inline-flex items-center gap-2 rounded-md border border-slate-300 px-5 py-3 text-sm font-bold text-slate-800 dark:border-slate-700 dark:text-slate-100">
+            {ui.actions.downloadResume}
+            <Download class="h-4 w-4" aria-hidden="true" />
+          </a>
+          <a href={localizePath("/contact", locale)} class="inline-flex items-center gap-2 rounded-md border border-slate-300 px-5 py-3 text-sm font-bold text-slate-800 dark:border-slate-700 dark:text-slate-100">
+            {ui.actions.contact}
+            <Mail class="h-4 w-4" aria-hidden="true" />
+          </a>
+        </div>
+      </div>
+      <aside class="surface rounded-lg p-5">
+        <img src="/images/bakrialtaif.jpg" alt={site.name} class="aspect-[4/3] w-full rounded-lg object-cover object-top" loading="eager" />
+        <p class="mt-5 text-sm font-semibold text-slate-500 dark:text-slate-400">{pages.home.trustLabel}</p>
+        <div class="mt-4 grid gap-3">
+          {content.principles.map((principle) => (
+            <div class="rounded-lg bg-slate-50 p-4 text-sm leading-7 text-slate-700 dark:bg-slate-800 dark:text-slate-200">{principle}</div>
+          ))}
+        </div>
+      </aside>
+    </div>
+  </section>
+
+  <section class="py-14">
+    <div class="container-pad">
+      <SectionTitle eyebrow={pages.home.impactEyebrow} title={pages.home.impactTitle} description={pages.home.impactDescription} />
+      <div class="mt-8"><MetricGrid metrics={content.impactMetrics} /></div>
+      <div class="mt-6 flex flex-wrap gap-2">
+        {content.executiveScale.map((item) => <span class="rounded-md border border-slate-200 bg-white px-3 py-1.5 text-sm font-bold text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-200">{item}</span>)}
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-14 dark:bg-slate-900">
+    <div class="container-pad">
+      <SectionTitle eyebrow={pages.home.projectsEyebrow} title={pages.home.projectsTitle} description={pages.home.projectsDescription} />
+      <div class="mt-8 grid gap-5 lg:grid-cols-2">
+        {content.projects.filter((project) => project.featured).map((project) => <ProjectCard project={project} locale={locale} labels={ui} />)}
+      </div>
+    </div>
+  </section>
+
+  <section class="py-14">
+    <div class="container-pad grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
+      <div>
+        <SectionTitle eyebrow={pages.home.careerEyebrow} title={pages.home.careerTitle} description={pages.home.careerDescription} />
+      </div>
+      <Timeline experience={content.experience} locale={locale} />
+    </div>
+  </section>
+
+  <section class="bg-white py-14 dark:bg-slate-900">
+    <div class="container-pad grid gap-8 lg:grid-cols-2">
+      <div>
+        <SectionTitle eyebrow={pages.home.awardsEyebrow} title={pages.home.awardsTitle} />
+        <div class="mt-6 grid gap-3">
+          {content.awards.slice(0, 2).map((award) => (
+            <div class="surface rounded-lg p-5">
+              <p class="font-bold">{award.title} - {award.year}</p>
+              <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">{award.project}</p>
+              <p class="mt-2 text-sm leading-7 text-slate-600 dark:text-slate-300">{award.description}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+      <div>
+        <SectionTitle eyebrow={pages.home.recommendationsEyebrow} title={pages.home.recommendationsTitle} />
+        <div class="mt-6 grid gap-3">
+          {content.recommendations.slice(0, 2).map((rec) => (
+            <div class="surface rounded-lg p-5">
+              <p class="font-bold">{rec.organization}</p>
+              <p class="mt-2 text-sm leading-7 text-slate-600 dark:text-slate-300">{rec.evidence}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

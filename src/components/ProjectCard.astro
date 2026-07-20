@@ -1,8 +1,20 @@
 ---
 import { ArrowLeft, Building2, CalendarCheck, Database, Landmark, Network, ShieldCheck, Workflow } from "lucide-astro";
 import type { Project } from "@/data/projects";
-type Props = { project: Project };
-const { project } = Astro.props;
+import type { Locale } from "@/i18n";
+type Labels = {
+  details: string;
+  fields: {
+    organization: string;
+    period: string;
+    overview: string;
+    role: string;
+    technologies: string;
+    impact: string;
+  };
+};
+type Props = { project: Project; locale?: Locale; labels: Labels };
+const { project, locale = "ar", labels } = Astro.props;
 const visualIcons = {
   notifications: Workflow,
   platform: Network,
@@ -33,37 +45,37 @@ const VisualIcon = visualIcons[project.visual] ?? Network;
     <h3 class="text-xl font-bold leading-8 text-slate-950 dark:text-white">{project.name}</h3>
     <div class="mt-4 grid gap-3 text-sm">
       <div>
-        <p class="text-xs font-bold text-slate-500 dark:text-slate-400">الجهة</p>
+        <p class="text-xs font-bold text-slate-500 dark:text-slate-400">{labels.fields.organization}</p>
         <div class="mt-1 flex items-center gap-2 text-teal dark:text-teal-300">
           <Building2 class="h-4 w-4" aria-hidden="true" />
           <span>{project.organization}</span>
         </div>
       </div>
       <div>
-        <p class="text-xs font-bold text-slate-500 dark:text-slate-400">الفترة</p>
+        <p class="text-xs font-bold text-slate-500 dark:text-slate-400">{labels.fields.period}</p>
         <p class="mt-1 text-slate-700 dark:text-slate-200">{project.period}</p>
       </div>
       <div>
-        <p class="text-xs font-bold text-slate-500 dark:text-slate-400">نبذة</p>
+        <p class="text-xs font-bold text-slate-500 dark:text-slate-400">{labels.fields.overview}</p>
         <p class="mt-1 leading-7 text-slate-600 dark:text-slate-300">{project.objective}</p>
       </div>
       <div>
-        <p class="text-xs font-bold text-slate-500 dark:text-slate-400">الدور</p>
+        <p class="text-xs font-bold text-slate-500 dark:text-slate-400">{labels.fields.role}</p>
         <p class="mt-1 font-semibold text-copper dark:text-amber-300">{project.role}</p>
       </div>
       <div>
-        <p class="text-xs font-bold text-slate-500 dark:text-slate-400">أبرز التقنيات</p>
+        <p class="text-xs font-bold text-slate-500 dark:text-slate-400">{labels.fields.technologies}</p>
         <div class="mt-2 flex flex-wrap gap-2">
           {project.technologies.slice(0, 4).map((tech) => <span class="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-700 dark:bg-slate-800 dark:text-slate-200">{tech}</span>)}
         </div>
       </div>
       <div>
-        <p class="text-xs font-bold text-slate-500 dark:text-slate-400">الأثر</p>
+        <p class="text-xs font-bold text-slate-500 dark:text-slate-400">{labels.fields.impact}</p>
         <p class="mt-1 leading-7 text-slate-700 dark:text-slate-200">{project.businessImpact.impact}</p>
       </div>
     </div>
-    <a href={`/projects/${project.slug}`} class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-river dark:text-blue-300">
-      دراسة الحالة
+    <a href={locale === "ar" ? `/projects/${project.slug}` : `/en/projects/${project.slug}`} class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-river dark:text-blue-300">
+      {labels.details}
       <ArrowLeft class="h-4 w-4" aria-hidden="true" />
     </a>
   </div>

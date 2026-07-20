@@ -1,0 +1,76 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { getContent, type Locale } from "@/i18n";
+
+type Props = { locale: Locale };
+const { locale } = Astro.props;
+const content = getContent(locale);
+const page = content.pages.expertise;
+---
+
+<BaseLayout locale={locale} title={page.title} description={page.description}>
+  <PageHero eyebrow={page.title} title={page.heroTitle} description={page.heroDescription} />
+  <section class="container-pad py-14">
+    <div class="grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      {content.framework.map((step, index) => (
+        <div class="surface rounded-lg p-5">
+          <p class="font-latin text-sm font-bold text-teal dark:text-teal-300" dir="ltr">{String(index + 1).padStart(2, "0")}</p>
+          <h2 class="mt-2 text-xl font-bold">{step}</h2>
+        </div>
+      ))}
+    </div>
+    <div class="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+      {content.expertise.map((group) => (
+        <article class="surface rounded-lg p-5">
+          <h2 class="text-xl font-bold">{group.title}</h2>
+          <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{group.summary}</p>
+          <p class="mt-3 text-sm font-semibold leading-7 text-teal dark:text-teal-300">{group.proof}</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            {group.items.map((item) => <span class="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-semibold dark:bg-slate-800">{item}</span>)}
+          </div>
+        </article>
+      ))}
+    </div>
+    <div class="mt-14">
+      <h2 class="text-2xl font-bold">{page.relatedTitle}</h2>
+      <div class="mt-6 grid gap-5 md:grid-cols-2">
+        {content.relatedExperience.map((item) => (
+          <article class="surface rounded-lg p-5">
+            <h3 class="text-xl font-bold">{item.title}</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{item.summary}</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {item.tags.map((tag) => <span class="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-semibold dark:bg-slate-800">{tag}</span>)}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+    <div class="mt-14">
+      <h2 class="text-2xl font-bold">{page.skillsTitle}</h2>
+      <div class="mt-5 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        {content.skillGroups.map((group) => (
+          <article class="surface rounded-lg p-5">
+            <h3 class="text-xl font-bold">{group.title}</h3>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {group.items.map((item) => <span class="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-semibold dark:bg-slate-800">{item}</span>)}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+    <div class="mt-14">
+      <h2 class="text-2xl font-bold">{page.keywordsTitle}</h2>
+      <div class="mt-5 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        {content.keywordGroups.map((group) => (
+          <article class="rounded-lg border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
+            <h3 class="text-lg font-bold">{group.title}</h3>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {group.items.map((item) => <span class="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-700 dark:bg-slate-800 dark:text-slate-200">{item}</span>)}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+</BaseLayout>

@@ -1,5 +1,8 @@
 ---
-import { site, navigation } from "@/data/site";
+import { getContent, type Locale } from "@/i18n";
+type Props = { locale?: Locale };
+const { locale = "ar" } = Astro.props;
+const { site, navigation } = getContent(locale);
 ---
 
 <footer class="border-t border-slate-200 bg-white py-10 dark:border-slate-800 dark:bg-slate-900">

@@ -1,0 +1,47 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { Download, Github, Linkedin, Mail, MapPin, Phone, Globe } from "lucide-astro";
+import { getContent, localizePath, type Locale } from "@/i18n";
+
+type Props = { locale: Locale };
+const { locale } = Astro.props;
+const content = getContent(locale);
+const { site, contactLabels, pages } = content;
+const page = pages.contact;
+const contacts = [
+  { label: contactLabels.email, value: site.email, href: `mailto:${site.email}`, icon: Mail },
+  ...(site.phone ? [{ label: contactLabels.phone, value: site.phone, href: `tel:${site.phone}`, icon: Phone }] : []),
+  { label: contactLabels.linkedIn, value: contactLabels.linkedInValue, href: site.linkedin, icon: Linkedin },
+  { label: contactLabels.gitHub, value: "bakrialtaif", href: site.github, icon: Github },
+  { label: contactLabels.website, value: site.website, href: site.website, icon: Globe },
+  { label: contactLabels.location, value: site.location, href: undefined, icon: MapPin }
+];
+---
+
+<BaseLayout locale={locale} title={page.title} description={page.description}>
+  <PageHero eyebrow={page.title} title={page.heroTitle} description={page.heroDescription} />
+  <section class="container-pad py-14">
+    <div class="mb-10">
+      <h2 class="text-2xl font-bold">{page.availableTitle}</h2>
+      <div class="mt-5 grid gap-3 sm:grid-cols-2 lg:grid-cols-3">
+        {content.availableFor.map((item) => (
+          <div class="surface rounded-lg p-4 text-sm font-bold text-slate-800 dark:text-slate-100">{item}</div>
+        ))}
+      </div>
+    </div>
+    <div class="grid gap-4 md:grid-cols-2 lg:grid-cols-3">
+      {contacts.map(({ label, value, href, icon: Icon }) => (
+        <article class="surface rounded-lg p-5">
+          <Icon class="h-5 w-5 text-teal dark:text-teal-300" aria-hidden="true" />
+          <h2 class="mt-3 text-lg font-bold">{label}</h2>
+          {href ? <a class="mt-2 block text-sm text-river dark:text-blue-300" href={href}>{value}</a> : <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">{value}</p>}
+        </article>
+      ))}
+    </div>
+    <div class="mt-8 flex flex-wrap gap-3">
+      <a href={site.resumePdf} class="inline-flex items-center gap-2 rounded-md bg-slate-950 px-5 py-3 text-sm font-bold text-white dark:bg-white dark:text-slate-950"><Download class="h-4 w-4" />{content.ui.actions.downloadResume} PDF</a>
+      <a href={localizePath("/ats-resume", locale)} class="inline-flex items-center gap-2 rounded-md border border-slate-300 px-5 py-3 text-sm font-bold dark:border-slate-700">{content.ui.actions.atsResume}</a>
+    </div>
+  </section>
+</BaseLayout>

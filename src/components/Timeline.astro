@@ -1,11 +1,24 @@
 ---
-import { experience } from "@/data/experience";
+import type { Locale } from "@/i18n";
+type ExperienceItem = {
+  title: string;
+  organization: string;
+  country: string;
+  period: string;
+  focus?: string;
+  highlight?: string;
+  summary?: string;
+  responsibilities: string[];
+  tags?: string[];
+};
+type Props = { experience: ExperienceItem[]; locale?: Locale };
+const { experience, locale = "ar" } = Astro.props;
 ---
 
-<ol class="relative grid gap-5 border-r border-slate-200 pr-5 dark:border-slate-800">
+<ol class:list={["relative grid gap-5 border-slate-200 dark:border-slate-800", locale === "ar" ? "border-r pr-5" : "border-l pl-5"]}>
   {experience.map((item) => (
     <li class="relative">
-      <span class="absolute -right-[29px] top-1 h-4 w-4 rounded-full border-4 border-paper bg-teal dark:border-slate-950"></span>
+      <span class:list={["absolute top-1 h-4 w-4 rounded-full border-4 border-paper bg-teal dark:border-slate-950", locale === "ar" ? "-right-[29px]" : "-left-[29px]"]}></span>
       <div class="surface rounded-lg p-5">
         <p class="text-sm font-semibold text-copper dark:text-amber-300">{item.period}</p>
         <h3 class="mt-2 text-xl font-bold">{item.title}</h3>
