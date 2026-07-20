@@ -9,6 +9,8 @@ export const enUi = {
     languageLabel: "العربية",
     details: "Case Study",
     downloadFile: "Download File",
+    viewDocument: "View Document",
+    openDocument: "Click to view document",
     project: "Project",
     fields: {
       organization: "Organization",

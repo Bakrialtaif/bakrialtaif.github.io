@@ -7,6 +7,8 @@ export type UiContent = {
   languageLabel: string;
   details: string;
   downloadFile: string;
+  viewDocument: string;
+  openDocument: string;
   project: string;
   fields: {
     organization: string;

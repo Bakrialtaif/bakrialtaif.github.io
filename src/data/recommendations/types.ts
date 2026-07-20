@@ -4,4 +4,5 @@ export type RecommendationItem = {
   author: string;
   date: string;
   evidence: string;
+  document?: string;
 };

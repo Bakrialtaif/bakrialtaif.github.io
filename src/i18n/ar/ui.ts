@@ -9,6 +9,8 @@ export const arUi = {
     languageLabel: "English",
     details: "دراسة الحالة",
     downloadFile: "تحميل الملف",
+    viewDocument: "استعراض المستند",
+    openDocument: "اضغط لاستعراض المستند",
     project: "المشروع",
     fields: {
       organization: "الجهة",
