@@ -17,11 +17,9 @@ const { site, pages, ui } = content;
   <section class="relative overflow-hidden bg-white py-16 dark:bg-slate-900 sm:py-20">
     <div class="container-pad grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
       <div>
-        <p class="eyebrow">{site.role}</p>
-        <h1 class="mt-4 text-4xl font-bold leading-tight text-slate-950 sm:text-6xl dark:text-white">{site.name}</h1>
-        <p class="mt-4 text-2xl font-semibold text-copper dark:text-amber-300">{site.tagline}</p>
+        <h1 class="text-4xl font-bold leading-tight text-slate-950 sm:text-6xl dark:text-white">{site.name}</h1>
+        <p class="mt-4 text-2xl font-semibold text-copper dark:text-amber-300">{site.role}</p>
         <p class="mt-6 max-w-3xl text-lg leading-9 text-slate-700 dark:text-slate-200">{site.heroStatement}</p>
-        <p class="mt-5 max-w-3xl text-base leading-8 text-slate-600 dark:text-slate-300">{site.description}</p>
         <div class="mt-8 flex flex-wrap gap-3">
           <a href={localizePath("/projects", locale)} class="inline-flex items-center gap-2 rounded-md bg-slate-950 px-5 py-3 text-sm font-bold text-white dark:bg-white dark:text-slate-950">
             {ui.actions.viewProjects}

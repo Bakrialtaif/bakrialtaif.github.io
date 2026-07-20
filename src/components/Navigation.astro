@@ -13,9 +13,9 @@ const languagePath = alternateLocalePath(current, locale);
 </a>
 <header class="sticky top-0 z-40 border-b border-slate-200/80 bg-paper/90 backdrop-blur dark:border-slate-800 dark:bg-slate-950/90">
   <nav class="container-pad flex min-h-16 items-center justify-between gap-4" aria-label={ui.mainNavigation}>
-    <a href={locale === "ar" ? "/" : "/en/"} class="flex flex-col leading-tight" aria-label={site.name}>
+    <a href={locale === "ar" ? "/" : "/en/"} class="flex max-w-[18rem] flex-col leading-tight sm:max-w-sm" aria-label={site.name}>
       <span class="text-base font-bold text-slate-950 dark:text-white">{locale === "ar" ? "أبوبكر الطائف" : "Abubaker Altaif"}</span>
-      <span class="text-xs text-slate-600 dark:text-slate-400">{site.tagline}</span>
+      <span class="text-xs text-slate-600 dark:text-slate-400">{site.role}</span>
     </a>
 
     <div class="hidden items-center gap-1 lg:flex">
