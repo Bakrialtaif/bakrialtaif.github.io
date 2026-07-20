@@ -28,7 +28,7 @@ const renderPrincipleParts = (principle: string) => {
         <p class="mt-4 text-2xl font-semibold text-copper dark:text-amber-300">{site.role}</p>
         <p class="mt-6 max-w-3xl text-lg leading-9 text-slate-700 dark:text-slate-200">{site.heroStatement}</p>
         <div class="mt-8 flex flex-wrap gap-3">
-          <a href={localizePath("/projects", locale)} class="inline-flex items-center gap-2 rounded-md bg-slate-950 px-5 py-3 text-sm font-bold text-white dark:bg-white dark:text-slate-950">
+          <a href="#projects" class="inline-flex items-center gap-2 rounded-md bg-slate-950 px-5 py-3 text-sm font-bold text-white dark:bg-white dark:text-slate-950">
             {ui.actions.viewProjects}
             <ArrowLeft class="h-4 w-4" aria-hidden="true" />
           </a>
@@ -60,7 +60,7 @@ const renderPrincipleParts = (principle: string) => {
     </div>
   </section>
 
-  <section class="py-14">
+  <section id="projects" class="scroll-mt-20 py-14">
     <div class="container-pad">
       <div class="max-w-3xl">
         <p class="eyebrow">{pages.home.impactEyebrow}</p>

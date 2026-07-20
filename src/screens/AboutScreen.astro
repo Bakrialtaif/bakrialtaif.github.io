@@ -1,31 +1,42 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import PageHero from "@/components/PageHero.astro";
 import SectionTitle from "@/components/SectionTitle.astro";
 import { getContent, type Locale } from "@/i18n";
+import { aboutLessons } from "@/i18n/aboutLessons";
 
 type Props = { locale: Locale };
 const { locale } = Astro.props;
-const { pages } = getContent(locale);
+const content = getContent(locale);
+const { pages } = content;
 const page = pages.about;
-const workMethods = page.workMethods ?? page.capabilities;
+const expertisePage = pages.expertise;
+const workSection = aboutLessons[locale];
+const workMethods = workSection.items;
 const fields = page.fields ?? [];
 const journey = page.journey ?? [];
 const sectors = page.sectors ?? [];
 const projectTypes = page.projectTypes ?? [];
 const technologyGroups = page.technologyGroups ?? [];
+const stations = page.stations ?? [];
 ---
 
 <BaseLayout locale={locale} title={page.title} description={page.description}>
-  <PageHero eyebrow={page.title} title={page.heroTitle} description={page.heroDescription} />
   <section class="container-pad py-14">
-    <div class="max-w-4xl text-lg leading-10 text-slate-700 dark:text-slate-200">
-      <p>{page.intro ?? page.body1}</p>
+    <div class="grid gap-8 lg:grid-cols-[1.35fr_0.65fr]">
+      <div class="text-lg leading-10 text-slate-700 dark:text-slate-200">
+        <p>{page.intro ?? page.body1}</p>
+      </div>
+      <aside class="surface rounded-lg p-5">
+        <h1 class="text-xl font-bold text-slate-950 dark:text-white">{page.stationsTitle}</h1>
+        <div class="mt-4 grid gap-2 text-sm font-semibold leading-7 text-slate-600 dark:text-slate-300">
+          {stations.map((station) => <p>{station}</p>)}
+        </div>
+      </aside>
     </div>
   </section>
   <section class="bg-white py-14 dark:bg-slate-900">
     <div class="container-pad">
-      <SectionTitle eyebrow={page.workEyebrow ?? page.capabilitiesEyebrow} title={page.workTitle ?? page.capabilitiesTitle} />
+      <SectionTitle eyebrow={workSection.eyebrow} title={workSection.title} description={workSection.description} />
       <div class="mt-8 grid gap-5 md:grid-cols-5">
         {workMethods.map(([title, text]) => (
           <article class="surface rounded-lg p-5">
@@ -95,6 +106,69 @@ const technologyGroups = page.technologyGroups ?? [];
             <h2 class="text-lg font-bold">{group.title}</h2>
             <div class="mt-4 flex flex-wrap gap-2">
               {group.items.map((item) => <span class="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-bold text-slate-700 dark:bg-slate-800 dark:text-slate-100">{item}</span>)}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+  <section class="container-pad py-14">
+    <SectionTitle eyebrow={expertisePage.title} title={expertisePage.heroTitle} description={expertisePage.heroDescription} />
+    <div class="mt-8 grid gap-3 sm:grid-cols-2 lg:grid-cols-4">
+      {content.framework.map((step, index) => (
+        <div class="surface rounded-lg p-5">
+          <p class="font-latin text-sm font-bold text-teal dark:text-teal-300" dir="ltr">{String(index + 1).padStart(2, "0")}</p>
+          <h2 class="mt-2 text-xl font-bold">{step}</h2>
+        </div>
+      ))}
+    </div>
+    <div class="mt-12 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+      {content.expertise.map((group) => (
+        <article class="surface rounded-lg p-5">
+          <h2 class="text-xl font-bold">{group.title}</h2>
+          <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{group.summary}</p>
+          <p class="mt-3 text-sm font-semibold leading-7 text-teal dark:text-teal-300">{group.proof}</p>
+          <div class="mt-4 flex flex-wrap gap-2">
+            {group.items.map((item) => <span class="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-semibold dark:bg-slate-800">{item}</span>)}
+          </div>
+        </article>
+      ))}
+    </div>
+    <div class="mt-14">
+      <h2 class="text-2xl font-bold">{expertisePage.relatedTitle}</h2>
+      <div class="mt-6 grid gap-5 md:grid-cols-2">
+        {content.relatedExperience.map((item) => (
+          <article class="surface rounded-lg p-5">
+            <h3 class="text-xl font-bold">{item.title}</h3>
+            <p class="mt-3 text-sm leading-7 text-slate-600 dark:text-slate-300">{item.summary}</p>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {item.tags.map((tag) => <span class="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-semibold dark:bg-slate-800">{tag}</span>)}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+    <div class="mt-14">
+      <h2 class="text-2xl font-bold">{expertisePage.skillsTitle}</h2>
+      <div class="mt-5 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        {content.skillGroups.map((group) => (
+          <article class="surface rounded-lg p-5">
+            <h3 class="text-xl font-bold">{group.title}</h3>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {group.items.map((item) => <span class="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-semibold dark:bg-slate-800">{item}</span>)}
+            </div>
+          </article>
+        ))}
+      </div>
+    </div>
+    <div class="mt-14">
+      <h2 class="text-2xl font-bold">{expertisePage.keywordsTitle}</h2>
+      <div class="mt-5 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
+        {content.keywordGroups.map((group) => (
+          <article class="rounded-lg border border-slate-200 bg-white p-5 dark:border-slate-800 dark:bg-slate-900">
+            <h3 class="text-lg font-bold">{group.title}</h3>
+            <div class="mt-4 flex flex-wrap gap-2">
+              {group.items.map((item) => <span class="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-semibold text-slate-700 dark:bg-slate-800 dark:text-slate-200">{item}</span>)}
             </div>
           </article>
         ))}
