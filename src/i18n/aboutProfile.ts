@@ -10,7 +10,7 @@ type JourneyItem = {
 type NamedText = [string, string];
 
 type ContactCard = {
-  id: "email" | "whatsapp" | "phone" | "linkedin" | "website";
+  id: "email" | "whatsapp" | "phone" | "linkedin" | "website" | "facebook";
   label: string;
   description: string;
   value: string;
@@ -143,10 +143,10 @@ export const aboutProfile: Record<
       "تكررت هذه المجالات في أكثر من بيئة عمل، من تحليل الاحتياج وتصميم النظام إلى البناء والتشغيل والتحسين.",
     toolsEyebrow: "الأدوات والتقنيات",
     toolsTitle: "تقنيات مستخدمة",
-    contactEyebrow: "للتواصل المهني",
-    contactTitle: "حين تتقاطع الخبرة مع الاحتياج",
+    contactEyebrow: "التواصل",
+    contactTitle: "لنبدأ بحوار مهني",
     contactText:
-      "يكون الحوار أكثر فائدة عندما ينطلق من احتياج مؤسسي واضح، أو تحدٍ تشغيلي يحتاج إلى تحليل، أو نظام قائم يتطلب تطويراً وإعادة تنظيم.",
+      "إذا كانت طبيعة الخبرة والمشاريع المعروضة في هذا الموقع تتوافق مع احتياجاتكم، فسيسعدني التعرف على مشروعكم ومناقشة أفضل السبل للمضي قدماً.",
     contactSubtext:
       "في هذه الحالات تساعد مناقشة السياق والأهداف والواقع التشغيلي على تحديد نقطة بداية عملية ومناسبة.",
     contactTopicsTitle: "موضوعات يكون فيها الحوار أكثر فائدة",
@@ -176,7 +176,7 @@ export const aboutProfile: Record<
         id: "whatsapp",
         label: "واتساب",
         description: "للاستفسارات السريعة وبداية النقاش.",
-        value: "+249963144047",
+        value: "+249 96 314 4047",
         href: "https://wa.me/249963144047",
         action: "فتح",
         copied: "تم نسخ الرقم",
@@ -187,7 +187,7 @@ export const aboutProfile: Record<
         id: "phone",
         label: "الهاتف",
         description: "للمكالمات المباشرة عند الحاجة.",
-        value: "+249100007732",
+        value: "+249 10 000 7732",
         href: "tel:+249100007732",
         action: "اتصال",
         copied: "تم نسخ الرقم",
@@ -198,7 +198,7 @@ export const aboutProfile: Record<
         label: "LinkedIn",
         description: "للاطلاع على المسيرة المهنية والتواصل المهني.",
         value: "linkedin.com/in/bakrialtaif",
-        href: "https://www.linkedin.com/in/bakrialtaif",
+        href: "https://www.linkedin.com/in/bakrialtaif/",
         action: "زيارة",
         copied: "تم النسخ",
         external: true,
@@ -209,6 +209,16 @@ export const aboutProfile: Record<
         description: "المشاريع، السيرة المهنية، وأحدث الأعمال.",
         value: "bakrialtaif.github.io",
         href: "https://bakrialtaif.github.io",
+        action: "زيارة",
+        copied: "تم النسخ",
+        external: true,
+      },
+      {
+        id: "facebook",
+        label: "Facebook",
+        description: "",
+        value: "facebook.com/bakrialtaif",
+        href: "https://web.facebook.com/bakrialtaif",
         action: "زيارة",
         copied: "تم النسخ",
         external: true,
@@ -305,10 +315,10 @@ export const aboutProfile: Record<
       "These areas appeared repeatedly across work environments, from needs analysis and system design to building, operating, and improving.",
     toolsEyebrow: "Tools and Technologies",
     toolsTitle: "Technologies Used",
-    contactEyebrow: "Professional Contact",
-    contactTitle: "When Experience Meets Need",
+    contactEyebrow: "Contact",
+    contactTitle: "Let's start a professional conversation",
     contactText:
-      "A discussion is most useful when it starts from a clear institutional need, an operational challenge that requires analysis, or an existing system that needs development and reorganization.",
+      "If the experience and projects presented on this website align with your needs, I would be glad to learn more about your project and discuss the best way forward.",
     contactSubtext:
       "In these cases, discussing the context, goals, and operating reality helps identify a practical starting point.",
     contactTopicsTitle: "Topics Where Discussion Is Most Useful",
@@ -338,7 +348,7 @@ export const aboutProfile: Record<
         id: "whatsapp",
         label: "WhatsApp",
         description: "For quick questions and starting a discussion.",
-        value: "+249963144047",
+        value: "+249 96 314 4047",
         href: "https://wa.me/249963144047",
         action: "Open",
         copied: "Number copied",
@@ -349,7 +359,7 @@ export const aboutProfile: Record<
         id: "phone",
         label: "Phone",
         description: "For direct calls when needed.",
-        value: "+249100007732",
+        value: "+249 10 000 7732",
         href: "tel:+249100007732",
         action: "Call",
         copied: "Number copied",
@@ -360,7 +370,7 @@ export const aboutProfile: Record<
         label: "LinkedIn",
         description: "For professional background and networking.",
         value: "linkedin.com/in/bakrialtaif",
-        href: "https://www.linkedin.com/in/bakrialtaif",
+        href: "https://www.linkedin.com/in/bakrialtaif/",
         action: "Visit",
         copied: "Copied",
         external: true,
@@ -371,6 +381,16 @@ export const aboutProfile: Record<
         description: "Projects, professional biography, and recent work.",
         value: "bakrialtaif.github.io",
         href: "https://bakrialtaif.github.io",
+        action: "Visit",
+        copied: "Copied",
+        external: true,
+      },
+      {
+        id: "facebook",
+        label: "Facebook",
+        description: "",
+        value: "facebook.com/bakrialtaif",
+        href: "https://web.facebook.com/bakrialtaif",
         action: "Visit",
         copied: "Copied",
         external: true,
