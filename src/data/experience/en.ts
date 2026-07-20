@@ -9,7 +9,7 @@ export const enExperience: ExperienceItem[] = [
     focus: "Government platforms, data integration, sovereign transactions",
     highlight: "Designed and operated a national government integration platform.",
     summary: "Technical leadership for a national government platform designed to connect economic-sector institutions and exchange government data and transactions through a unified platform.",
-    responsibilities: ["Led development of Baldna for government data and transaction exchange.", "Analyzed government transaction procedures and converted them into digital workflows.", "Supported production operation and technical stability.", "Trained users and supported operations teams during platform adoption."],
+    responsibilities: ["Led development of Baldna for government data and transaction exchange.", "Analyzed government transaction procedures and converted them into digital workflows.", "Operated the platform in production and followed up technical stability.", "Trained users and enabled operations teams during platform adoption."],
     projects: ["Government data and transaction exchange platform (Baldna)"],
     tags: ["Government platforms", "Integration", "REST APIs", "PostgreSQL", "Linux"]
   },
@@ -33,7 +33,7 @@ export const enExperience: ExperienceItem[] = [
     focus: "Citizen services, sovereign systems, security and permissions",
     highlight: "Designed and delivered national-scale government digital transformation systems.",
     summary: "Developed digital service systems related to passports and immigration, focused on reducing operational pressure, managing permissions, and maintaining high-use service stability.",
-    responsibilities: ["Developed the Foreigners Transactions System to manage more than 10,000 files in Sudan.", "Built electronic booking and inquiry services serving more than 500,000 citizens and processing more than 3,000,000 inquiries.", "Supported digitization of 3,600 officer and non-commissioned officer files through the force affairs system.", "Applied permission and application security models suitable for sovereign systems."],
+    responsibilities: ["Developed the Foreigners Transactions System to manage more than 10,000 files in Sudan.", "Built electronic booking and inquiry services serving more than 500,000 citizens and processing more than 3,000,000 inquiries.", "Digitized 3,600 officer and non-commissioned officer files through the force affairs system.", "Applied permission and application security models suitable for sovereign systems."],
     projects: ["Foreigners Transactions System", "Online Booking System", "Passport Inquiry System", "Force Affairs Management System"],
     tags: ["National systems", "Security", "Django", "Citizen services", "Workflow automation"]
   },
@@ -56,8 +56,8 @@ export const enExperience: ExperienceItem[] = [
     period: "2014 - 2019",
     focus: "ERP, HR, accounting, planning",
     highlight: "Built and operated ERP systems covering HR, finance, planning, and workflow.",
-    summary: "Established the IT function and contributed to the development of the SNSO resource and enterprise operations system in a cross-border work environment.",
-    responsibilities: ["Established the IT department and technical team.", "Contributed to SNSO ERP modules covering resources, accounting, planning, and workflow.", "Supported workflow customization and conversion into operational modules.", "Established the Sudan branch and built the Sudanese team supporting development and operations."],
+    summary: "Established the IT function and helped build the SNSO resource and enterprise operations system in a cross-border work environment.",
+    responsibilities: ["Established the IT department and technical team.", "Helped build SNSO ERP modules covering resources, accounting, planning, and workflow.", "Converted workflow requirements into operational modules inside the system.", "Established the Sudan branch and built the Sudanese team supporting development and operations."],
     projects: ["SNSO Resource Management System"],
     tags: ["ERP", "HR", "Finance", "Planning", "Workflow"]
   },
@@ -81,7 +81,7 @@ export const enExperience: ExperienceItem[] = [
     focus: "Statistics, information systems, e-government",
     highlight: "Transformed national training data into an award-winning e-government information system.",
     summary: "Converted national training data from scattered files into a centralized information system supporting training institution management and decision-making.",
-    responsibilities: ["Managed the Sudan Training Database project from initiation to operation.", "Established the technical team and distributed technical and statistical responsibilities.", "Managed the statistics and information function and linked data to planning needs.", "Contributed to the project winning Best E-Government Project in 2012."],
+    responsibilities: ["Managed the Sudan Training Database project from initiation to operation.", "Established the technical team and distributed technical and statistical responsibilities.", "Managed the statistics and information function and linked data to planning needs.", "Delivered the system that won Best E-Government Project in 2012."],
     projects: ["Sudan Training Database System"],
     tags: ["Statistics", "Information systems", "E-government", "Decision support"]
   }

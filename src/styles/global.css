@@ -37,6 +37,6 @@
   }
 
   .eyebrow {
-    @apply text-sm font-semibold text-teal dark:text-teal-300;
+    @apply max-w-full break-words text-sm font-semibold leading-6 text-teal dark:text-teal-300;
   }
 }

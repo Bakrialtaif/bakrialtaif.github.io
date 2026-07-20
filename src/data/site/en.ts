@@ -4,12 +4,12 @@ import type { MetricItem, SiteInfo } from "./types";
 export const enSite: SiteInfo = {
   ...arSite,
   name: "Abubaker Abd Albagi Altaif Ahmed",
-  role: "Digital Product Architecture and Transformation Consultant",
-  tagline: "Engineering Sustainable Digital Value",
+  role: "Product Architect & Digital Transformation Lead",
+  tagline: "I turn complex institutional challenges into practical digital systems and lead their delivery from architecture to stable operations.",
   description:
-    "Specialized in helping public and private sector organizations transform complex operational procedures into integrated, scalable digital systems and platforms.",
+    "I design and build enterprise systems and digital products that turn complex operational challenges into practical, scalable solutions. I lead the full journey from business analysis and process redesign to system delivery, team establishment, operational rollout, and measurable outcomes.",
   heroStatement:
-    "Enterprise systems architect, technical leader, and digital transformation specialist with extensive experience designing national digital platforms, enterprise systems, and AI-powered business solutions.",
+    "Enterprise systems builder and technical product leader combining business analysis, product architecture, systems engineering, team establishment, and operational delivery across government and enterprise environments.",
   location: "Sudan"
 };
 
@@ -26,17 +26,17 @@ export const enImpactMetrics: MetricItem[] = [
 export const enExecutiveScale: string[] = [
   "National government platforms",
   "Enterprise ERP systems",
-  "AI-powered OCR solutions",
+  "Scalable digital products",
   "Government integration",
   "Business process automation",
-  "Decision support systems"
+  "Performance and decision systems"
 ];
 
 export const enAvailableFor: string[] = [
-  "Technical consulting",
-  "Systems engineering",
-  "Digital transformation",
-  "Technical team leadership",
+  "Enterprise systems building",
+  "Digital product architecture",
+  "Digital transformation leadership",
+  "Technical and operations team establishment",
   "Enterprise solution design",
   "CTO opportunities"
 ];

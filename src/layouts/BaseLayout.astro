@@ -13,12 +13,38 @@ type Props = {
 
 const { title, description, locale = "ar", canonical = Astro.url.pathname } = Astro.props;
 const { site } = getContent(locale);
-const pageTitle = title === site.name ? title : `${title} | ${site.name}`;
+const pageTitle = title === site.name ? `${site.name} | ${site.role}` : `${title} | ${site.name}`;
 const canonicalUrl = new URL(canonical, Astro.site).toString();
 const imageUrl = new URL("/images/bakrialtaif.jpg", Astro.site).toString();
 const alternateLocale = locale === "ar" ? "en" : "ar";
 const alternateUrl = new URL(alternateLocalePath(Astro.url.pathname, locale), Astro.site).toString();
 const defaultLocaleUrl = new URL(localizePath(Astro.url.pathname, "ar"), Astro.site).toString();
+const keywords = locale === "ar"
+  ? [
+      "مهندس بناء الأنظمة المؤسسية",
+      "هندسة الأنظمة المؤسسية",
+      "بناء الأنظمة",
+      "التحول الرقمي",
+      "هندسة المنتجات",
+      "تصميم المنتجات الرقمية",
+      "إعادة هندسة العمليات",
+      "قيادة المنتجات التقنية",
+      "تأسيس الفرق التقنية",
+      "معماريات الأنظمة",
+      "الحلول المؤسسية"
+    ]
+  : [
+      "Product Architect",
+      "Digital Transformation Lead",
+      "Enterprise Systems Architect",
+      "Digital Product Architecture",
+      "Enterprise Systems",
+      "Product Engineering",
+      "Business Process Reengineering",
+      "Technical Leadership",
+      "Systems Design",
+      "Digital Transformation"
+    ];
 ---
 
 <!doctype html>
@@ -28,6 +54,7 @@ const defaultLocaleUrl = new URL(localizePath(Astro.url.pathname, "ar"), Astro.s
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <title>{pageTitle}</title>
     <meta name="description" content={description} />
+    <meta name="keywords" content={keywords.join(", ")} />
     <link rel="canonical" href={canonicalUrl} />
     <link rel="alternate" hreflang={locale} href={canonicalUrl} />
     <link rel="alternate" hreflang={alternateLocale} href={alternateUrl} />
@@ -58,13 +85,7 @@ const defaultLocaleUrl = new URL(localizePath(Astro.url.pathname, "ar"), Astro.s
       jobTitle: site.role,
       url: site.website,
       nationality: "Sudanese",
-      knowsAbout: [
-        "هندسة المنتجات الرقمية",
-        "التحول الرقمي",
-        "المنصات الحكومية",
-        "المعمارية المؤسسية",
-        "ذكاء الأعمال"
-      ]
+      knowsAbout: keywords
     })} />
   </head>
   <body>
