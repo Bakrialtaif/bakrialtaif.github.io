@@ -1,5 +1,19 @@
 ---
-import ContactScreen from "@/screens/ContactScreen.astro";
+const target = "/en/#contact";
 ---
 
-<ContactScreen locale="en" />
+<!doctype html>
+<html lang="en" dir="ltr">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="robots" content="noindex, follow" />
+    <meta http-equiv="refresh" content={`0; url=${target}`} />
+    <title>Redirecting to contact</title>
+    <script is:inline define:vars={{ target }}>
+      window.location.replace(target);
+    </script>
+  </head>
+  <body>
+    <a href={target}>Go to the contact section</a>
+  </body>
+</html>

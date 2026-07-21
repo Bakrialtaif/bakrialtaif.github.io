@@ -1,6 +1,6 @@
 const DISMISS_STORAGE_KEY = "portfolio_contextual_contact_dismissed_at";
 const DISMISS_DURATION_MS = 7 * 24 * 60 * 60 * 1000;
-const MIN_TIME_ON_PAGE_MS = 6000;
+const MIN_TIME_ON_PAGE_MS = 45000;
 const OPEN_DELAY_MS = 2600;
 
 let previousFocus: HTMLElement | null = null;
@@ -79,20 +79,6 @@ function setupContextualContact() {
     }
   });
 
-  const contactSection = document.querySelector<HTMLElement>('[data-analytics-section="contact"]');
-  if (contactSection && "IntersectionObserver" in window) {
-    const observer = new IntersectionObserver(
-      (entries) => {
-        if (entries.some((entry) => entry.isIntersecting)) {
-          scheduleOpen();
-          observer.disconnect();
-        }
-      },
-      { threshold: 0.35 }
-    );
-    observer.observe(contactSection);
-  }
-
   window.setTimeout(() => {
     window.addEventListener(
       "scroll",
@@ -100,7 +86,7 @@ function setupContextualContact() {
         const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
         if (scrollableHeight <= 0) return;
         const progress = (window.scrollY / scrollableHeight) * 100;
-        if (progress >= 70) scheduleOpen();
+        if (progress >= 75) scheduleOpen();
       },
       { passive: true }
     );

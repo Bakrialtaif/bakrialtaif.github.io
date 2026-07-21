@@ -13,7 +13,7 @@ export const arSite: SiteInfo = {
   location: "السودان",
   email: "contact@bakrialtaif.github.io",
   phone: "",
-  linkedin: "https://www.linkedin.com/",
+  linkedin: "https://www.linkedin.com/in/bakrialtaif/",
   github: "https://github.com/bakrialtaif",
   website: "https://bakrialtaif.github.io",
   resumePdf: "/documents/Abobaker-Altaif-CV.pdf",
@@ -23,9 +23,10 @@ export const arSite: SiteInfo = {
 export const arNavigation: NavigationItem[] = [
   { href: "/", label: "الرئيسية" },
   { href: "/about", label: "الملف المهني" },
-  { href: "/education", label: "التعليم" },
+  { href: "/projects", label: "المشاريع" },
+  { href: "/education", label: "التعليم والتطوير المهني" },
   { href: "/awards", label: "الجوائز والثناءات" },
-  { href: "/contact", label: "التواصل" }
+  { href: "/recommendations", label: "التوصيات" }
 ];
 
 export const arImpactMetrics: MetricItem[] = [

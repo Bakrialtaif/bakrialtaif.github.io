@@ -1,0 +1,36 @@
+---
+import { ArrowLeft, ArrowRight } from "lucide-astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { getContent, localizePath, type Locale } from "@/i18n";
+import type { ProjectCaseStudy } from "@/data/project-case-studies/types";
+
+type Props = { locale: Locale; projects: ProjectCaseStudy[] };
+const { locale, projects } = Astro.props;
+const content = getContent(locale);
+const page = content.pages.projects;
+const ArrowIcon = locale === "ar" ? ArrowLeft : ArrowRight;
+---
+
+<BaseLayout locale={locale} title={page.title} description={page.description}>
+  <PageHero eyebrow={page.title} title={page.heroTitle} description={page.heroDescription} />
+  <section class="container-pad py-14" data-analytics-section="projects" data-analytics-view-event="projects_section_view">
+    <div class="grid gap-5 md:grid-cols-2">
+      {projects.map((project) => (
+        <article class="surface flex min-h-72 flex-col rounded-lg p-5">
+          <p class="eyebrow">{project.type}</p>
+          <h2 class="mt-2 text-2xl font-bold leading-tight">{project.name}</h2>
+          <p class="mt-3 text-sm font-semibold leading-7 text-copper dark:text-amber-300">{project.organization}</p>
+          <p class="mt-3 text-sm leading-8 text-slate-600 dark:text-slate-300">{project.summary}</p>
+          <div class="mt-5 flex flex-wrap gap-2">
+            {project.heroMetrics.map((metric) => <span class="rounded-md bg-slate-100 px-3 py-2 text-xs font-bold dark:bg-slate-800">{metric.value} {metric.label}</span>)}
+          </div>
+          <a href={localizePath(`/projects/${project.slug}`, locale)} class="mt-auto inline-flex items-center gap-2 pt-6 text-sm font-bold text-river dark:text-blue-300" data-analytics-event="project_open" data-analytics-location="projects_index" data-project-slug={project.slug}>
+            {locale === "ar" ? "عرض تفاصيل المشروع" : "View project details"}
+            <ArrowIcon class="h-4 w-4" aria-hidden="true" />
+          </a>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

@@ -10,7 +10,7 @@ const { site, pages, ui } = content;
 const page = pages.resumePdf;
 ---
 
-<BaseLayout locale={locale} title={page.title} description={page.description}>
+<BaseLayout locale={locale} title={page.title} description={page.description} robots="noindex, follow">
   <PageHero eyebrow={page.title} title={page.heroTitle} description={page.heroDescription} />
   <section class="container-pad py-14">
     <a href={site.resumePdf} class="inline-flex rounded-md bg-slate-950 px-5 py-3 text-sm font-bold text-white dark:bg-white dark:text-slate-950" data-analytics-event="cv_download" data-analytics-location="resume_pdf_page">{ui.downloadFile}</a>

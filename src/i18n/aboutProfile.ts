@@ -22,10 +22,10 @@ type ContactCard = {
 };
 
 const arWhatsAppMessage = encodeURIComponent(
-  "مرحباً مهندس أبوبكر، اطلعت على موقعك وأرغب في مناقشة مشروع أو فرصة مهنية."
+  "مرحباً أبوبكر، اطلعت على موقعك وأرغب في مناقشة مشروع أو فرصة مهنية."
 );
 const enWhatsAppMessage = encodeURIComponent(
-  "Hello Engineer Abubaker, I reviewed your website and would like to discuss a project or professional opportunity."
+  "Hello Abubaker, I came across your website and would like to discuss a project or professional opportunity."
 );
 
 export const aboutProfile: Record<

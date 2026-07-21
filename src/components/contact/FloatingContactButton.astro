@@ -6,7 +6,7 @@ import type { Locale } from "@/i18n";
 type Props = { locale?: Locale };
 const { locale = "ar" } = Astro.props;
 const profile = aboutProfile[locale];
-const cards = profile.contactCards.filter((card) => ["whatsapp", "email", "linkedin", "facebook"].includes(card.id));
+const cards = profile.contactCards.filter((card) => ["whatsapp", "email", "linkedin"].includes(card.id));
 const labels = {
   ar: {
     open: "فتح خيارات التواصل",

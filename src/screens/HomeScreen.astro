@@ -10,12 +10,8 @@ type Props = { locale: Locale };
 const { locale } = Astro.props;
 const content = getContent(locale);
 const { site, pages, ui } = content;
-const getPrincipleParts = (principle: string) => {
-  const [title, ...descriptionParts] = principle.split(" — ");
-  return { title, description: descriptionParts.join(" — ") };
-};
 const renderPrincipleParts = (principle: string) => {
-  const [title, ...descriptionParts] = principle.split(/\s(?:\u2014|\u00e2\u20ac\u201d)\s/);
+  const [title, ...descriptionParts] = principle.split(/\s—\s/);
   return { title, description: descriptionParts.join(" - ") };
 };
 ---
@@ -36,7 +32,7 @@ const renderPrincipleParts = (principle: string) => {
             {ui.actions.downloadResume}
             <Download class="h-4 w-4" aria-hidden="true" />
           </a>
-          <a href={localizePath("/contact", locale)} class="inline-flex items-center gap-2 rounded-md border border-slate-300 px-5 py-3 text-sm font-bold text-slate-800 dark:border-slate-700 dark:text-slate-100">
+          <a href="#contact" class="inline-flex items-center gap-2 rounded-md border border-slate-300 px-5 py-3 text-sm font-bold text-slate-800 dark:border-slate-700 dark:text-slate-100">
             {ui.actions.contact}
             <Mail class="h-4 w-4" aria-hidden="true" />
           </a>
@@ -60,7 +56,7 @@ const renderPrincipleParts = (principle: string) => {
     </div>
   </section>
 
-  <section id="projects" class="scroll-mt-20 py-14" data-analytics-section="projects" data-analytics-view-event="project_open">
+  <section id="projects" class="scroll-mt-20 py-14" data-analytics-section="projects" data-analytics-view-event="projects_section_view">
     <div class="container-pad">
       <div class="max-w-3xl">
         <p class="eyebrow">{pages.home.impactEyebrow}</p>

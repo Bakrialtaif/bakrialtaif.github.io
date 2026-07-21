@@ -1,0 +1,202 @@
+---
+import { ArrowLeft, ArrowRight, ExternalLink, Mail, MessageCircle, Linkedin } from "lucide-astro";
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import SectionTitle from "@/components/SectionTitle.astro";
+import { aboutProfile } from "@/i18n/aboutProfile";
+import { getContent, localizePath, type Locale } from "@/i18n";
+import type { ProjectCaseStudy } from "@/data/project-case-studies/types";
+
+type EvidenceItem = {
+  title: string;
+  description: string;
+  href?: string;
+};
+
+type Props = {
+  locale: Locale;
+  project: ProjectCaseStudy;
+  evidence: EvidenceItem[];
+};
+
+const { locale, project, evidence } = Astro.props;
+const content = getContent(locale);
+const profile = aboutProfile[locale];
+const ArrowIcon = locale === "ar" ? ArrowRight : ArrowLeft;
+const contactCards = profile.contactCards.filter((card) => ["whatsapp", "email", "linkedin"].includes(card.id));
+const contactIcons = { whatsapp: MessageCircle, email: Mail, linkedin: Linkedin };
+const projectsPath = localizePath("/projects", locale);
+const contactPath = `${localizePath("/", locale)}#contact`;
+const projectUrl = new URL(localizePath(`/projects/${project.slug}`, locale), Astro.site).toString();
+const jsonLd = {
+  "@context": "https://schema.org",
+  "@type": "CreativeWork",
+  name: project.name,
+  description: project.summary,
+  url: projectUrl,
+  creator: content.site.name,
+  author: content.site.name,
+  inLanguage: locale,
+  keywords: project.seo.keywords,
+  about: project.type,
+};
+---
+
+<BaseLayout locale={locale} title={project.seo.title} description={project.seo.description}>
+  <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <section class="border-b border-slate-200 bg-white py-14 dark:border-slate-800 dark:bg-slate-900">
+    <div class="container-pad">
+      <a href={projectsPath} class="inline-flex items-center gap-2 text-sm font-bold text-river dark:text-blue-300">
+        <ArrowIcon class="h-4 w-4" aria-hidden="true" />
+        {project.sections.backLabel}
+      </a>
+      <div class="mt-8 grid gap-8 lg:grid-cols-[1.05fr_0.95fr]">
+        <div>
+          <p class="eyebrow">{project.type}</p>
+          <h1 class="mt-2 text-4xl font-bold leading-tight text-slate-950 sm:text-5xl dark:text-white">{project.name}</h1>
+          <p class="mt-5 text-lg leading-9 text-slate-700 dark:text-slate-200">{project.summary}</p>
+          <dl class="mt-8 grid gap-4 sm:grid-cols-3">
+            <div class="surface rounded-lg p-4">
+              <dt class="text-xs font-bold text-slate-500 dark:text-slate-400">{content.ui.fields.organization}</dt>
+              <dd class="mt-2 text-sm font-bold leading-7">{project.organization}</dd>
+            </div>
+            <div class="surface rounded-lg p-4">
+              <dt class="text-xs font-bold text-slate-500 dark:text-slate-400">{content.ui.fields.role}</dt>
+              <dd class="mt-2 text-sm font-bold leading-7">{project.role}</dd>
+            </div>
+            <div class="surface rounded-lg p-4">
+              <dt class="text-xs font-bold text-slate-500 dark:text-slate-400">{content.ui.fields.period}</dt>
+              <dd class="mt-2 text-sm font-bold leading-7">{project.period}</dd>
+            </div>
+          </dl>
+        </div>
+        <div class="grid gap-4 sm:grid-cols-2">
+          {project.heroMetrics.map((metric) => (
+            <div class="surface rounded-lg p-5">
+              <p class="font-latin text-3xl font-black text-teal dark:text-teal-300" dir="ltr">{metric.value}</p>
+              <p class="mt-2 text-sm font-bold leading-7 text-slate-600 dark:text-slate-300">{metric.label}</p>
+            </div>
+          ))}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-pad py-14">
+    <div class="grid gap-10 lg:grid-cols-[0.78fr_1.22fr]">
+      <SectionTitle eyebrow={project.sections.overviewTitle} title={project.objective} description={project.overview} />
+      <div class="grid gap-5">
+        <article class="surface rounded-lg p-5">
+          <h2 class="text-xl font-bold">{project.sections.contextTitle}</h2>
+          <p class="mt-3 text-sm leading-8 text-slate-600 dark:text-slate-300">{project.businessImpact.problem}</p>
+        </article>
+        <article class="surface rounded-lg p-5">
+          <h2 class="text-xl font-bold">{project.sections.solutionTitle}</h2>
+          <p class="mt-3 text-sm leading-8 text-slate-600 dark:text-slate-300">{project.businessImpact.solution}</p>
+        </article>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-14 dark:bg-slate-900">
+    <div class="container-pad">
+      <SectionTitle title={project.sections.challengesTitle} />
+      <div class="mt-8 grid gap-5 md:grid-cols-3">
+        {project.challenges.map((challenge) => (
+          <article class="surface rounded-lg p-5">
+            <h2 class="text-lg font-bold">{challenge.title}</h2>
+            <p class="mt-3 text-sm leading-8 text-slate-600 dark:text-slate-300">{challenge.description}</p>
+          </article>
+        ))}
+      </div>
+    </div>
+  </section>
+
+  <section class="container-pad py-14">
+    <div class="grid gap-10 lg:grid-cols-2">
+      <div>
+        <SectionTitle title={project.sections.responsibilitiesTitle} />
+        <ul class="mt-6 grid gap-3">
+          {project.responsibilities.map((item) => <li class="surface rounded-lg p-4 text-sm font-semibold leading-8">{item}</li>)}
+        </ul>
+      </div>
+      <div>
+        <SectionTitle title={project.sections.capabilitiesTitle} />
+        <div class="mt-6 flex flex-wrap gap-3">
+          {project.keyFeatures.map((feature) => <span class="rounded-md border border-slate-200 bg-white px-4 py-3 text-sm font-bold dark:border-slate-800 dark:bg-slate-900">{feature}</span>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="bg-white py-14 dark:bg-slate-900">
+    <div class="container-pad grid gap-10 lg:grid-cols-[1fr_0.85fr]">
+      <div>
+        <SectionTitle title={project.sections.outcomesTitle} description={project.businessImpact.impact} />
+        <div class="mt-6 grid gap-3">
+          {project.results.map((result) => <p class="surface rounded-lg p-4 text-sm font-bold leading-8">{result}</p>)}
+        </div>
+      </div>
+      <div>
+        <SectionTitle title={project.sections.technologiesTitle} />
+        <div class="mt-6 flex flex-wrap gap-2">
+          {project.technologies.map((tech) => <span class="rounded-md bg-slate-100 px-3 py-2 text-xs font-bold text-slate-700 dark:bg-slate-800 dark:text-slate-100">{tech}</span>)}
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <section class="container-pad py-14">
+    <SectionTitle title={project.sections.lessonsTitle} />
+    <div class="mt-8 grid gap-5 md:grid-cols-3">
+      {project.lessons.map((lesson) => (
+        <article class="surface rounded-lg p-5">
+          <h2 class="text-lg font-bold">{lesson.title}</h2>
+          <p class="mt-3 text-sm leading-8 text-slate-600 dark:text-slate-300">{lesson.description}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+
+  {evidence.length > 0 && (
+    <section class="bg-white py-14 dark:bg-slate-900">
+      <div class="container-pad">
+        <SectionTitle title={project.sections.evidenceTitle} />
+        <div class="mt-8 grid gap-5 md:grid-cols-2">
+          {evidence.map((item) => (
+            <article class="surface rounded-lg p-5">
+              <h2 class="text-lg font-bold">{item.title}</h2>
+              <p class="mt-3 text-sm leading-8 text-slate-600 dark:text-slate-300">{item.description}</p>
+              {item.href && (
+                <a href={item.href} target="_blank" rel="noopener noreferrer" class="mt-4 inline-flex items-center gap-2 text-sm font-bold text-river dark:text-blue-300">
+                  {content.ui.viewDocument}
+                  <ExternalLink class="h-4 w-4" aria-hidden="true" />
+                </a>
+              )}
+            </article>
+          ))}
+        </div>
+      </div>
+    </section>
+  )}
+
+  <section class="container-pad py-14">
+    <div class="rounded-lg bg-slate-950 p-6 text-white dark:bg-black">
+      <h2 class="text-2xl font-bold">{project.sections.ctaTitle}</h2>
+      <p class="mt-3 max-w-3xl text-sm leading-8 text-slate-200">{project.sections.ctaText}</p>
+      <div class="mt-6 flex flex-wrap gap-3">
+        {contactCards.map((card) => {
+          const Icon = contactIcons[card.id as keyof typeof contactIcons];
+          return (
+            <a href={card.href} target={card.external ? "_blank" : undefined} rel={card.external ? "noopener noreferrer" : undefined} class="inline-flex items-center gap-2 rounded-md bg-white px-4 py-3 text-sm font-bold text-slate-950" data-analytics-event={`${card.id}_click`} data-analytics-location="project_cta" data-project-slug={project.slug}>
+              <Icon class="h-4 w-4" aria-hidden="true" />
+              {card.label}
+            </a>
+          );
+        })}
+        <a href={contactPath} class="inline-flex items-center rounded-md border border-white/30 px-4 py-3 text-sm font-bold text-white" data-analytics-event="contact_section_view" data-analytics-location="project_cta" data-project-slug={project.slug}>
+          {project.sections.contactLabel}
+        </a>
+      </div>
+    </div>
+  </section>
+</BaseLayout>

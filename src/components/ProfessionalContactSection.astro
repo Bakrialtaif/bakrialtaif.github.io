@@ -16,54 +16,29 @@ const contactIcons = {
   facebook: Facebook,
 };
 
-const directContactCards = profile.contactCards.filter((card) => ["email", "whatsapp", "phone"].includes(card.id));
-const presenceContactCards = profile.contactCards.filter((card) => ["linkedin", "website", "facebook"].includes(card.id));
+const primaryContactCards = profile.contactCards.filter((card) => ["whatsapp", "email", "linkedin"].includes(card.id));
 ---
 
-<section class="bg-slate-950 py-16 text-white dark:bg-black" data-analytics-section="contact" data-analytics-view-event="contact_section_view">
+<section id="contact" class="scroll-mt-20 bg-slate-950 py-16 text-white dark:bg-black" data-analytics-section="contact" data-analytics-view-event="contact_section_view">
   <div class="container-pad">
     <p class="eyebrow text-teal-300">{profile.contactEyebrow}</p>
     <h2 class="mt-2 max-w-3xl text-3xl font-bold leading-tight sm:text-4xl">{profile.contactTitle}</h2>
     <p class="mt-5 max-w-3xl text-lg leading-9 text-slate-100">{profile.contactText}</p>
 
-    <div class="mt-10 grid gap-10 lg:grid-cols-2">
-      <div>
-        <h3 class="text-xl font-bold">{profile.directContactTitle}</h3>
-        <div class="mt-5 grid gap-5">
-          {directContactCards.map((card) => {
-            const Icon = contactIcons[card.id];
+    <div class="mt-10 grid gap-5 md:grid-cols-3">
+      {primaryContactCards.map((card) => {
+        const Icon = contactIcons[card.id];
 
-            return (
-              <a href={card.href} target={card.external ? "_blank" : undefined} rel={card.external ? "noopener noreferrer" : undefined} class="flex min-w-0 items-start gap-3 py-1" data-analytics-event={`${card.id}_click`} data-analytics-location="contact_section">
-                <Icon class="mt-1 h-4 w-4 shrink-0 text-teal-300" aria-hidden="true" />
-                <span class="min-w-0">
-                  <span class="block text-xs font-bold text-slate-400">{card.label}</span>
-                  <span class="mt-1 block break-words font-latin text-base font-bold text-white hover:text-teal-200" dir="ltr">{card.value}</span>
-                </span>
-              </a>
-            );
-          })}
-        </div>
-      </div>
-
-      <div>
-        <h3 class="text-xl font-bold">{profile.professionalPresenceTitle}</h3>
-        <div class="mt-5 grid gap-5">
-          {presenceContactCards.map((card) => {
-            const Icon = contactIcons[card.id];
-
-            return (
-              <a href={card.href} target="_blank" rel="noopener noreferrer" class="flex min-w-0 items-start gap-3 py-1" data-analytics-event={`${card.id}_click`} data-analytics-location="contact_section">
-                <Icon class:list={["mt-1 h-4 w-4 shrink-0", card.id === "facebook" ? "text-slate-500" : "text-teal-300"]} aria-hidden="true" />
-                <span class="min-w-0">
-                  <span class="block text-xs font-bold text-slate-400">{card.label}</span>
-                  <span class:list={["mt-1 block break-words font-latin text-base font-bold hover:text-teal-200", card.id === "facebook" ? "text-slate-300" : "text-white"]} dir="ltr">{card.value}</span>
-                </span>
-              </a>
-            );
-          })}
-        </div>
-      </div>
+        return (
+          <a href={card.href} target={card.external ? "_blank" : undefined} rel={card.external ? "noopener noreferrer" : undefined} class="flex min-w-0 items-start gap-3 rounded-lg border border-white/10 p-4 transition hover:bg-white/5" data-analytics-event={`${card.id}_click`} data-analytics-location="contact_section">
+            <Icon class="mt-1 h-4 w-4 shrink-0 text-teal-300" aria-hidden="true" />
+            <span class="min-w-0">
+              <span class="block text-xs font-bold text-slate-400">{card.label}</span>
+              <span class="mt-1 block break-words font-latin text-base font-bold text-white hover:text-teal-200" dir="ltr">{card.value}</span>
+            </span>
+          </a>
+        );
+      })}
     </div>
   </div>
 </section>

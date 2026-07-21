@@ -1,0 +1,9 @@
+---
+import ProjectsIndexScreen from "@/screens/ProjectsIndexScreen.astro";
+import { getProjectCaseStudies } from "@/data/project-case-studies";
+
+const locale = "ar";
+const projects = getProjectCaseStudies(locale);
+---
+
+<ProjectsIndexScreen locale={locale} projects={projects} />

@@ -1,11 +1,15 @@
-import { getContent, localizePath } from "@/i18n";
+import { localizePath } from "@/i18n";
+import { projectCaseStudySlugs } from "@/data/project-case-studies";
 
-const pages = ["/", "/about", "/education", "/awards", "/recommendations", "/contact", "/ats-resume", "/resume-pdf"];
+const pages = ["/", "/about", "/projects", "/education", "/awards", "/recommendations", "/ats-resume", "/resume-pdf", "/privacy"];
+const projectPages = projectCaseStudySlugs.map((slug) => `/projects/${slug}`);
 
 export function GET() {
   const urls = [
     ...pages,
-    ...pages.map((page) => localizePath(page, "en"))
+    ...projectPages,
+    ...pages.map((page) => localizePath(page, "en")),
+    ...projectPages.map((page) => localizePath(page, "en"))
   ];
 
   return new Response(

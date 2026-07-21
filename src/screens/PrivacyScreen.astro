@@ -1,0 +1,39 @@
+---
+import BaseLayout from "@/layouts/BaseLayout.astro";
+import PageHero from "@/components/PageHero.astro";
+import { getContent, type Locale } from "@/i18n";
+
+type Props = { locale: Locale };
+const { locale } = Astro.props;
+const content = getContent(locale);
+const page = content.pages.privacy;
+const sections = locale === "ar"
+  ? [
+      ["طبيعة الموقع", "هذا الموقع موقع مهني شخصي يعرض الخبرة والمشاريع وقنوات التواصل المهنية، ولا يحتوي على نموذج مباشر لإدخال بيانات الزوار."],
+      ["التحليلات", "يستخدم الموقع Google Analytics لفهم الاستخدام العام، مثل الصفحات التي تتم زيارتها، نوع الجهاز، مصدر الزيارة، البلد بصورة تقريبية، وأحداث التفاعل الأساسية."],
+      ["الروابط الخارجية", "روابط WhatsApp والبريد الإلكتروني وLinkedIn وGitHub وFacebook تنقل الزائر إلى خدمات خارجية تخضع لسياسات الخصوصية الخاصة بها."],
+      ["البيانات الشخصية", "لا يبيع الموقع بيانات الزوار، ولا يجمع أسماءهم أو أرقامهم أو معلوماتهم الشخصية داخل الموقع."],
+      ["التواصل بشأن الخصوصية", `يمكن التواصل عبر البريد الإلكتروني: ${content.site.email}`],
+    ]
+  : [
+      ["Site purpose", "This is a personal professional website presenting experience, projects, and professional contact channels. It does not include a direct visitor data-entry form."],
+      ["Analytics", "The site uses Google Analytics to understand general usage, including visited pages, device type, traffic source, approximate country, and basic interaction events."],
+      ["External links", "WhatsApp, email, LinkedIn, GitHub, and Facebook links take visitors to external services governed by their own privacy policies."],
+      ["Personal data", "The site does not sell visitor data and does not collect visitor names, phone numbers, or personal information inside the site."],
+      ["Privacy contact", `Privacy questions can be sent to: ${content.site.email}`],
+    ];
+---
+
+<BaseLayout locale={locale} title={page.title} description={page.description}>
+  <PageHero eyebrow={page.title} title={page.heroTitle} description={page.heroDescription} />
+  <section class="container-pad py-14">
+    <div class="grid gap-5 md:grid-cols-2">
+      {sections.map(([title, text]) => (
+        <article class="surface rounded-lg p-5">
+          <h2 class="text-xl font-bold">{title}</h2>
+          <p class="mt-3 text-sm leading-8 text-slate-600 dark:text-slate-300">{text}</p>
+        </article>
+      ))}
+    </div>
+  </section>
+</BaseLayout>

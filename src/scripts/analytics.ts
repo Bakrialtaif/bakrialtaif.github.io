@@ -55,12 +55,23 @@ function getLinkEvent(element: HTMLElement) {
 function getLinkPayload(element: HTMLElement) {
   const anchor = element instanceof HTMLAnchorElement ? element : element.closest<HTMLAnchorElement>("a[href]");
   const section = element.closest<HTMLElement>("[data-analytics-section]");
+  const href = anchor?.href;
+  const linkUrl = (() => {
+    if (!href) return undefined;
+    if (href.startsWith("mailto:") || href.startsWith("tel:")) return undefined;
+    try {
+      const url = new URL(href);
+      return `${url.origin}${url.pathname}`;
+    } catch {
+      return href.split("?")[0];
+    }
+  })();
 
   return {
     link_location: element.dataset.analyticsLocation || section?.dataset.analyticsSection || "page",
     section_id: section?.dataset.analyticsSection,
     link_label: element.textContent?.trim().replace(/\s+/g, " ").slice(0, 120),
-    link_url: anchor?.href,
+    link_url: linkUrl,
     project_slug: element.dataset.projectSlug,
   };
 }
