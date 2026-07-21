@@ -13,8 +13,6 @@ export const projectCaseStudySlugs = [
   "foreigners-management",
 ] as const;
 
-type CaseStudySlug = (typeof projectCaseStudySlugs)[number];
-
 const arLabels = {
   overviewTitle: "نبذة عن المشروع",
   contextTitle: "السياق والمشكلة",
@@ -119,8 +117,9 @@ function buildCaseStudy(project: Project, locale: Locale): ProjectCaseStudy {
 
 export function getProjectCaseStudies(locale: Locale) {
   const projects = locale === "ar" ? arProjects : enProjects;
-  return projects
-    .filter((project) => projectCaseStudySlugs.includes(project.slug as CaseStudySlug))
+  return projectCaseStudySlugs
+    .map((slug) => projects.find((project) => project.slug === slug))
+    .filter((project): project is Project => Boolean(project))
     .map((project) => buildCaseStudy(project, locale));
 }
 

@@ -14,6 +14,8 @@ declare global {
 
 const viewedSections = new Set<string>();
 const trackedScrollDepths = new Set<number>();
+const trackedEngagementTimers = new Set<number>();
+const engagementThresholds = [30, 60, 120];
 
 function getPageLanguage() {
   return document.documentElement.lang || "ar";
@@ -73,7 +75,22 @@ function getLinkPayload(element: HTMLElement) {
     link_label: element.textContent?.trim().replace(/\s+/g, " ").slice(0, 120),
     link_url: linkUrl,
     project_slug: element.dataset.projectSlug,
+    contact_channel: element.dataset.contactChannel,
   };
+}
+
+function getContactChannel(eventName: string, payload: AnalyticsPayload) {
+  if (typeof payload.contact_channel === "string") return payload.contact_channel;
+  if (eventName === "whatsapp_click") return "whatsapp";
+  if (eventName === "email_click") return "email";
+  if (eventName === "linkedin_click") return "linkedin";
+  if (eventName === "phone_click") return "phone";
+  if (eventName === "facebook_click") return "facebook";
+  return undefined;
+}
+
+function isContactEvent(eventName: string) {
+  return ["whatsapp_click", "email_click", "linkedin_click", "phone_click", "facebook_click", "project_contact_click"].includes(eventName);
 }
 
 function setupClickTracking() {
@@ -85,11 +102,22 @@ function setupClickTracking() {
     const eventName = getLinkEvent(trackedElement);
     if (!eventName) return;
 
-    if (eventName === "whatsapp_click" || eventName === "email_click") {
+    const payload = getLinkPayload(trackedElement);
+    const contactChannel = getContactChannel(eventName, payload);
+
+    if (isContactEvent(eventName)) {
       sessionStorage.setItem("portfolio_contact_action_taken", "true");
     }
 
-    trackEvent(eventName, getLinkPayload(trackedElement));
+    trackEvent(eventName, payload);
+
+    if (isContactEvent(eventName)) {
+      trackEvent("contact_click", {
+        ...payload,
+        contact_channel: contactChannel,
+        source_event: eventName,
+      });
+    }
   });
 }
 
@@ -138,11 +166,55 @@ function setupScrollTracking() {
   );
 }
 
+function setupEngagementTracking() {
+  let visibleStartedAt = document.visibilityState === "visible" ? Date.now() : undefined;
+  let accumulatedVisibleMs = 0;
+
+  const getVisibleTimeMs = () => {
+    if (visibleStartedAt === undefined) return accumulatedVisibleMs;
+    return accumulatedVisibleMs + Date.now() - visibleStartedAt;
+  };
+
+  const pauseVisibleTimer = () => {
+    if (visibleStartedAt === undefined) return;
+    accumulatedVisibleMs += Date.now() - visibleStartedAt;
+    visibleStartedAt = undefined;
+  };
+
+  const resumeVisibleTimer = () => {
+    if (visibleStartedAt !== undefined) return;
+    visibleStartedAt = Date.now();
+  };
+
+  const evaluateThresholds = () => {
+    const visibleSeconds = Math.floor(getVisibleTimeMs() / 1000);
+    engagementThresholds.forEach((seconds) => {
+      if (visibleSeconds < seconds || trackedEngagementTimers.has(seconds)) return;
+      trackedEngagementTimers.add(seconds);
+      trackEvent(`engaged_${seconds}_seconds`, { engaged_seconds: seconds });
+    });
+  };
+
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+      resumeVisibleTimer();
+    } else {
+      pauseVisibleTimer();
+    }
+    evaluateThresholds();
+  });
+
+  window.setInterval(evaluateThresholds, 1000);
+  evaluateThresholds();
+}
+
 function initAnalytics() {
   window.portfolioAnalytics = { trackEvent };
   setupClickTracking();
   setupSectionTracking();
   setupScrollTracking();
+  setupEngagementTracking();
+  window.dispatchEvent(new CustomEvent("portfolio-analytics-ready"));
 }
 
 if (document.readyState === "loading") {

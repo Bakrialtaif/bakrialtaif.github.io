@@ -1,5 +1,6 @@
 ---
 const target = "/#contact";
+const canonical = "https://bakrialtaif.github.io/#contact";
 ---
 
 <!doctype html>
@@ -7,6 +8,7 @@ const target = "/#contact";
   <head>
     <meta charset="UTF-8" />
     <meta name="robots" content="noindex, follow" />
+    <link rel="canonical" href={canonical} />
     <meta http-equiv="refresh" content={`0; url=${target}`} />
     <title>تحويل إلى التواصل</title>
     <script is:inline define:vars={{ target }}>

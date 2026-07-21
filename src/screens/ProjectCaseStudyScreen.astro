@@ -43,6 +43,20 @@ const jsonLd = {
 
 <BaseLayout locale={locale} title={project.seo.title} description={project.seo.description}>
   <script type="application/ld+json" set:html={JSON.stringify(jsonLd)} />
+  <script is:inline define:vars={{ projectSlug: project.slug }}>
+    function trackProjectCaseStudyView() {
+      window.portfolioAnalytics?.trackEvent("project_case_study_view", {
+        project_slug: projectSlug,
+        link_location: "project_case_study"
+      });
+    }
+
+    if (window.portfolioAnalytics) {
+      trackProjectCaseStudyView();
+    } else {
+      window.addEventListener("portfolio-analytics-ready", trackProjectCaseStudyView, { once: true });
+    }
+  </script>
   <section class="border-b border-slate-200 bg-white py-14 dark:border-slate-800 dark:bg-slate-900">
     <div class="container-pad">
       <a href={projectsPath} class="inline-flex items-center gap-2 text-sm font-bold text-river dark:text-blue-300">
@@ -187,7 +201,7 @@ const jsonLd = {
         {contactCards.map((card) => {
           const Icon = contactIcons[card.id as keyof typeof contactIcons];
           return (
-            <a href={card.href} target={card.external ? "_blank" : undefined} rel={card.external ? "noopener noreferrer" : undefined} class="inline-flex items-center gap-2 rounded-md bg-white px-4 py-3 text-sm font-bold text-slate-950" data-analytics-event={`${card.id}_click`} data-analytics-location="project_cta" data-project-slug={project.slug}>
+            <a href={card.href} target={card.external ? "_blank" : undefined} rel={card.external ? "noopener noreferrer" : undefined} class="inline-flex items-center gap-2 rounded-md bg-white px-4 py-3 text-sm font-bold text-slate-950" data-analytics-event="project_contact_click" data-analytics-location="project_cta" data-project-slug={project.slug} data-contact-channel={card.id}>
               <Icon class="h-4 w-4" aria-hidden="true" />
               {card.label}
             </a>

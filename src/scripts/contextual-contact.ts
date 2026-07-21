@@ -1,6 +1,6 @@
 const DISMISS_STORAGE_KEY = "portfolio_contextual_contact_dismissed_at";
 const DISMISS_DURATION_MS = 7 * 24 * 60 * 60 * 1000;
-const MIN_TIME_ON_PAGE_MS = 45000;
+const ENGAGEMENT_THRESHOLD_MS = 45000;
 const OPEN_DELAY_MS = 2600;
 
 let previousFocus: HTMLElement | null = null;
@@ -28,6 +28,16 @@ function setupContextualContact() {
   const dialog = root?.querySelector<HTMLElement>(".contextual-contact__dialog");
   if (!root || !dialog || wasRecentlyDismissed()) return;
 
+  let hasReachedScrollThreshold = false;
+  let hasReachedEngagementThreshold = false;
+  let visibleStartedAt = document.visibilityState === "visible" ? Date.now() : undefined;
+  let accumulatedVisibleMs = 0;
+
+  const getVisibleTimeMs = () => {
+    if (visibleStartedAt === undefined) return accumulatedVisibleMs;
+    return accumulatedVisibleMs + Date.now() - visibleStartedAt;
+  };
+
   const close = () => {
     root.hidden = true;
     document.body.classList.remove("contextual-contact-open");
@@ -49,6 +59,42 @@ function setupContextualContact() {
   const scheduleOpen = () => {
     if (openTimer || contactActionWasTaken()) return;
     openTimer = window.setTimeout(open, OPEN_DELAY_MS);
+  };
+
+  const maybeSchedulePrompt = () => {
+    if (!hasReachedScrollThreshold || !hasReachedEngagementThreshold || contactActionWasTaken()) return;
+    scheduleOpen();
+  };
+
+  const evaluateEngagementThreshold = () => {
+    if (hasReachedEngagementThreshold) return;
+    if (getVisibleTimeMs() < ENGAGEMENT_THRESHOLD_MS) return;
+    hasReachedEngagementThreshold = true;
+    maybeSchedulePrompt();
+  };
+
+  const updateScrollThreshold = () => {
+    if (hasReachedScrollThreshold) return;
+
+    const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
+    if (scrollableHeight <= 0) return;
+
+    const progress = (window.scrollY / scrollableHeight) * 100;
+    if (progress < 75) return;
+
+    hasReachedScrollThreshold = true;
+    maybeSchedulePrompt();
+  };
+
+  const pauseVisibleTimer = () => {
+    if (visibleStartedAt === undefined) return;
+    accumulatedVisibleMs += Date.now() - visibleStartedAt;
+    visibleStartedAt = undefined;
+  };
+
+  const resumeVisibleTimer = () => {
+    if (visibleStartedAt !== undefined) return;
+    visibleStartedAt = Date.now();
   };
 
   root.querySelectorAll<HTMLElement>("[data-contextual-contact-close]").forEach((element) => {
@@ -79,18 +125,19 @@ function setupContextualContact() {
     }
   });
 
-  window.setTimeout(() => {
-    window.addEventListener(
-      "scroll",
-      () => {
-        const scrollableHeight = document.documentElement.scrollHeight - window.innerHeight;
-        if (scrollableHeight <= 0) return;
-        const progress = (window.scrollY / scrollableHeight) * 100;
-        if (progress >= 75) scheduleOpen();
-      },
-      { passive: true }
-    );
-  }, MIN_TIME_ON_PAGE_MS);
+  document.addEventListener("visibilitychange", () => {
+    if (document.visibilityState === "visible") {
+      resumeVisibleTimer();
+    } else {
+      pauseVisibleTimer();
+    }
+    evaluateEngagementThreshold();
+  });
+
+  window.addEventListener("scroll", updateScrollThreshold, { passive: true });
+  window.setInterval(evaluateEngagementThreshold, 1000);
+  updateScrollThreshold();
+  evaluateEngagementThreshold();
 }
 
 if (document.readyState === "loading") {
