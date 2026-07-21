@@ -14,7 +14,7 @@ const courseItems = content.education.filter((item) => item.category === "course
 ---
 
 <BaseLayout locale={locale} title={page.title} description={page.description}>
-  <section class="container-pad py-14">
+  <section class="container-pad py-14" data-analytics-section="education" data-analytics-view-event="education_section_view">
     <SectionTitle eyebrow={educationPage.eyebrow} title={educationPage.title} description={educationPage.description} />
   </section>
 

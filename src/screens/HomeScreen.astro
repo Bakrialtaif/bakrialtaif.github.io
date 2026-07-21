@@ -32,7 +32,7 @@ const renderPrincipleParts = (principle: string) => {
             {ui.actions.viewProjects}
             <ArrowLeft class="h-4 w-4" aria-hidden="true" />
           </a>
-          <a href={site.resumePdf} class="inline-flex items-center gap-2 rounded-md border border-slate-300 px-5 py-3 text-sm font-bold text-slate-800 dark:border-slate-700 dark:text-slate-100">
+          <a href={site.resumePdf} class="inline-flex items-center gap-2 rounded-md border border-slate-300 px-5 py-3 text-sm font-bold text-slate-800 dark:border-slate-700 dark:text-slate-100" data-analytics-event="cv_download" data-analytics-location="home_hero">
             {ui.actions.downloadResume}
             <Download class="h-4 w-4" aria-hidden="true" />
           </a>
@@ -60,7 +60,7 @@ const renderPrincipleParts = (principle: string) => {
     </div>
   </section>
 
-  <section id="projects" class="scroll-mt-20 py-14">
+  <section id="projects" class="scroll-mt-20 py-14" data-analytics-section="projects" data-analytics-view-event="project_open">
     <div class="container-pad">
       <div class="max-w-3xl">
         <p class="eyebrow">{pages.home.impactEyebrow}</p>
@@ -73,7 +73,7 @@ const renderPrincipleParts = (principle: string) => {
     </div>
   </section>
 
-  <section class="py-14">
+  <section class="py-14" data-analytics-section="experience" data-analytics-view-event="experience_section_view">
     <div class="container-pad grid gap-10 lg:grid-cols-[0.85fr_1.15fr]">
       <div>
         <SectionTitle eyebrow={pages.home.careerEyebrow} title={pages.home.careerTitle} description={pages.home.careerDescription} />
@@ -82,7 +82,7 @@ const renderPrincipleParts = (principle: string) => {
     </div>
   </section>
 
-  <section class="bg-white py-14 dark:bg-slate-900">
+  <section class="bg-white py-14 dark:bg-slate-900" data-analytics-section="awards" data-analytics-view-event="awards_section_view">
     <div class="container-pad grid gap-8 lg:grid-cols-2">
       <div>
         <SectionTitle eyebrow={pages.home.awardsEyebrow} title={pages.home.awardsTitle} />

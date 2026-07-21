@@ -12,7 +12,7 @@ const page = content.pages.recommendations;
 
 <BaseLayout locale={locale} title={page.title} description={page.description}>
   <PageHero eyebrow={page.title} title={page.heroTitle} description={page.heroDescription} />
-  <section class="container-pad py-14">
+  <section class="container-pad py-14" data-analytics-section="recommendations" data-analytics-view-event="recommendations_section_view">
     <div class="grid gap-4 md:grid-cols-2">
       {content.recommendations.map((rec) => (
         <article class="surface rounded-lg p-5">

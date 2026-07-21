@@ -1,0 +1,134 @@
+.contextual-contact[hidden] {
+  display: none;
+}
+
+.contextual-contact {
+  position: fixed;
+  inset: 0;
+  z-index: 60;
+  pointer-events: none;
+}
+
+.contextual-contact__backdrop {
+  position: absolute;
+  inset: 0;
+  background: rgb(15 23 42 / 0.18);
+  pointer-events: auto;
+}
+
+.contextual-contact__dialog {
+  position: absolute;
+  inset-inline-end: max(1.25rem, env(safe-area-inset-right));
+  inset-block-end: 5.25rem;
+  width: min(30rem, calc(100vw - 2rem));
+  border: 1px solid rgb(51 65 85);
+  border-radius: 0.5rem;
+  background: #0f172a;
+  padding: 1.35rem;
+  color: #fff;
+  box-shadow: 0 24px 60px rgb(2 6 23 / 0.34);
+  pointer-events: auto;
+}
+
+html[dir="rtl"] .contextual-contact__dialog {
+  inset-inline: max(1.25rem, env(safe-area-inset-left)) auto;
+}
+
+.contextual-contact__close {
+  position: absolute;
+  inset-block-start: 0.85rem;
+  inset-inline-end: 0.85rem;
+  display: grid;
+  width: 2rem;
+  height: 2rem;
+  place-items: center;
+  border-radius: 0.4rem;
+  color: #cbd5e1;
+}
+
+html[dir="rtl"] .contextual-contact__close {
+  inset-inline: 0.85rem auto;
+}
+
+.contextual-contact__close:hover {
+  background: rgb(255 255 255 / 0.08);
+  color: #fff;
+}
+
+.contextual-contact__title {
+  margin-block-start: 0.55rem;
+  max-width: 22rem;
+  font-size: 1.55rem;
+  font-weight: 800;
+  line-height: 1.35;
+}
+
+.contextual-contact__text {
+  margin-block-start: 0.85rem;
+  color: #e2e8f0;
+  font-size: 0.98rem;
+  line-height: 1.9;
+}
+
+.contextual-contact__actions {
+  display: grid;
+  gap: 0.7rem;
+  margin-block-start: 1.2rem;
+}
+
+.contextual-contact__primary,
+.contextual-contact__secondary,
+.contextual-contact__later {
+  display: inline-flex;
+  min-height: 2.75rem;
+  align-items: center;
+  justify-content: center;
+  gap: 0.5rem;
+  border-radius: 0.45rem;
+  padding: 0.75rem 1rem;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.contextual-contact__primary {
+  background: #14b8a6;
+  color: #082f2e;
+}
+
+.contextual-contact__secondary {
+  border: 1px solid rgb(148 163 184 / 0.45);
+  color: #f8fafc;
+}
+
+.contextual-contact__later {
+  color: #cbd5e1;
+}
+
+.contextual-contact__primary:hover {
+  background: #5eead4;
+}
+
+.contextual-contact__secondary:hover,
+.contextual-contact__later:hover {
+  background: rgb(255 255 255 / 0.08);
+  color: #fff;
+}
+
+@media (max-width: 640px) {
+  .contextual-contact__backdrop {
+    background: rgb(15 23 42 / 0.28);
+  }
+
+  .contextual-contact__dialog {
+    inset-inline: 0.75rem;
+    inset-block-end: 0.75rem;
+    width: auto;
+    max-height: calc(100vh - 1.5rem);
+    overflow: auto;
+    border-radius: 0.5rem;
+  }
+
+  html[dir="rtl"] .contextual-contact__dialog {
+    inset-inline: 0.75rem;
+  }
+}

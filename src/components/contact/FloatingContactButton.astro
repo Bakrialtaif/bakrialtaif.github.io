@@ -1,0 +1,68 @@
+---
+import { Facebook, Linkedin, Mail, MessageCircle, X } from "lucide-astro";
+import { aboutProfile } from "@/i18n/aboutProfile";
+import type { Locale } from "@/i18n";
+
+type Props = { locale?: Locale };
+const { locale = "ar" } = Astro.props;
+const profile = aboutProfile[locale];
+const cards = profile.contactCards.filter((card) => ["whatsapp", "email", "linkedin", "facebook"].includes(card.id));
+const labels = {
+  ar: {
+    open: "فتح خيارات التواصل",
+    close: "إغلاق خيارات التواصل",
+    title: "تواصل",
+  },
+  en: {
+    open: "Open contact options",
+    close: "Close contact options",
+    title: "Contact",
+  },
+};
+
+const icons = {
+  whatsapp: MessageCircle,
+  email: Mail,
+  linkedin: Linkedin,
+  facebook: Facebook,
+};
+---
+
+<div class="floating-contact" data-floating-contact data-locale={locale}>
+  <div class="floating-contact__menu" id="floating-contact-menu" hidden>
+    {cards.map((card) => {
+      const Icon = icons[card.id as keyof typeof icons];
+
+      return (
+        <a
+          class="floating-contact__item"
+          href={card.href}
+          target={card.external ? "_blank" : undefined}
+          rel={card.external ? "noopener noreferrer" : undefined}
+          data-analytics-event={`${card.id}_click`}
+          data-analytics-location="floating_contact"
+        >
+          <Icon class="floating-contact__item-icon" aria-hidden="true" />
+          <span>{card.label}</span>
+        </a>
+      );
+    })}
+  </div>
+
+  <button
+    class="floating-contact__button"
+    type="button"
+    aria-label={labels[locale].open}
+    aria-expanded="false"
+    aria-controls="floating-contact-menu"
+    data-floating-contact-toggle
+  >
+    <MessageCircle class="floating-contact__open-icon" aria-hidden="true" />
+    <X class="floating-contact__close-icon" aria-hidden="true" />
+    <span>{labels[locale].title}</span>
+  </button>
+</div>
+
+<script>
+  import "@/scripts/floating-contact";
+</script>

@@ -12,7 +12,7 @@ const page = content.pages.awards;
 
 <BaseLayout locale={locale} title={page.title} description={page.description}>
   <PageHero eyebrow={page.title} title={page.heroTitle} description={page.heroDescription} />
-  <section class="container-pad py-14">
+  <section class="container-pad py-14" data-analytics-section="awards" data-analytics-view-event="awards_section_view">
     <div>
       <h2 class="text-2xl font-bold">{page.awardsTitle}</h2>
       <div class="mt-5 grid gap-5 md:grid-cols-2">
@@ -48,7 +48,7 @@ const page = content.pages.awards;
         ))}
       </div>
     </div>
-    <div class="mt-14">
+    <div class="mt-14" data-analytics-section="recommendations" data-analytics-view-event="recommendations_section_view">
       <h2 class="text-2xl font-bold">{page.recommendationsTitle}</h2>
       <div class="mt-5 grid gap-4 md:grid-cols-2">
         {content.recommendations.map((rec) => (

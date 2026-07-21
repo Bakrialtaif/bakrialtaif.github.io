@@ -33,7 +33,7 @@ const languagePath = alternateLocalePath(current, locale);
     </div>
 
     <div class="flex items-center gap-2">
-      <a href={languagePath} class="rounded-md border border-slate-300 px-3 py-2 text-sm font-bold text-slate-700 dark:border-slate-700 dark:text-slate-200" aria-label={ui.switchLanguage}>
+      <a href={languagePath} class="rounded-md border border-slate-300 px-3 py-2 text-sm font-bold text-slate-700 dark:border-slate-700 dark:text-slate-200" aria-label={ui.switchLanguage} data-language-switch="true" data-analytics-location="navigation">
         {ui.languageLabel}
       </a>
       <button id="theme-toggle" class="grid h-10 w-10 place-items-center rounded-md border border-slate-300 text-slate-700 dark:border-slate-700 dark:text-slate-200" aria-label={ui.darkMode}>

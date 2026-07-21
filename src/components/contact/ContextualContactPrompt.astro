@@ -1,0 +1,76 @@
+---
+import { Mail, MessageCircle, X } from "lucide-astro";
+import { aboutProfile } from "@/i18n/aboutProfile";
+import type { Locale } from "@/i18n";
+
+type Props = { locale?: Locale; pathname?: string };
+const { locale = "ar", pathname = "/" } = Astro.props;
+const profile = aboutProfile[locale];
+const isContactPage = pathname === "/contact" || pathname === "/en/contact";
+const whatsapp = profile.contactCards.find((card) => card.id === "whatsapp");
+const email = profile.contactCards.find((card) => card.id === "email");
+const labels = {
+  ar: {
+    close: "إغلاق نافذة التواصل",
+    whatsapp: "تواصل عبر WhatsApp",
+    email: "إرسال بريد إلكتروني",
+    later: "لاحقاً",
+  },
+  en: {
+    close: "Close contact prompt",
+    whatsapp: "Contact via WhatsApp",
+    email: "Send Email",
+    later: "Later",
+  },
+};
+---
+
+{!isContactPage && whatsapp && email && (
+  <div class="contextual-contact" data-contextual-contact hidden>
+    <div class="contextual-contact__backdrop" data-contextual-contact-close></div>
+    <aside
+      class="contextual-contact__dialog"
+      role="dialog"
+      aria-modal="true"
+      aria-labelledby="contextual-contact-title"
+      aria-describedby="contextual-contact-description"
+      tabindex="-1"
+    >
+      <button class="contextual-contact__close" type="button" aria-label={labels[locale].close} data-contextual-contact-close>
+        <X class="h-4 w-4" aria-hidden="true" />
+      </button>
+      <p class="eyebrow text-teal-300">{profile.contactEyebrow}</p>
+      <h2 id="contextual-contact-title" class="contextual-contact__title">{profile.contactTitle}</h2>
+      <p id="contextual-contact-description" class="contextual-contact__text">{profile.contactText}</p>
+      <div class="contextual-contact__actions">
+        <a
+          href={whatsapp.href}
+          target="_blank"
+          rel="noopener noreferrer"
+          class="contextual-contact__primary"
+          data-analytics-event="whatsapp_click"
+          data-analytics-location="contextual_contact"
+        >
+          <MessageCircle class="h-4 w-4" aria-hidden="true" />
+          <span>{labels[locale].whatsapp}</span>
+        </a>
+        <a
+          href={email.href}
+          class="contextual-contact__secondary"
+          data-analytics-event="email_click"
+          data-analytics-location="contextual_contact"
+        >
+          <Mail class="h-4 w-4" aria-hidden="true" />
+          <span>{labels[locale].email}</span>
+        </a>
+        <button class="contextual-contact__later" type="button" data-contextual-contact-close>
+          {labels[locale].later}
+        </button>
+      </div>
+    </aside>
+  </div>
+)}
+
+<script>
+  import "@/scripts/contextual-contact";
+</script>

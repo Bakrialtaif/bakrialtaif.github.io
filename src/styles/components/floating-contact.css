@@ -1,0 +1,113 @@
+.floating-contact {
+  position: fixed;
+  inset-block-end: max(1rem, env(safe-area-inset-bottom));
+  inset-inline-end: max(1rem, env(safe-area-inset-right));
+  z-index: 50;
+  display: grid;
+  justify-items: end;
+  gap: 0.65rem;
+}
+
+html[dir="rtl"] .floating-contact {
+  inset-inline: max(1rem, env(safe-area-inset-left)) auto;
+  justify-items: start;
+}
+
+.floating-contact__button {
+  display: inline-flex;
+  min-height: 3rem;
+  align-items: center;
+  gap: 0.55rem;
+  border-radius: 0.5rem;
+  background: #0f172a;
+  padding: 0.8rem 1rem;
+  color: #fff;
+  font-size: 0.9rem;
+  font-weight: 800;
+  box-shadow: 0 16px 34px rgb(15 23 42 / 0.26);
+}
+
+.floating-contact__button:hover {
+  background: #134e4a;
+}
+
+.floating-contact__open-icon,
+.floating-contact__close-icon,
+.floating-contact__item-icon {
+  width: 1.05rem;
+  height: 1.05rem;
+  flex: 0 0 auto;
+}
+
+.floating-contact__close-icon,
+.floating-contact[data-open="true"] .floating-contact__open-icon {
+  display: none;
+}
+
+.floating-contact[data-open="true"] .floating-contact__close-icon {
+  display: block;
+}
+
+.floating-contact__menu {
+  width: min(16rem, calc(100vw - 2rem));
+  overflow: hidden;
+  border: 1px solid rgb(226 232 240);
+  border-radius: 0.5rem;
+  background: #fff;
+  box-shadow: 0 20px 45px rgb(15 23 42 / 0.2);
+}
+
+.floating-contact__item {
+  display: flex;
+  align-items: center;
+  gap: 0.65rem;
+  padding: 0.85rem 0.95rem;
+  color: #0f172a;
+  font-size: 0.9rem;
+  font-weight: 800;
+}
+
+.floating-contact__item + .floating-contact__item {
+  border-block-start: 1px solid rgb(226 232 240);
+}
+
+.floating-contact__item:hover {
+  background: #f1f5f9;
+  color: #0f766e;
+}
+
+.dark .floating-contact__button {
+  background: #fff;
+  color: #0f172a;
+}
+
+.dark .floating-contact__menu {
+  border-color: rgb(30 41 59);
+  background: #020617;
+}
+
+.dark .floating-contact__item {
+  color: #f8fafc;
+}
+
+.dark .floating-contact__item + .floating-contact__item {
+  border-color: rgb(30 41 59);
+}
+
+.dark .floating-contact__item:hover {
+  background: #0f172a;
+  color: #5eead4;
+}
+
+@media (max-width: 640px) {
+  .floating-contact {
+    inset-block-end: max(0.75rem, env(safe-area-inset-bottom));
+  }
+
+  .floating-contact__button span {
+    max-width: 7rem;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    white-space: nowrap;
+  }
+}

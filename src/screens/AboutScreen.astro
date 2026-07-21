@@ -15,7 +15,7 @@ const lessons = aboutLessons[locale];
 ---
 
 <BaseLayout locale={locale} title={profile.introTitle} description={page.description}>
-  <section class="container-pad py-14">
+  <section class="container-pad py-14" data-analytics-section="experience" data-analytics-view-event="experience_section_view">
     <div class="grid gap-8 lg:grid-cols-[1.35fr_0.65fr]">
       <div>
         <p class="eyebrow">{page.title}</p>
