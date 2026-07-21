@@ -54,11 +54,12 @@ function getLinkEvent(element: HTMLElement) {
   return undefined;
 }
 
-function getLinkPayload(element: HTMLElement) {
+function getLinkPayload(element: HTMLElement, contactChannel?: string) {
   const anchor = element instanceof HTMLAnchorElement ? element : element.closest<HTMLAnchorElement>("a[href]");
   const section = element.closest<HTMLElement>("[data-analytics-section]");
   const href = anchor?.href;
   const linkUrl = (() => {
+    if (contactChannel) return undefined;
     if (!href) return undefined;
     if (href.startsWith("mailto:") || href.startsWith("tel:")) return undefined;
     try {
@@ -74,6 +75,7 @@ function getLinkPayload(element: HTMLElement) {
     section_id: section?.dataset.analyticsSection,
     link_label: element.textContent?.trim().replace(/\s+/g, " ").slice(0, 120),
     link_url: linkUrl,
+    link_platform: contactChannel,
     project_slug: element.dataset.projectSlug,
     contact_channel: element.dataset.contactChannel,
   };
@@ -102,8 +104,8 @@ function setupClickTracking() {
     const eventName = getLinkEvent(trackedElement);
     if (!eventName) return;
 
-    const payload = getLinkPayload(trackedElement);
-    const contactChannel = getContactChannel(eventName, payload);
+    const contactChannel = getContactChannel(eventName, { contact_channel: trackedElement.dataset.contactChannel });
+    const payload = getLinkPayload(trackedElement, contactChannel);
 
     if (isContactEvent(eventName)) {
       sessionStorage.setItem("portfolio_contact_action_taken", "true");
