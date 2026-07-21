@@ -2,6 +2,7 @@
 import "../styles/global.css";
 import Navigation from "@/components/Navigation.astro";
 import Footer from "@/components/Footer.astro";
+import ProfessionalContactSection from "@/components/ProfessionalContactSection.astro";
 import { alternateLocalePath, getContent, getDir, localizePath, type Locale } from "@/i18n";
 
 type Props = {
@@ -99,6 +100,7 @@ const keywords = locale === "ar"
     <main id="main-content">
       <slot />
     </main>
+    <ProfessionalContactSection locale={locale} />
     <Footer locale={locale} />
   </body>
 </html>

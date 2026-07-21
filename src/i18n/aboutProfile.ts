@@ -21,6 +21,13 @@ type ContactCard = {
   external?: boolean;
 };
 
+const arWhatsAppMessage = encodeURIComponent(
+  "مرحباً مهندس أبوبكر، اطلعت على موقعك وأرغب في مناقشة مشروع أو فرصة مهنية."
+);
+const enWhatsAppMessage = encodeURIComponent(
+  "Hello Engineer Abubaker, I reviewed your website and would like to discuss a project or professional opportunity."
+);
+
 export const aboutProfile: Record<
   Locale,
   {
@@ -177,7 +184,7 @@ export const aboutProfile: Record<
         label: "واتساب",
         description: "للاستفسارات السريعة وبداية النقاش.",
         value: "+249 96 314 4047",
-        href: "https://wa.me/249963144047",
+        href: `https://wa.me/249963144047?text=${arWhatsAppMessage}`,
         action: "فتح",
         copied: "تم نسخ الرقم",
         copyValue: "+249963144047",
@@ -349,7 +356,7 @@ export const aboutProfile: Record<
         label: "WhatsApp",
         description: "For quick questions and starting a discussion.",
         value: "+249 96 314 4047",
-        href: "https://wa.me/249963144047",
+        href: `https://wa.me/249963144047?text=${enWhatsAppMessage}`,
         action: "Open",
         copied: "Number copied",
         copyValue: "+249963144047",
