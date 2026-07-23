@@ -10,6 +10,7 @@ type Props = { locale: Locale };
 const { locale } = Astro.props;
 const content = getContent(locale);
 const { site, pages, ui } = content;
+const roleParts = locale === "ar" ? ["مبرمج، مطوّر أنظمة", "مستشار تحوّل رقمي"] : [site.role];
 const renderPrincipleParts = (principle: string) => {
   const [title, ...descriptionParts] = principle.split(/\s—\s/);
   return { title, description: descriptionParts.join(" - ") };
@@ -21,7 +22,17 @@ const renderPrincipleParts = (principle: string) => {
     <div class="container-pad grid items-center gap-10 lg:grid-cols-[1.15fr_0.85fr]">
       <div>
         <h1 class="text-4xl font-bold leading-tight text-slate-950 sm:text-6xl dark:text-white">{site.name}</h1>
-        <p class="mt-4 text-2xl font-semibold text-copper dark:text-amber-300">{site.role}</p>
+        <p class="mt-4 text-2xl font-semibold leading-snug text-copper dark:text-amber-300">
+          {roleParts.length === 2 ? (
+            <>
+              <span class="block sm:inline">{roleParts[0]}</span>
+              <span class="hidden sm:inline">، </span>
+              <span class="block sm:inline">{roleParts[1]}</span>
+            </>
+          ) : (
+            site.role
+          )}
+        </p>
         <p class="mt-6 max-w-3xl text-lg leading-9 text-slate-700 dark:text-slate-200">{site.heroStatement}</p>
         <div class="mt-8 flex flex-wrap gap-3">
           <a href="#projects" class="inline-flex items-center gap-2 rounded-md bg-slate-950 px-5 py-3 text-sm font-bold text-white dark:bg-white dark:text-slate-950">

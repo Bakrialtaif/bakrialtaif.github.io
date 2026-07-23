@@ -6,6 +6,7 @@ const { locale = "ar" } = Astro.props;
 const { navigation, site, ui } = getContent(locale);
 const current = Astro.url.pathname;
 const languagePath = alternateLocalePath(current, locale);
+const roleParts = locale === "ar" ? ["مبرمج، مطوّر أنظمة", "مستشار تحوّل رقمي"] : [site.role];
 ---
 
 <a href="#main-content" class="sr-only focus:not-sr-only focus:fixed focus:right-4 focus:top-4 focus:z-50 focus:rounded-md focus:bg-white focus:px-4 focus:py-2 focus:text-slate-900">
@@ -15,7 +16,17 @@ const languagePath = alternateLocalePath(current, locale);
   <nav class="container-pad flex min-h-16 items-center justify-between gap-4" aria-label={ui.mainNavigation}>
     <a href={locale === "ar" ? "/" : "/en/"} class="flex max-w-[18rem] flex-col leading-tight sm:max-w-sm" aria-label={site.name}>
       <span class="text-base font-bold text-slate-950 dark:text-white">{locale === "ar" ? "أبوبكر الطائف" : "Abubaker Altaif"}</span>
-      <span class="text-xs text-slate-600 dark:text-slate-400">{site.role}</span>
+      <span class="text-xs text-slate-600 dark:text-slate-400">
+        {roleParts.length === 2 ? (
+          <>
+            <span class="block sm:inline">{roleParts[0]}</span>
+            <span class="hidden sm:inline">، </span>
+            <span class="block sm:inline">{roleParts[1]}</span>
+          </>
+        ) : (
+          site.role
+        )}
+      </span>
     </a>
 
     <div class="hidden items-center gap-1 lg:flex">
