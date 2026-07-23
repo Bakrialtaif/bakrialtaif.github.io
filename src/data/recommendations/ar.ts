@@ -19,8 +19,8 @@ export const arRecommendations: RecommendationItem[] = [
   },
   {
     title: "شهادة توصية",
-    organization: "جامعة الخرطوم - كلية العلوم الرياضية",
-    author: "عميد الكلية",
+    organization: "د. محسن حسن عبدالله هاشم",
+    author: "جامعة الخرطوم - كلية العلوم الرياضية - عميد الكلية",
     date: "7 أبريل 2009",
     evidence: "توثق الكفاءة في البرمجة، القدرة على تطبيق الحلول، الانضباط، وإنجاز الأعمال بكفاءة.",
     document: "/images/evidence/uofk-mathematical-sciences-recommendation.jpeg"
