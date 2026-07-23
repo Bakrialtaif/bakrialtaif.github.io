@@ -30,8 +30,8 @@ export const arUi = {
     },
     actions: {
       viewProjects: "عرض المشاريع",
-      downloadResume: "تحميل السيرة",
+      downloadResume: "السيرة المهنية PDF",
       contact: "التواصل",
-      atsResume: "عرض نسخة ATS"
+      atsResume: "السيرة المهنية ATS"
     }
   } satisfies UiContent;

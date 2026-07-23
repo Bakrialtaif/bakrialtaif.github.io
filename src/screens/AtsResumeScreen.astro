@@ -1,6 +1,5 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
-import PageHero from "@/components/PageHero.astro";
 import { getContent, type Locale } from "@/i18n";
 
 type Props = { locale: Locale };
@@ -9,42 +8,174 @@ const content = getContent(locale);
 const { site, pages } = content;
 const page = pages.ats;
 const metricSeparator = locale === "ar" ? "، " : ", ";
+const labels = locale === "ar"
+  ? {
+      title: "السيرة المهنية - نسخة ATS",
+      contact: "معلومات الاتصال",
+      summary: "الملخص المهني",
+      coreSkills: "المهارات الأساسية",
+      technicalSkills: "الأدوات والتقنيات",
+      experience: "الخبرة المهنية",
+      selectedProjects: "المشاريع المختارة",
+      education: "التعليم",
+      training: "التدريب",
+      awards: "الجوائز والثناءات والتوصيات",
+      impact: "مؤشرات مختصرة",
+      role: "الدور",
+      organization: "الجهة",
+      period: "الفترة",
+      location: "الموقع",
+      email: "البريد الإلكتروني",
+      linkedin: "لينكدإن",
+      website: "الموقع",
+    }
+  : {
+      title: "Professional Resume - ATS Version",
+      contact: "Contact Information",
+      summary: "Professional Summary",
+      coreSkills: "Core Skills",
+      technicalSkills: "Tools and Technologies",
+      experience: "Professional Experience",
+      selectedProjects: "Selected Projects",
+      education: "Education",
+      training: "Training",
+      awards: "Awards, Commendations, and Recommendations",
+      impact: "Selected Metrics",
+      role: "Role",
+      organization: "Organization",
+      period: "Period",
+      location: "Location",
+      email: "Email",
+      linkedin: "LinkedIn",
+      website: "Website",
+    };
+
+const academicItems = content.education.filter((item) => item.category !== "course");
+const courseItems = content.education.filter((item) => item.category === "course");
+const featuredProjects = content.projects.filter((project) => project.featured);
+const summaryText = locale === "ar"
+  ? "مبرمج ومطوّر أنظمة ومستشار تحوّل رقمي، يمتلك خبرة عملية في بناء الأنظمة المؤسسية، الخدمات الحكومية الرقمية، المنتجات التقنية، وتحويل الاحتياجات التشغيلية إلى حلول قابلة للتشغيل والقياس. يجمع بين تطوير البرمجيات، تحليل الأعمال، تصميم قواعد البيانات، تشغيل المنصات، وبناء فرق العمل."
+  : "Software developer, systems builder, and digital transformation consultant with hands-on experience building enterprise systems, government digital services, technical products, and operational solutions that are measurable and maintainable. Combines software engineering, business analysis, database design, platform operations, and team building.";
 ---
 
 <BaseLayout locale={locale} title={page.title} description={page.description}>
-  <PageHero eyebrow={page.title} title={site.name} description={`${site.role} - ${site.description}`} />
-  <section class="container-pad grid gap-10 py-14">
-    <section>
-      <h2 class="text-2xl font-bold">{page.impact}</h2>
-      <ul class="mt-4 grid gap-2 leading-8">
-        {content.impactMetrics.map((metric) => <li>{metric.title} - {metric.organization}: {metric.metrics.join(metricSeparator)}</li>)}
-      </ul>
-    </section>
-    <section>
-      <h2 class="text-2xl font-bold">{page.experience}</h2>
-      <div class="mt-4 grid gap-5">
+  <section class="container-pad py-12" data-analytics-section="ats_resume" data-analytics-view-event="ats_resume_view">
+    <article class="mx-auto max-w-5xl bg-white p-6 text-slate-950 shadow-sm ring-1 ring-slate-200 dark:bg-slate-950 dark:text-white dark:ring-slate-800 sm:p-10">
+      <header class="border-b border-slate-200 pb-6 dark:border-slate-800">
+        <h1 class="text-3xl font-bold leading-tight">{site.name}</h1>
+        <p class="mt-2 text-lg font-semibold leading-8">{site.role}</p>
+        <p class="mt-1 text-sm leading-7 text-slate-600 dark:text-slate-300">{labels.title}</p>
+      </header>
+
+      <section class="mt-8">
+        <h2 class="text-xl font-bold">{labels.contact}</h2>
+        <dl class="mt-3 grid gap-2 text-sm leading-7 sm:grid-cols-2">
+          <div><dt class="inline font-bold">{labels.location}: </dt><dd class="inline">{site.location}</dd></div>
+          <div><dt class="inline font-bold">{labels.email}: </dt><dd class="inline">{site.email}</dd></div>
+          <div><dt class="inline font-bold">{labels.linkedin}: </dt><dd class="inline">{site.linkedin}</dd></div>
+          <div><dt class="inline font-bold">{labels.website}: </dt><dd class="inline">{site.website}</dd></div>
+        </dl>
+      </section>
+
+      <section class="mt-8">
+        <h2 class="text-xl font-bold">{labels.summary}</h2>
+        <p class="mt-3 text-sm leading-8 text-slate-700 dark:text-slate-200">{summaryText}</p>
+      </section>
+
+      <section class="mt-8">
+        <h2 class="text-xl font-bold">{labels.coreSkills}</h2>
+        <ul class="mt-3 grid gap-2 text-sm leading-7 sm:grid-cols-2">
+          {content.availableFor.map((item) => <li>{item}</li>)}
+          {content.executiveScale.map((item) => <li>{item}</li>)}
+        </ul>
+      </section>
+
+      <section class="mt-8">
+        <h2 class="text-xl font-bold">{labels.technicalSkills}</h2>
+        <div class="mt-3 grid gap-4 sm:grid-cols-2">
+          {content.skillGroups.map((group) => (
+            <section>
+              <h3 class="text-base font-bold">{group.title}</h3>
+              <p class="mt-1 text-sm leading-7 text-slate-700 dark:text-slate-200">{group.items.join(metricSeparator)}</p>
+            </section>
+          ))}
+        </div>
+      </section>
+
+      <section class="mt-8">
+        <h2 class="text-xl font-bold">{labels.impact}</h2>
+        <ul class="mt-3 grid gap-2 text-sm leading-7">
+          {content.impactMetrics.map((metric) => <li>{metric.title} - {metric.organization}: {metric.metrics.join(metricSeparator)}</li>)}
+        </ul>
+      </section>
+
+      <section class="mt-8">
+        <h2 class="text-xl font-bold">{labels.experience}</h2>
+        <div class="mt-4 grid gap-6">
         {content.experience.map((item) => (
-          <article>
-            <h3 class="font-bold">{item.title} - {item.organization}</h3>
-            <p class="text-sm text-slate-600 dark:text-slate-300">{item.period} | {item.country}</p>
+          <article class="border-t border-slate-200 pt-4 first:border-t-0 first:pt-0 dark:border-slate-800">
+            <h3 class="text-lg font-bold">{item.title}</h3>
+            <p class="mt-1 text-sm font-semibold leading-7">{item.organization}</p>
+            <p class="text-sm leading-7 text-slate-600 dark:text-slate-300">{labels.period}: {item.period} | {labels.location}: {item.country}</p>
+            <p class="mt-2 text-sm leading-7 text-slate-700 dark:text-slate-200">{item.summary}</p>
             <ul class="mt-2 grid gap-1 text-sm leading-7">
               {item.responsibilities.map((r) => <li>{r}</li>)}
             </ul>
+            <p class="mt-2 text-sm leading-7 text-slate-600 dark:text-slate-300">{item.tags.join(metricSeparator)}</p>
           </article>
         ))}
-      </div>
-    </section>
-    <section>
-      <h2 class="text-2xl font-bold">{page.projects}</h2>
-      <div class="mt-4 grid gap-5">
-        {content.projects.map((project) => (
-          <article>
-            <h3 class="font-bold">{project.name}</h3>
-            <p class="text-sm text-slate-600 dark:text-slate-300">{project.organization} | {project.role}</p>
-            <p class="mt-2 text-sm leading-7">{project.summary}</p>
-          </article>
-        ))}
-      </div>
-    </section>
+        </div>
+      </section>
+
+      <section class="mt-8">
+        <h2 class="text-xl font-bold">{labels.selectedProjects}</h2>
+        <div class="mt-4 grid gap-5">
+          {featuredProjects.map((project) => (
+            <article class="border-t border-slate-200 pt-4 first:border-t-0 first:pt-0 dark:border-slate-800">
+              <h3 class="text-lg font-bold">{project.name}</h3>
+              <p class="mt-1 text-sm leading-7 text-slate-600 dark:text-slate-300">{labels.organization}: {project.organization} | {labels.role}: {project.role}</p>
+              <p class="mt-2 text-sm leading-7 text-slate-700 dark:text-slate-200">{project.summary}</p>
+              <ul class="mt-2 grid gap-1 text-sm leading-7">
+                {project.results.map((result) => <li>{result}</li>)}
+              </ul>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="mt-8">
+        <h2 class="text-xl font-bold">{labels.education}</h2>
+        <div class="mt-3 grid gap-4">
+          {academicItems.map((item) => (
+            <article>
+              <h3 class="font-bold">{item.title}</h3>
+              <p class="text-sm leading-7 text-slate-700 dark:text-slate-200">{item.institution} | {item.date}</p>
+              <p class="text-sm leading-7 text-slate-600 dark:text-slate-300">{item.meta}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="mt-8">
+        <h2 class="text-xl font-bold">{labels.training}</h2>
+        <div class="mt-3 grid gap-4">
+          {courseItems.map((item) => (
+            <article>
+              <h3 class="font-bold">{item.title}</h3>
+              <p class="text-sm leading-7 text-slate-700 dark:text-slate-200">{item.institution} | {item.date}</p>
+              <p class="text-sm leading-7 text-slate-600 dark:text-slate-300">{item.meta}</p>
+            </article>
+          ))}
+        </div>
+      </section>
+
+      <section class="mt-8">
+        <h2 class="text-xl font-bold">{labels.awards}</h2>
+        <ul class="mt-3 grid gap-2 text-sm leading-7">
+          {content.awards.map((award) => <li>{award.title} - {award.organization} - {award.year}</li>)}
+          {content.recommendations.slice(0, 3).map((rec) => <li>{rec.title} - {rec.organization} - {rec.author}</li>)}
+        </ul>
+      </section>
+    </article>
   </section>
 </BaseLayout>

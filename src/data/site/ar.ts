@@ -16,7 +16,7 @@ export const arSite: SiteInfo = {
   linkedin: "https://www.linkedin.com/in/bakrialtaif/",
   github: "https://github.com/bakrialtaif",
   website: "https://bakrialtaif.github.io",
-  resumePdf: "/documents/Abobaker-Altaif-CV.pdf",
+  resumePdf: "/documents/Abobaker_Altaif_CV_IT_Head_NBS.pdf",
   atsResume: "/ats-resume"
 };
 

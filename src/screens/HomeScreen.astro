@@ -2,7 +2,7 @@
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import MetricGrid from "@/components/MetricGrid.astro";
 import Timeline from "@/components/Timeline.astro";
-import { ArrowLeft, Download, Mail } from "lucide-astro";
+import { Download, FileText } from "lucide-astro";
 import { getContent, localizePath, type Locale } from "@/i18n";
 
 type Props = { locale: Locale };
@@ -34,17 +34,13 @@ const renderPrincipleParts = (principle: string) => {
         </p>
         <p class="mt-6 max-w-3xl text-lg leading-9 text-slate-700 dark:text-slate-200">{site.heroStatement}</p>
         <div class="mt-8 flex flex-wrap gap-3">
-          <a href="#projects" class="inline-flex items-center gap-2 rounded-md bg-slate-950 px-5 py-3 text-sm font-bold text-white dark:bg-white dark:text-slate-950">
-            {ui.actions.viewProjects}
-            <ArrowLeft class="h-4 w-4" aria-hidden="true" />
-          </a>
-          <a href={site.resumePdf} class="inline-flex items-center gap-2 rounded-md border border-slate-300 px-5 py-3 text-sm font-bold text-slate-800 dark:border-slate-700 dark:text-slate-100" data-analytics-event="cv_download" data-analytics-location="home_hero">
+          <a href={site.resumePdf} target="_blank" rel="noreferrer" class="inline-flex items-center gap-2 rounded-md bg-slate-950 px-5 py-3 text-sm font-bold text-white dark:bg-white dark:text-slate-950" data-analytics-event="cv_download" data-analytics-location="home_hero">
             {ui.actions.downloadResume}
             <Download class="h-4 w-4" aria-hidden="true" />
           </a>
-          <a href="#contact" class="inline-flex items-center gap-2 rounded-md border border-slate-300 px-5 py-3 text-sm font-bold text-slate-800 dark:border-slate-700 dark:text-slate-100">
-            {ui.actions.contact}
-            <Mail class="h-4 w-4" aria-hidden="true" />
+          <a href={localizePath(site.atsResume, locale)} class="inline-flex items-center gap-2 rounded-md border border-slate-300 px-5 py-3 text-sm font-bold text-slate-800 dark:border-slate-700 dark:text-slate-100" data-analytics-event="ats_resume_view" data-analytics-location="home_hero">
+            {ui.actions.atsResume}
+            <FileText class="h-4 w-4" aria-hidden="true" />
           </a>
         </div>
       </div>

@@ -30,8 +30,8 @@ export const enUi = {
     },
     actions: {
       viewProjects: "View Projects",
-      downloadResume: "Download Resume",
+      downloadResume: "Professional Resume PDF",
       contact: "Contact",
-      atsResume: "View ATS Version"
+      atsResume: "Professional Resume ATS"
     }
   } satisfies UiContent;
