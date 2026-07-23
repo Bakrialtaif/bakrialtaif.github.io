@@ -31,7 +31,7 @@ const lessons = aboutLessons[locale];
   </section>
 
   <section class="container-pad py-14">
-    <SectionTitle eyebrow={profile.journeyEyebrow} title={profile.journeyTitle} />
+    <SectionTitle title={profile.journeyTitle} />
     <ol class:list={["mt-8 grid gap-5 border-slate-200 dark:border-slate-800", locale === "ar" ? "mr-28 border-r pr-5" : "border-l pl-5"]}>
       {profile.journey.map((item) => (
         <li class="relative">
@@ -56,7 +56,7 @@ const lessons = aboutLessons[locale];
 
   <section class="bg-white py-14 dark:bg-slate-900">
     <div class="container-pad">
-      <SectionTitle eyebrow={profile.sectorsEyebrow} title={profile.sectorsTitle} />
+      <SectionTitle title={profile.sectorsTitle} />
       <div class="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-5">
         {profile.sectors.map(([title, text]) => (
           <article class="surface rounded-lg p-5">
@@ -70,7 +70,7 @@ const lessons = aboutLessons[locale];
 
   <section class="container-pad py-14">
     <div class="grid gap-10 lg:grid-cols-[0.8fr_1.2fr]">
-      <SectionTitle eyebrow={profile.projectTypesEyebrow} title={profile.projectTypesTitle} description={profile.projectTypesDescription} />
+      <SectionTitle title={profile.projectTypesTitle} description={profile.projectTypesDescription} />
       <div class="flex flex-wrap gap-3">
         {profile.projectTypes.map((type) => (
           <span class="rounded-md border border-slate-200 bg-white px-4 py-3 text-sm font-bold text-slate-700 dark:border-slate-800 dark:bg-slate-900 dark:text-slate-100">{type}</span>
@@ -81,7 +81,7 @@ const lessons = aboutLessons[locale];
 
   <section class="bg-white py-14 dark:bg-slate-900">
     <div class="container-pad">
-      <SectionTitle eyebrow={profile.expertiseEyebrow} title={profile.expertiseTitle} description={profile.expertiseDescription} />
+      <SectionTitle title={profile.expertiseTitle} description={profile.expertiseDescription} />
       <div class="mt-8 grid gap-5 md:grid-cols-2 xl:grid-cols-3">
         {content.expertise.map((group) => (
           <article class="surface rounded-lg p-5">
@@ -98,7 +98,7 @@ const lessons = aboutLessons[locale];
   </section>
 
   <section class="container-pad py-14">
-    <SectionTitle eyebrow={lessons.eyebrow} title={lessons.title} description={lessons.description} />
+    <SectionTitle title={lessons.title} description={lessons.description} />
     <div class="mt-8 grid gap-5 md:grid-cols-5">
       {lessons.items.map(([title, text]) => (
         <article class="surface rounded-lg p-5">
@@ -111,7 +111,7 @@ const lessons = aboutLessons[locale];
 
   <section class="bg-white py-14 dark:bg-slate-900">
     <div class="container-pad">
-      <SectionTitle eyebrow={profile.toolsEyebrow} title={profile.toolsTitle} />
+      <SectionTitle title={profile.toolsTitle} />
       <div class="mt-8 grid gap-5 md:grid-cols-2 lg:grid-cols-3">
         {content.skillGroups.map((group) => (
           <article class="surface rounded-lg p-5">
