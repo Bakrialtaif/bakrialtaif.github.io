@@ -6,20 +6,23 @@ export const arEducation: EducationItem[] = [
     institution: "جامعة الخرطوم - كلية العلوم الرياضية",
     meta: "بكالوريوس العلوم مع مرتبة الشرف، الإحصاء وعلوم الحاسوب",
     date: "21 يوليو 2008",
-    category: "academic"
+    category: "academic",
+    document: "/images/evidence/university-of-khartoum-bsc-certificate.jpeg"
   },
   {
     title: "إدارة مخاطر نظم تقنية المعلومات",
     institution: "جامعة الخرطوم - كلية العلوم الرياضية - وحدة التدريب",
     meta: "إدارة مخاطر نظم المعلومات",
     date: "06 - 11 فبراير 2012",
-    category: "course"
+    category: "course",
+    document: "/images/evidence/uofk-risk-management-it-training-certificate.jpeg"
   },
   {
     title: "تصميم قواعد بيانات الحاسوب في المحاسبة",
     institution: "جامعة الخرطوم - كلية العلوم الرياضية - وحدة التدريب",
     meta: "تصميم قواعد البيانات في المحاسبة",
     date: "19 - 27 يناير 2014",
-    category: "course"
+    category: "course",
+    document: "/images/evidence/uofk-accounting-database-design-training-certificate.jpeg"
   }
 ];
