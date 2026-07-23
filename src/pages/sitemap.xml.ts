@@ -1,8 +1,6 @@
 import { localizePath } from "@/i18n";
-import { projectCaseStudySlugs } from "@/data/project-case-studies";
 
-const pages = ["/", "/about", "/projects", "/education", "/awards", "/recommendations", "/ats-resume", "/resume-pdf", "/privacy"];
-const projectPages = projectCaseStudySlugs.map((slug) => `/projects/${slug}`);
+const pages = ["/", "/about", "/education", "/awards", "/ats-resume", "/resume-pdf", "/privacy"];
 
 function withTrailingSlash(path: string) {
   if (path === "/") return path;
@@ -12,9 +10,7 @@ function withTrailingSlash(path: string) {
 export function GET() {
   const urls = [
     ...pages,
-    ...projectPages,
-    ...pages.map((page) => localizePath(page, "en")),
-    ...projectPages.map((page) => localizePath(page, "en"))
+    ...pages.map((page) => localizePath(page, "en"))
   ];
 
   return new Response(

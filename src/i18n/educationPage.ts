@@ -18,7 +18,7 @@ type EducationPageContent = {
 export const educationPageContent = {
   ar: {
     eyebrow: "التعليم",
-    title: "التعليم والتطوير المهني",
+    title: "التعليم والتدريب والمهارات",
     description:
       "شكّل التعليم الأكاديمي نقطة البداية، بينما استمر التعلم من خلال الممارسة العملية، والدورات المتخصصة، والعمل على مشاريع متنوعة في القطاعين الحكومي والخاص.",
     academicTitle: "المؤهلات الأكاديمية",
@@ -49,7 +49,7 @@ export const educationPageContent = {
   },
   en: {
     eyebrow: "Education",
-    title: "Education and Professional Development",
+    title: "Education, Training, and Skills",
     description:
       "Academic education formed the starting point, while learning continued through practical work, specialized courses, and projects across government and private-sector environments.",
     academicTitle: "Academic Qualifications",

@@ -1,7 +1,7 @@
 ---
-import { ArrowLeft, ArrowRight, CalendarCheck, Database, Landmark, Network, ShieldCheck, Workflow } from "lucide-astro";
+import { CalendarCheck, Database, Landmark, Network, ShieldCheck, Workflow } from "lucide-astro";
 import type { MetricItem } from "@/data/site/types";
-import { localizePath, type Locale } from "@/i18n";
+import type { Locale } from "@/i18n";
 
 type Labels = {
   details: string;
@@ -11,7 +11,6 @@ type Labels = {
 };
 type Props = { metrics: MetricItem[]; locale?: Locale; labels: Labels };
 const { metrics, locale = "ar", labels } = Astro.props;
-const DetailArrow = locale === "ar" ? ArrowLeft : ArrowRight;
 
 const visualIcons = {
   notifications: Workflow,
@@ -82,16 +81,6 @@ const renderDescription = (description: string, metricValues: string[]) => {
               <p class="text-xs font-bold text-slate-500 dark:text-slate-400">{labels.fields.role}</p>
               <p class="mt-1 text-sm font-semibold leading-7 text-copper dark:text-amber-300">{project.role}</p>
             </div>
-            <a
-              href={localizePath(`/projects/${project.slug}`, locale)}
-              class="mt-5 inline-flex items-center gap-2 text-sm font-bold text-river transition hover:text-teal dark:text-blue-300"
-              data-analytics-event="project_details_click"
-              data-analytics-location="home_project_card"
-              data-project-slug={project.slug}
-            >
-              {locale === "ar" ? "عرض تفاصيل المشروع" : "View project details"}
-              <DetailArrow class="h-4 w-4" aria-hidden="true" />
-            </a>
           </div>
         </div>
       </article>
