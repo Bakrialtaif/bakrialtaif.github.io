@@ -1,7 +1,7 @@
 ---
 import BaseLayout from "@/layouts/BaseLayout.astro";
 import PageHero from "@/components/PageHero.astro";
-import { ExternalLink, FileText } from "lucide-astro";
+import { FileText } from "lucide-astro";
 import { getContent, type Locale } from "@/i18n";
 
 type Props = { locale: Locale };
@@ -15,18 +15,18 @@ const page = content.pages.recommendations;
   <section class="container-pad py-14" data-analytics-section="recommendations" data-analytics-view-event="recommendations_section_view">
     <div class="grid gap-4 md:grid-cols-2">
       {content.recommendations.map((rec) => (
-        <article class="surface rounded-lg p-5">
-          <FileText class="h-6 w-6 text-teal dark:text-teal-300" aria-hidden="true" />
+        <article class:list={["surface relative rounded-lg p-5", rec.document && "pl-24"]}>
+          {rec.document ? (
+            <a href={rec.document} target="_blank" rel="noreferrer" class="absolute left-4 top-4 block overflow-hidden rounded-md ring-1 ring-slate-200 transition hover:-translate-y-0.5 hover:ring-river dark:ring-slate-700" aria-label={`${content.ui.openDocument}: ${rec.title}`}>
+              <img src={rec.document} alt={rec.title} class="h-16 w-16 bg-slate-100 object-cover object-top dark:bg-slate-800" loading="lazy" />
+            </a>
+          ) : (
+            <FileText class="h-6 w-6 text-teal dark:text-teal-300" aria-hidden="true" />
+          )}
           <p class="mt-3 text-sm font-semibold text-teal dark:text-teal-300">{rec.date}</p>
           <h2 class="mt-2 text-xl font-bold">{rec.title}</h2>
           <p class="mt-2 text-sm text-slate-600 dark:text-slate-300">{rec.organization}</p>
           <p class="mt-3 text-sm leading-7 text-slate-700 dark:text-slate-200">{rec.evidence}</p>
-          {rec.document && (
-            <a href={rec.document} target="_blank" rel="noreferrer" class="mt-4 inline-flex items-center gap-2 rounded-md border border-river/30 px-3 py-2 text-sm font-bold text-river transition hover:bg-river hover:text-white dark:border-blue-300/30 dark:text-blue-300">
-              {content.ui.viewDocument}
-              <ExternalLink class="h-4 w-4" aria-hidden="true" />
-            </a>
-          )}
         </article>
       ))}
     </div>
