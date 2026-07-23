@@ -2,7 +2,7 @@ import type { AwardItem } from "./types";
 
 export const arAwards: AwardItem[] = [
   {
-    title: "ثناء السيد مدير عام قوات الشرطة",
+    title: "ثناء بخصوص جهود تطوير نظام معاملات الأجانب",
     year: "2024",
     organization: "رئاسة قوات الشرطة السودانية - مكتب المدير العام",
     project: "نظام معاملات الأجانب",
@@ -10,7 +10,7 @@ export const arAwards: AwardItem[] = [
     image: "/images/evidence/police-commissioner-commendation.png"
   },
   {
-    title: "ثناء مركز إنتاج الجواز الإلكتروني",
+    title: "خطاب ثناء بخصوص تطوير أنظمة الجوازات والهجرة",
     year: "2024",
     organization: "الإدارة العامة للجوازات والهجرة - مركز إنتاج الجواز الإلكتروني",
     project: "أنظمة الجوازات والهجرة ونظام الأجانب",
@@ -18,7 +18,7 @@ export const arAwards: AwardItem[] = [
     image: "/images/evidence/police-passport-center-commendation.png"
   },
   {
-    title: "أفضل مشروع حكومة إلكترونية",
+    title: "جائزة بخصوص تطوير نظام قاعدة بيانات التدريب",
     year: "2012",
     organization: "جائزة الحكومة الإلكترونية السودانية",
     project: "نظام قاعدة بيانات التدريب في السودان",
@@ -26,18 +26,11 @@ export const arAwards: AwardItem[] = [
     image: "/images/evidence/egov-award-ceremony-1.jpg"
   },
   {
-    title: "أفضل مشروع حكومة إلكترونية",
+    title: "جائزة بخصوص تطوير قاعدة بيانات معاقي الحرب",
     year: "2012",
     organization: "جائزة الحكومة الإلكترونية السودانية",
     project: "قاعدة بيانات معاقي الحرب في السودان",
     description: "تكريم بناء قاعدة بيانات تخدم منظمة غير ربحية وتدعم إدارة معلومات فئة ذات احتياج مؤسسي حساس.",
     image: "/images/evidence/egov-award-ceremony-2.jpg"
-  },
-  {
-    title: "التأهل للتصفيات النهائية",
-    year: "موثق",
-    organization: "جائزة الإسكوا للمحتوى العربي",
-    project: "السنارير لخدمات التعليم",
-    description: "يعكس التأهل قدرة المشروع على تقديم محتوى وخدمات تعليمية رقمية ضمن منافسة إقليمية متخصصة."
   }
 ];

@@ -3,16 +3,16 @@ import type { RecommendationItem } from "./types";
 export const arRecommendations: RecommendationItem[] = [
   {
     title: "خطاب تزكية",
-    organization: "شرطة السودان",
-    author: "اللواء شرطة صلاح الدين آدم صلاح الدين",
+    organization: "اللواء شرطة صلاح الدين آدم صلاح الدين",
+    author: "مدير الإدارة العامة لشرطة تأمين منشآت النفط - شرطة السودان",
     date: "موثق",
     evidence: "تزكية مهنية توثق دوره في تطوير منظومة العمل الهجري وأنظمة الجوازات والهجرة، وتشيد بكفاءته الفنية والإدارية والعمل بروح الفريق.",
     document: "/images/evidence/major-general-salah-aldeen-adam-recommendation.png"
   },
   {
     title: "خطاب تزكية",
-    organization: "جامعة السودان للعلوم والتكنولوجيا",
-    author: "د. يحيى عبد الله مجد",
+    organization: "د. يحيى عبد الله مجد",
+    author: "جامعة السودان للعلوم والتكنولوجيا - مستشار وخبير في الاتصالات وتقانة المعلومات",
     date: "يناير 2025",
     evidence: "تزكية مهنية توثق تطوير نظام قاعدة بيانات التدريب وتطوير أنظمة حكومية متعددة، وتشيد بفهمه العميق للنظم الحكومية وأخلاقياته المهنية.",
     document: "/images/evidence/dr-yahya-abdalla-recommendation.png"
