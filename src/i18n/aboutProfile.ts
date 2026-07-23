@@ -65,10 +65,10 @@ export const aboutProfile: Record<
   }
 > = {
   ar: {
-    introTitle: "نبذة",
+    introTitle: "الملف المهني",
     introText:
       "امتدت الخبرة عبر بيئات عمل متعددة شملت التعليم والتدريب، والقطاع الخاص، والجهات الحكومية، والصناعة، والخدمات الرقمية. تنوعت الأعمال بين تطوير الأنظمة المؤسسية، والمنصات الحكومية، وأنظمة الجوازات، ومنتجات رقمية مثل إشعارك، وحلول ERP ولوحات معلومات وتكامل بين الأنظمة. تشكلت هذه الخبرة من ممارسة مباشرة لمشاريع تشغيلية تحتاج إلى فهم الإجراءات، وتحويلها إلى أنظمة قابلة للاستخدام والتطوير.",
-    stationsTitle: "محطات",
+    stationsTitle: "مؤسسات",
     stations: [
       "جامعة الخرطوم",
       "جامعة البيان",
@@ -81,7 +81,7 @@ export const aboutProfile: Record<
       "وزارة التحول الرقمي والإتصالات",
     ],
     journeyEyebrow: "التجربة المهنية",
-    journeyTitle: "أبرز التجارب",
+    journeyTitle: "ابرز المجالات",
     journey: [
       {
         title: "التعليم والتدريب",
@@ -131,8 +131,7 @@ export const aboutProfile: Record<
     ],
     projectTypesEyebrow: "مجالات العمل",
     projectTypesTitle: "أنواع المشاريع",
-    projectTypesDescription:
-      "لا يعرض هذا القسم أسماء المشاريع، بل يوضح المجالات التي تكررت فيها الممارسة العملية عبر مراحل مختلفة.",
+    projectTypesDescription: "",
     projectTypes: [
       "الأنظمة المؤسسية",
       "المنصات الحكومية",
@@ -146,8 +145,7 @@ export const aboutProfile: Record<
     ],
     expertiseEyebrow: "خلاصة التجربة",
     expertiseTitle: "محاور مهنية",
-    expertiseDescription:
-      "تكررت هذه المجالات في أكثر من بيئة عمل، من تحليل الاحتياج وتصميم النظام إلى البناء والتشغيل والتحسين.",
+    expertiseDescription: "",
     toolsEyebrow: "الأدوات والتقنيات",
     toolsTitle: "تقنيات مستخدمة",
     contactEyebrow: "التواصل",
