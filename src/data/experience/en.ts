@@ -10,7 +10,7 @@ export const enExperience: ExperienceItem[] = [
     focus: "Government platforms, data integration, sovereign transactions",
     highlight: "Designed and operated a national government integration platform.",
     summary: "Technical leadership for a national government platform designed to connect economic-sector institutions and exchange government data and transactions through a unified platform.",
-    responsibilities: ["Led development of Baldna for government data and transaction exchange.", "Analyzed government transaction procedures and converted them into digital workflows.", "Operated the platform in production and followed up technical stability.", "Trained users and enabled operations teams during platform adoption."],
+    responsibilities: ["Participated with the technical team in developing Baldna for government data and transaction exchange.", "Contributed to analyzing government transaction procedures and converting them into digital workflows.", "Served as the first programmer and built the initial version of the platform.", "Contributed to production operation, technical stability follow-up, and enabling operations teams during adoption."],
     projects: ["Government data and transaction exchange platform (Baldna)"],
     tags: ["Government platforms", "Institutional integration", "Digital transformation", "Platform operations", "User enablement"]
   },

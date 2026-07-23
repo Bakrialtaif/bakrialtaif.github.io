@@ -17,7 +17,7 @@ export const enImpactMetrics: MetricItem[] = [
   {
     title: "ESH3ARK",
     organization: "ESH3ARK Technology Ltd.",
-    role: "Founder / System Architect / Lead Developer",
+    role: "Co-founder / System Architect / Lead Developer",
     systemLabel: "https://esh3ark.com",
     systemUrl: "https://esh3ark.com",
     slug: "esh3ark",
@@ -28,7 +28,7 @@ export const enImpactMetrics: MetricItem[] = [
   {
     title: "National Government Data and Transaction Exchange Platform - Baldna",
     organization: "Ministry of Digital Transformation and Telecommunications",
-    role: "Technical Director",
+    role: "First Programmer / Initial Platform Builder / Technical Team Member",
     systemLabel: "https://baldna.gov.sd",
     systemUrl: "https://baldna.gov.sd",
     slug: "baldna-platform",

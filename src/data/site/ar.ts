@@ -31,7 +31,7 @@ export const arImpactMetrics: MetricItem[] = [
   {
     title: "إشعارك",
     organization: "شركة إشعارك للتقنية المحدودة",
-    role: "المؤسس / معماري النظام / المطور الرئيسي",
+    role: "شريك مؤسس / معماري النظام / المطور الرئيسي",
     systemLabel: "https://esh3ark.com",
     systemUrl: "https://esh3ark.com",
     slug: "esh3ark",
@@ -42,7 +42,7 @@ export const arImpactMetrics: MetricItem[] = [
   {
     title: "منصة بلدنا",
     organization: "وزارة التحول الرقمي والإتصالات",
-    role: "المدير التقني",
+    role: "المبرمج الأول / باني النسخة الأولى / عضو الفريق التقني",
     systemLabel: "https://baldna.gov.sd",
     systemUrl: "https://baldna.gov.sd",
     slug: "baldna-platform",
