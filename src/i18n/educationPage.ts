@@ -21,9 +21,9 @@ export const educationPageContent = {
     title: "التعليم والتدريب والمهارات",
     description:
       "شكّل التعليم الأكاديمي نقطة البداية، بينما استمر التعلم من خلال الممارسة العملية، والدورات المتخصصة، والعمل على مشاريع متنوعة في القطاعين الحكومي والخاص.",
-    academicTitle: "المؤهلات الأكاديمية",
-    coursesTitle: "الدورات المهنية",
-    skillsTitle: "المهارات التقنية",
+    academicTitle: "التعليم",
+    coursesTitle: "التدريب",
+    skillsTitle: "المهارات",
     skillGroups: [
       {
         title: "لغات البرمجة",
@@ -52,9 +52,9 @@ export const educationPageContent = {
     title: "Education, Training, and Skills",
     description:
       "Academic education formed the starting point, while learning continued through practical work, specialized courses, and projects across government and private-sector environments.",
-    academicTitle: "Academic Qualifications",
-    coursesTitle: "Professional Courses",
-    skillsTitle: "Technical Skills",
+    academicTitle: "Education",
+    coursesTitle: "Training",
+    skillsTitle: "Skills",
     skillGroups: [
       {
         title: "Programming Languages",

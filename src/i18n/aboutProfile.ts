@@ -81,7 +81,7 @@ export const aboutProfile: Record<
       "وزارة التحول الرقمي والإتصالات",
     ],
     journeyEyebrow: "التجربة المهنية",
-    journeyTitle: "ابرز المجالات",
+    journeyTitle: "التدرج في المراحل",
     journey: [
       {
         title: "التعليم والتدريب",
