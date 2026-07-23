@@ -1,7 +1,7 @@
 ---
 import { CalendarCheck, Database, Landmark, Network, ShieldCheck, Workflow } from "lucide-astro";
 import type { MetricItem } from "@/data/site/types";
-import type { Locale } from "@/i18n";
+import { localizePath, type Locale } from "@/i18n";
 
 type Labels = {
   details: string;
@@ -76,10 +76,35 @@ const renderDescription = (description: string, metricValues: string[]) => {
             ))}
           </p>
 
-          <div class="mt-auto pt-6">
-            <div>
-              <p class="text-xs font-bold text-slate-500 dark:text-slate-400">{labels.fields.role}</p>
-              <p class="mt-1 text-sm font-semibold leading-7 text-copper dark:text-amber-300">{project.role}</p>
+          <div class="mt-auto flex flex-wrap items-center justify-between gap-3 pt-6">
+            <p class="text-sm font-semibold leading-7 text-copper dark:text-amber-300">
+              <span class="text-xs font-bold text-slate-500 dark:text-slate-400">{labels.fields.role}: </span>
+              {project.role}
+            </p>
+            <div class="flex flex-wrap items-center gap-3">
+              <a
+                href={localizePath(`/projects/${project.slug}`, locale)}
+                class="text-sm font-bold leading-7 text-river underline-offset-4 hover:underline dark:text-blue-300"
+                data-analytics-event="project_details_click"
+                data-analytics-location="home_projects"
+                data-project-slug={project.slug}
+              >
+                {labels.details}
+              </a>
+              {project.systemUrl ? (
+                <a
+                  href={project.systemUrl}
+                  target="_blank"
+                  rel="noreferrer"
+                  class="text-sm font-bold leading-7 text-river underline-offset-4 hover:underline dark:text-blue-300"
+                >
+                  {project.systemLabel ?? project.systemUrl}
+                </a>
+              ) : project.systemLabel ? (
+                <span class="rounded-md bg-slate-100 px-2.5 py-1 text-xs font-bold text-slate-600 dark:bg-slate-800 dark:text-slate-200">
+                  {project.systemLabel}
+                </span>
+              ) : null}
             </div>
           </div>
         </div>

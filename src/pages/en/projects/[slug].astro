@@ -1,0 +1,28 @@
+---
+import ProjectCaseStudyScreen from "@/screens/ProjectCaseStudyScreen.astro";
+import { getProjectCaseStudies } from "@/data/project-case-studies";
+import { enAwards } from "@/data/awards/en";
+import { enRecommendations } from "@/data/recommendations/en";
+
+const locale = "en";
+
+export function getStaticPaths() {
+  const projects = getProjectCaseStudies("en");
+  return projects.map((project) => ({
+    params: { slug: project.slug },
+    props: { project }
+  }));
+}
+
+const { project } = Astro.props;
+const evidence = [
+  ...enAwards
+    .filter((item) => project.relatedAwardProjects.includes(item.project))
+    .map((item) => ({ title: item.title, description: item.description, href: item.image })),
+  ...enRecommendations
+    .filter((item) => project.relatedRecommendationOrganizations.includes(item.organization))
+    .map((item) => ({ title: item.title, description: item.evidence, href: item.document }))
+];
+---
+
+<ProjectCaseStudyScreen locale={locale} project={project} evidence={evidence} />

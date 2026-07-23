@@ -19,6 +19,8 @@ export type MetricItem = {
   title: string;
   organization: string;
   role: string;
+  systemLabel?: string;
+  systemUrl?: string;
   slug: string;
   visual: "notifications" | "platform" | "security" | "calendar" | "data" | "erp";
   description: string;

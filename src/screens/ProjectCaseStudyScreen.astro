@@ -24,7 +24,7 @@ const profile = aboutProfile[locale];
 const ArrowIcon = locale === "ar" ? ArrowRight : ArrowLeft;
 const contactCards = profile.contactCards.filter((card) => ["whatsapp", "email", "linkedin"].includes(card.id));
 const contactIcons = { whatsapp: MessageCircle, email: Mail, linkedin: Linkedin };
-const projectsPath = localizePath("/projects", locale);
+const projectsPath = `${localizePath("/", locale)}#projects`;
 const contactPath = `${localizePath("/", locale)}#contact`;
 const projectUrl = new URL(localizePath(`/projects/${project.slug}`, locale), Astro.site).toString();
 const jsonLd = {
