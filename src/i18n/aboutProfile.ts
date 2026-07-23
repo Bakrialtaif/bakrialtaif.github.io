@@ -149,7 +149,7 @@ export const aboutProfile: Record<
     toolsEyebrow: "الأدوات والتقنيات",
     toolsTitle: "الأدوات والتقنيات",
     contactEyebrow: "التواصل",
-    contactTitle: "مرحباً، لنبدأ حواراً وتواصلاً مهنياً",
+    contactTitle: "مرحباً، لنبدأ تواصلاً مهنياً",
     contactText:
       "إذا كانت طبيعة الخبرة والمشاريع المعروضة في هذا الموقع تتوافق مع احتياجاتكم، فيُسعدني التعرف على مشروعكم ومناقشة أفضل السبل للمضي قدماً.",
     contactSubtext:
